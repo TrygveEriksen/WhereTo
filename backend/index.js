@@ -9,12 +9,6 @@ app.use(cors());
 
 mongoose.connect("mongodb://127.0.0.1:27017/TDT4140");
 
-/*app.post('/', (req, res) => {
-  DestinationModel.create(req.body)
-  .then(destinations => res.json(destinations))
-  .catch(error => res.json(error))
-})*/
-
 app.get("/destinations", async (req, res) => {
   try {
     const destinations = await DestinationModel.find();
