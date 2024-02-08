@@ -26,7 +26,7 @@ const loginUser = async (req, res) => {
       const token = jwt.sign({ userId: user._id }, jwtSigningSecret);
       return res.json({ message: "login", jwtToken: token });
     }
-    res.json({ error: "wrong password" });
+    res.status(400).json({ error: "wrong password" });
   } catch (error) {
     res.json({ error: error.message });
   }
@@ -40,9 +40,9 @@ const signUpUser = async (req, res) => {
     return res.json({ message: "login", jwtToken: token });
   } catch (error) {
     if (error.code === 11000) {
-      return res.json({ error: "username taken" });
+      return res.status(400).json({ error: "username taken" });
     }
-    res.json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 

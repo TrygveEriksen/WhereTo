@@ -2,35 +2,26 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API } from "../../API/API";
 
 function Home() {
   const [destinations, setDestinations] = useState([]);
 
   //fetch data from the server when the page starts running and set it in the state destination
-  const navigate = useNavigate(0);
+  const navigate = useNavigate();
   useEffect(() => {
-    const token = localStorage.getItem("user");
-    if (!token) {
-      navigate("/login");
-    }
-
-    axios
-      .post(
-        "http://localhost:3001/auth",
-        {},
-        { headers: { authorization: token } }
-      )
-      .then((res) => (!res.data.auth ? navigate("/login") : null))
-      .catch((err) => console.log(err));
-
-    axios
-      .get(
-        "http://localhost:3001/destinations",
-        { headers: { authorization: token } }
-      )
-      .then((response) => setDestinations(response.data))
-      .catch((error) => console.log("Error fetching data:", error));
+    load();
   }, []);
+
+  const load = async () => {
+    const res = await API.get("/auth");
+    if (!res?.data?.auth) return navigate("/login");
+
+    const destRes = await API.get("/destinations");
+    if (destRes) {
+      return setDestinations(destRes.data);
+    }
+  };
 
   return (
     <>
@@ -44,6 +35,9 @@ function Home() {
           </li>
         ))}
       </ul>
+      <Link to="/login" onClick={() => localStorage.removeItem("user")}>
+        Logg ut
+      </Link>
     </>
   );
 }

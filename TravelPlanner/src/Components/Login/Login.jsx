@@ -1,44 +1,35 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import { API } from "../../API/API";
 
 function Login() {
-  const navigate = useNavigate();
-  useEffect(() =>  {
-    const token = localStorage.getItem("user");
-    if (!token) {
-      return;
-    }
-
-  axios.post(("http://localhost:3001/auth"),{},
-      { headers: { authorization: token } })
-      .then(res=> res.data.auth? navigate("/"):null)
-      .catch(err=> console.log(err))
-
-  }, []);
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  useEffect(() => {
+    load();
+  }, []);
+
+  const load = async () => {
+    const res = await API.get("/auth");
+    if (!res) return;
+    if (res?.data?.auth) navigate("/");
+  };
+
+  const handleLogin = async (e) => {
     setError("");
     e.preventDefault();
 
-    axios
-      .post("http://localhost:3001/users/login", {
-        username,
-        password,
-      })
-      .then((res) => {
-        if (res.data.jwtToken) {
-          localStorage.setItem("user", res.data.jwtToken);
-          navigate("/");
-        }
-        setError("wrong username or password");
-      })
-      .catch((error) => setError("wrong username or password"));
+    const res = await API.post("/users/login", { username, password });
+
+    if (res?.data?.jwtToken) {
+      localStorage.setItem("user", res.data.jwtToken);
+      navigate("/");
+    }
+    setError("wrong username or password");
   };
 
   return (
