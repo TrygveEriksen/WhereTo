@@ -1,9 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const {userRouter} = require("./routes/userRouter");
+const { userRouter } = require("./routes/userRouter");
 const cors = require("cors");
 const DestinationModel = require("./models/Destination");
+const { AuthMiddleware } = require("./routes/middelware");
 
 const app = express();
 app.use(express.json());
@@ -19,8 +20,8 @@ mongoose
   .then(() => console.log("connected to db"))
   .catch((err) => console.error("error connecting to db", err));
 
-
-app.use("/users", userRouter);
+  app.use("/users", userRouter);
+  app.use(AuthMiddleware);
 
 app.listen(3001, () => {
   console.log("server is running");
