@@ -19,10 +19,9 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <div>
-        <App/>
-        <Link to="/login">login</Link>
+        <App/>        
       </div>
-    ),
+    )
   },
   {
     path: "/login",
@@ -34,9 +33,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-createRoot(document.getElementById("root")).render(
-  );
-  
+
   ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
     <RouterProvider router={router} />

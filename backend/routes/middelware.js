@@ -14,6 +14,14 @@ const autenticated = (token)=>{
         return false
     }
 };
+AuthMiddleware.post("/auth",async (req, res)=>{
+    const auth = autenticated(req.headers.authorization)
+    console.log(req.headers.authorization)
+    if(auth){
+        return res.json({auth:true})
+    }
+    res.json({auth:false})
+})
 
 AuthMiddleware.use((req, res, next)=>{
 

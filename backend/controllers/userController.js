@@ -43,7 +43,8 @@ const signUpUser = async (req, res)=>{
     try {
         const newUser = new UserModel(req.body);
         const result = await newUser.save();
-        res.json(result)
+        const token = jwt.sign({ userId: result._id }, jwtSigningSecret);
+        return res.json({ message: "login", jwtToken: token});
 
 
     } catch (error) {
