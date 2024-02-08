@@ -1,10 +1,11 @@
-import "./App.css";
+import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function App() {
+function Descriptions() {
   const [destinations, setDestinations] = useState([]);
+  const { id } = useParams();
 
   //fetch data from the server when the page starts running and set it in the state destination
   const navigate = useNavigate(0);
@@ -24,25 +25,21 @@ function App() {
       .catch((err) => console.log(err));
 
     axios
-      .get("http://localhost:3001/users")
+      .get(
+        `http://localhost:3001/destinations/${id}`,
+        { headers: { authorization: token } }
+      )
       .then((response) => setDestinations(response.data))
       .catch((error) => console.log("Error fetching data:", error));
   }, []);
+
   return (
-    <>
-      <h1>Travel planner</h1>
-      <ul>
-        {destinations.map((users) => (
-          <li key={users._id}>
-            <p>{users.username}</p>
-          </li>
-        ))}
-      </ul>
-      <Link to="/login" onClick={() => localStorage.removeItem("user")}>
-        Log out
-      </Link>
-    </>
+    <div>
+      <h1>Description</h1>
+
+      <p>{destinations.description}</p>
+    </div>
   );
 }
 
-export default App;
+export default Descriptions;
