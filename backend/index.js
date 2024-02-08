@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const DestinationModel = require("./models/Destination");
+const { destinationRouter } = require("./routers/destinationRouter");
 
 const app = express();
 app.use(express.json());
@@ -12,18 +12,12 @@ const dbPass = "kOIUq6hG3qlEWXiU";
 const dbName = "whereto";
 
 const url = `mongodb+srv://${dbUsername}:${dbPass}@cluster0.nzo0zib.mongodb.net/${dbName}`;
-mongoose.connect(url)
-  .then(()=> console.log("connected to db"))
-  .catch((err)=>console.error("error connecting to db", err))
+mongoose
+  .connect(url)
+  .then(() => console.log("connected to db"))
+  .catch((err) => console.error("error connecting to db", err));
 
-app.get("/destinations", async (req, res) => {
-  try {
-    const destinations = await DestinationModel.find();
-    res.json(destinations);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+app.use("/destinations", destinationRouter);
 
 app.listen(3001, () => {
   console.log("server is running");
