@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import "./Login.css"
-import {    Link } from "react-router-dom";
-  
-
+import "../Login/Login.css";
+import { Link } from "react-router-dom";
 
 function Signup() {
   return (
     <div className="loginDiv">
-        <h1>Opprett bruker</h1>
+      <h1>Opprett bruker</h1>
       <form className="loginForm">
         <label htmlFor="brukernavn">Brukernavn</label>
         <input type="text" placeholder="Brukernavn" />
@@ -18,9 +16,9 @@ function Signup() {
         <input type="password" placeholder="Bekreft Passord" />
         <input type="submit" value="Opprett Bruker" />
       </form>
-      <p>Har du allerede en bruker? <Link to="/login">Logg inn</Link></p>
-      
-
+      <p>
+        Har du allerede en bruker? <Link to="/login">Logg inn</Link>
+      </p>
     </div>
   );
 }
