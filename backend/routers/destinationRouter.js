@@ -1,8 +1,12 @@
+const {
+  findOneDescription,
+  findAllDestinations,
+} = require("../controllers/destinationController");
 
-const DestinationModel = require("./models/Destination");
+const { Router } = require("express");
+const destinationRouter = Router();
 
-const { Router } = require('express');
-const app = Router();
+destinationRouter.get("/", findAllDestinations);
+destinationRouter.get("/:id", findOneDescription);
 
-app.get('/destination/:name',findOneDescription());
-
+module.exports = { destinationRouter };
