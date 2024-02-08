@@ -1,7 +1,7 @@
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function App() {
   const [destinations, setDestinations] = useState([]);
@@ -11,15 +11,17 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("user");
     if (!token) {
-      navigate("/login")
+      navigate("/login");
     }
 
-    axios.post(("http://localhost:3001/auth"),{},
-    { headers: { authorization: token } })
-    .then(res=> !res.data.auth? navigate("/login"):null)
-    .catch(err=> console.log(err))
-
-
+    axios
+      .post(
+        "http://localhost:3001/auth",
+        {},
+        { headers: { authorization: token } }
+      )
+      .then((res) => (!res.data.auth ? navigate("/login") : null))
+      .catch((err) => console.log(err));
 
     axios
       .get("http://localhost:3001/users")
@@ -36,6 +38,9 @@ function App() {
           </li>
         ))}
       </ul>
+      <Link to="/login" onClick={() => localStorage.removeItem("user")}>
+        Log out
+      </Link>
     </>
   );
 }
