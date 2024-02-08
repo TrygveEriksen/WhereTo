@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [destinations, setDestinations] = useState([]); 
@@ -19,7 +20,9 @@ function Home() {
     <ul>
       {destinations.map((destination) => (
         <li key={destination._id}>
+            <Link to={`/descriptions/${destination._id}`}>
           <p>{destination.name}</p>
+          </Link>
         </li>
       ))}
     </ul>
