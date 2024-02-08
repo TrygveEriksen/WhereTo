@@ -10,7 +10,7 @@ function Descriptions() {
     //fetch data from the server when the page starts running and set it in the state destination
     useEffect(() => {
       axios
-        .get("http://localhost:3001/destinations/${id}")
+        .get(`http://localhost:3001/destinations/${id}`)
         .then((response) => setDestinations(response.data))
         .catch((error) => console.log("Error fetching data:", error));
     }, []);
