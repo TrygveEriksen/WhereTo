@@ -49,6 +49,7 @@ function Login() {
       <form className="loginForm">
         <label htmlFor="brukernavn">Brukernavn</label>
         <input
+          autoFocus
           type="text"
           placeholder="Brukernavn"
           value={username}
@@ -66,8 +67,8 @@ function Login() {
         <input type="submit" value="Logg inn" onClick={handleLogin} />
       </form>
       {error && <div className="error">{error}</div>}
-      <p>
-        Ny her? <Link to="/signup">Opprett bruker</Link>
+      <p className="signup">
+        <Link to="/signup">Opprett bruker</Link>
       </p>
     </div>
   );

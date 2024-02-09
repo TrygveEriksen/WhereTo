@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API } from "../../API/API";
@@ -35,7 +34,7 @@ function Home() {
           </li>
         ))}
       </ul>
-      <Link to="/login" onClick={() => localStorage.removeItem("user")}>
+      <Link to="/login" className="signup" onClick={() => localStorage.removeItem("user")}>
         Logg ut
       </Link>
     </>

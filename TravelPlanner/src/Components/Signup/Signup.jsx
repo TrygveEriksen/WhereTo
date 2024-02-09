@@ -79,7 +79,7 @@ function Signup() {
       </form>
       {error && <div className="error">{error}</div>}
       <p>
-        Har du allerede en bruker? <Link to="/login">Logg inn</Link>
+        Har du allerede en bruker? <Link className="signup" to="/login">Logg inn</Link>
       </p>
     </div>
   );
