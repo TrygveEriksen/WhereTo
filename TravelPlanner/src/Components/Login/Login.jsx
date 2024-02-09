@@ -13,6 +13,10 @@ function Login() {
     load();
   }, []);
 
+  useEffect(() => {
+    setError("");
+  }, [username, password]);
+
   const load = async () => {
     const res = await API.get("/auth");
     if (!res) return;
@@ -23,13 +27,20 @@ function Login() {
     setError("");
     e.preventDefault();
 
-    const res = await API.post("/users/login", { username, password });
+    if (!username) return setError("Du må ha brukernavn");
+    if (!password) return setError("Du må ha passord");
 
-    if (res?.data?.jwtToken) {
-      localStorage.setItem("user", res.data.jwtToken);
-      navigate("/");
+    try {
+      const res = await API.post("/users/login", { username, password });
+      if (res?.data?.jwtToken) {
+        localStorage.setItem("user", res.data.jwtToken);
+        navigate("/");
+      }
+    } catch (error) {
+      return setError("Brukernavn eller Passord er feil");
     }
-    setError("wrong username or password");
+
+    setError("Noe gikk");
   };
 
   return (
@@ -54,10 +65,10 @@ function Login() {
         />
         <input type="submit" value="Logg inn" onClick={handleLogin} />
       </form>
+      {error && <div className="error">{error}</div>}
       <p>
         Ny her? <Link to="/signup">Opprett bruker</Link>
       </p>
-      {error && <div className="error">{error}</div>}
     </div>
   );
 }

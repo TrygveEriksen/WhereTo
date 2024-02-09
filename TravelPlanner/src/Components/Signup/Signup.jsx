@@ -14,6 +14,10 @@ function Signup() {
     load();
   }, []);
 
+  useEffect(() => {
+    setError("");
+  }, [username, password, confirmPassword]);
+
   const load = async () => {
     const res = await API.get("/auth");
     if (!res) return;
@@ -24,23 +28,23 @@ function Signup() {
     setError("");
     e.preventDefault();
 
+    if (!username) return setError("Du må ha brukernavn");
+    if (!password) return setError("Du må ha passord");
+    if (!confirmPassword) return setError("Du må bekrefte passord");
+
     if (password !== confirmPassword)
       return setError("Passordene må være like");
 
-    const res = await API.post("/users/signup", { username, password });
-
-    if (res.status === 400) {
-      return setError(res.data.error);
+    try {
+      const res = await API.post("/users/signup", { username, password });
+      if (res?.data?.jwtToken) {
+        localStorage.setItem("user", res.data.jwtToken);
+        navigate("/");
+      }
+    } catch (error) {
+      setError("Brukernavnet er opptatt");
     }
-
-    if (res.status > 300 && res.status < 200) {
-      return setError("unkown server error");
-    }
-
-    if (res?.data?.jwtToken) {
-      localStorage.setItem("user", res.data.jwtToken);
-      navigate("/");
-    }
+    setError("Noe gikk");
   };
 
   return (

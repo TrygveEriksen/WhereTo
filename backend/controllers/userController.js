@@ -19,7 +19,7 @@ const loginUser = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(404).json({ error: "User does not exist" });
+      return res.status(404).json([]);
     }
 
     if (user.password === req.body.password) {
