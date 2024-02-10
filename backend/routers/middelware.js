@@ -1,14 +1,13 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../models/User");
-
-const jwtSigningSecret = "sfdjfiudfghjklkuytresx";
+const { secrets } = require("../secrets");
 
 const AuthMiddleware = express.Router();
 
 const autenticated = (token) => {
   try {
-    return jwt.verify(token, jwtSigningSecret);
+    return jwt.verify(token, secrets.jwt.signingSecret);
   } catch (error) {
     return null;
   }
