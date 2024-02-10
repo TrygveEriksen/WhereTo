@@ -1,34 +1,44 @@
-import React from 'react';
-import axios from "axios";
+import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { API } from "../../API/API";
 
 function Home() {
-  const [destinations, setDestinations] = useState([]); 
+  const [destinations, setDestinations] = useState([]);
 
-    //fetch data from the server when the page starts running and set it in the state destination
-    useEffect(() => {
-      axios
-        .get("http://localhost:3001/destinations")
-        .then((response) => setDestinations(response.data))
-        .catch((error) => console.log("Error fetching data:", error));
-    }, []);
+  //fetch data from the server when the page starts running and set it in the state destination
+  const navigate = useNavigate();
+  useEffect(() => {
+    load();
+  }, []);
+
+  const load = async () => {
+    const res = await API.get("/auth");
+    if (!res?.data?.auth) return navigate("/login");
+
+    const destRes = await API.get("/destinations");
+    if (destRes) {
+      return setDestinations(destRes.data);
+    }
+  };
 
   return (
     <>
-    <h1>Destinations</h1>
-    <ul>
-      {destinations.map((destination) => (
-        <li key={destination._id}>
+      <h1>Destinations</h1>
+      <ul>
+        {destinations.map((destination) => (
+          <li key={destination._id}>
             <Link to={`/descriptions/${destination._id}`}>
-          <p>{destination.name}</p>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </>
-  )
+              <p>{destination.name}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <Link to="/login" className="signup" onClick={() => localStorage.removeItem("user")}>
+        Logg ut
+      </Link>
+    </>
+  );
 }
 
 export default Home;
-    

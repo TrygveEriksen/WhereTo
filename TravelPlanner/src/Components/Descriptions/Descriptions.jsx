@@ -1,29 +1,38 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
+import { API } from "../../API/API";
 
 function Descriptions() {
-    const [destinations, setDestinations] = useState([]); 
-    const {id} = useParams();
+  const [destinations, setDestinations] = useState([]);
+  const { id } = useParams();
 
-    //fetch data from the server when the page starts running and set it in the state destination
-    useEffect(() => {
-      axios
-        .get(`http://localhost:3001/destinations/${id}`)
-        .then((response) => setDestinations(response.data))
-        .catch((error) => console.log("Error fetching data:", error));
-    }, []);
+  //fetch data from the server when the page starts running and set it in the state destination
+  const navigate = useNavigate();
+  useEffect(() => {
+    load()
+  }, []);
 
-  
-    return (
+
+  const load = async () => {
+    const res = await API.get("/auth");
+    if (!res?.data?.auth) return navigate("/login");
+
+    const destRes = await API.get(`/destinations/${id}`)
+    if (destRes) {
+      return setDestinations(destRes.data)
+    }
+  };
+
+
+  return (
     <div>
       <h1>Description</h1>
-      
-          <p>{destinations.description}</p>
+
+      <p>{destinations.description}</p>
     </div>
-  )
+  );
 }
 
-export default Descriptions
-
+export default Descriptions;
