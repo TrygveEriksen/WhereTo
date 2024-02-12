@@ -2,30 +2,59 @@
 
 ## Group members
 
-| Name                      |
-| ------------------------- |
-| Aurora Grongstad-Borsheim |
-| Trygve Eriksen            |
-| Simen Littorin Birkeland  |
-| Elias Hetland             |
-| Iselin Remaut Lund        |
-| Johanne Dahl Norland      |
-| Fabian Ugedal             |
+| Name                      | Tag       |
+| ------------------------- |-----------|
+| Aurora Grongstad-Borsheim |@aurorg    |
+| Trygve Eriksen            |@tryger    |
+| Simen Littorin Birkeland  |@simenlb   |
+| Elias Hetland             |@eliashet  |
+| Iselin Remaut Lund        |@iselinlu  |
+| Johanne Dahl Norland      |@johanndn  |
+| Fabian Ugedal             |@fabianu   |
 
 ## Project description
 
+## Installation
+
+##### Clone repo from gitlab
+```bash
+git clone https://gitlab.stud.idi.ntnu.no/tdt4140-2024/produktomraade-1/gruppe-5/reiseutforsker.git
+```
+
+##### Navigate to app
+```bash
+cd reiseutforsker
+```
+
+##### Install dependecies
+```bash
+(cd ./backend && npm i) && (cd ./TravelPlanner && npm i)
+
+```
+
 ## How to run the code
 
-Run backend:
+### Run backend:
 
-1. cd into reiseutforsker
-2. cd into backend
-3. run 'npm i'
-4. run 'npm start'
+##### Navigate to backend
+```bash
+cd /reiseutforsker/backend
+```
 
-Run frontend:
+##### Run server
+```bash
+npm start
+```
 
-1. cd into reiseutforsker
-2. cd into TravelPlanner
-3. run 'npm i'
-4. run 'npm run dev'
+### Run frontend:
+
+##### Navigate to backend
+```bash
+cd /reiseutforsker/TravelPlanner
+```
+
+##### Run frontend
+```bash
+npm start
+```
+
