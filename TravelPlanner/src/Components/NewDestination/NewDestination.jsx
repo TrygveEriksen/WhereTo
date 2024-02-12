@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { API } from "../../API/API";
+import "./NewDestination.css"
 
 function NewDestination() {
   const [place, setPlace] = useState("");
