@@ -1,102 +1,83 @@
-*{
-    margin: 0;
-    padding: 0;
-    /* color: white; */
-}
+.loginContainer {
+  background-color: var(--background);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-/*body{
-    // background-color: rgb(40, 54, 66); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}*/
-
-
-.loginDiv{
-    color: white;
-    background-color: rgb(62, 75, 90);
+  .loginDiv {
+    color: var(--text);
+    background-color: var(--foreground);
     display: flex;
     flex-direction: column;
     padding: 30px;
-    gap: 20px;
+    gap: 30px;
     border-radius: 10px;
-}
-.loginForm{
+  }
 
+  .loginHeader{
+    margin: 0
+  }
+
+  .loginForm {
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 300px;
-    gap: 10px;
-}
+    gap: 5px;
+  }
 
-input{
-    width: 100%;
-    height: 30px;
-    border-radius: 5px;
-    display: block;
-    padding-left: 5px;
-    color: black;
-
-}
-
-label{
+  .loginLabel {
     text-align: left;
     width: 100%;
-}
+  }
+  
+  .loginInput {
+    border: none;
+    border: 1px solid var(--primary);
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 0px 5px;
+    margin-bottom: 5px;
 
-input[type=submit]{
+    color: var(--text);
+  }
+  .submitBtn {
     cursor: pointer;
     border: none;
-    background-color: rgb(85, 136, 194);
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--primary);
     color: white;
-}
+  }
 
-input[type=submit]:hover{
+  .submitBtn:hover {
     cursor: pointer;
     border: none;
-    background-color:  rgb(69, 110, 156);
-}
+    background-color: var(--primary-dark);
+  }
 
-input[type=text], input[type=password]{
-    border: none;
-    border-bottom: 2px solid black;
-}
 
-.error{
-    background-color: rgb(241, 94, 94);
+  .error {
+    background-color: var(--error);
+    color: var(--error-content);
     padding: 5px;
     border-radius: 5px;
     text-align: center;
-}
+  }
 
+  .linkDiv {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: small;
+  }
 
-
-.signup{
-    text-align: center;
-    background-color: rgb(105, 143, 199);
-    padding: 5px;
-    border-radius: 5px;
-    
+  .loginText {
+    margin: 0 5px 0 0;
+  }
 }
-.signup a{
-    text-decoration: none;
-    color: white;
-
-}
-
-.signup:hover{
-    background-color: rgb(77, 95, 117);
-}
-/* ul{
-    margin: 15px;
-}
-li{
-    background-color: rgb(56, 89, 110);
-    border-radius: 5px;
-    margin: 5px;
-    padding: 5px;
-    list-style: none;
-} */

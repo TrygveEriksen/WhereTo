@@ -48,39 +48,58 @@ function Signup() {
   };
 
   return (
-    <div className="loginDiv">
-      <h1>Opprett bruker</h1>
-      <form className="loginForm">
-        <label htmlFor="brukernavn">Brukernavn</label>
-        <input
-          type="text"
-          placeholder="Brukernavn"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <label htmlFor="passord">Passord</label>
-        <input
-          type="password"
-          placeholder="Passord"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <label htmlFor="passord2">Bekreft Passord</label>
-        <input
-          type="password"
-          placeholder="Bekreft Passord"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-        <input type="submit" value="Opprett Bruker" onClick={handleSignup} />
-      </form>
-      {error && <div className="error">{error}</div>}
-      <p>
-        Har du allerede en bruker? <Link className="signup" to="/login">Logg inn</Link>
-      </p>
+    <div className="loginContainer">
+      <div className="loginDiv">
+        <h1 className="loginHeader">Opprett bruker</h1>
+        <form className="loginForm">
+          <label className="loginLabel" htmlFor="brukernavn">
+            Brukernavn
+          </label>
+          <input
+            type="text"
+            className="loginInput"
+            placeholder="Brukernavn"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <label className="loginLabel" htmlFor="passord">
+            Passord
+          </label>
+          <input
+            type="password"
+            className="loginInput"
+            placeholder="Passord"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <label className="loginLabel" htmlFor="passord2">
+            Bekreft Passord
+          </label>
+          <input
+            type="password"
+            className="loginInput"
+            placeholder="Bekreft Passord"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          <input
+            type="submit"
+            className="submitBtn"
+            value="Opprett Bruker"
+            onClick={handleSignup}
+          />
+        </form>
+        {error && <div className="error">{error}</div>}
+        <div className="linkDiv">
+          <p className="loginText">Har du allerede en bruker?</p>
+          <Link className="loginLink" to="/login">
+            Logg inn
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

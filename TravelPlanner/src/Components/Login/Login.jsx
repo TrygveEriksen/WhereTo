@@ -44,32 +44,46 @@ function Login() {
   };
 
   return (
-    <div className="loginDiv">
-      <h1>Logg inn</h1>
-      <form className="loginForm">
-        <label htmlFor="brukernavn">Brukernavn</label>
-        <input
-          autoFocus
-          type="text"
-          placeholder="Brukernavn"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <label htmlFor="passord">Passord</label>
-        <input
-          type="password"
-          placeholder="Passord"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <input type="submit" value="Logg inn" onClick={handleLogin} />
-      </form>
-      {error && <div className="error">{error}</div>}
-      <p className="signup">
-        <Link to="/signup">Opprett bruker</Link>
-      </p>
+    <div className="loginContainer">
+      <div className="loginDiv">
+        <h1 className="loginHeader">Logg inn</h1>
+        <form className="loginForm">
+          <label className="loginLabel" htmlFor="brukernavn">
+            Brukernavn
+          </label>
+          <input
+            autoFocus
+            className="loginInput"
+            type="text"
+            placeholder="Brukernavn"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <label className="loginLabel" htmlFor="passord">
+            Passord
+          </label>
+          <input
+            className="loginInput"
+            type="password"
+            placeholder="Passord"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <input
+            type="submit"
+            className="submitBtn"
+            value="Logg inn"
+            onClick={handleLogin}
+          />
+        </form>
+        {error && <div className="error">{error}</div>}
+        <div className="linkDiv">
+          <p className="loginText">Ny her? </p> 
+          <Link className="loginLink" to="/signup"> Opprett bruker</Link>
+        </div>
+      </div>
     </div>
   );
 }
