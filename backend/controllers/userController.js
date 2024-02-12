@@ -21,7 +21,7 @@ const loginUser = async (req, res) => {
       return res.status(404).json([]);
     }
 
-    if (user.password === req.body.password) {
+    if (user.validPassword(req.body.password + secrets.jwt.pepper)) {
       const token = jwt.sign({ userId: user._id }, secrets.jwt.signingSecret);
       return res.json({ message: "login", jwtToken: token });
     }
@@ -33,7 +33,12 @@ const loginUser = async (req, res) => {
 
 const signUpUser = async (req, res) => {
   try {
-    const newUser = new UserModel({ ...req.body, permission: 0 });
+    const newUser = new UserModel();
+    newUser.permission = 0;
+    newUser.username = req.body.username
+    newUser.setPassword(req.body.password + secrets.jwt.pepper)
+
+
     const result = await newUser.save();
     const token = jwt.sign({ userId: result._id }, secrets.jwt.signingSecret);
     return res.json({ message: "login", jwtToken: token });
