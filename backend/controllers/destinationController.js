@@ -26,4 +26,14 @@ const findOneDescription = async (req, res) => {
   }
 };
 
-module.exports = { findAllDestinations, findOneDescription };
+const postNewDestination = async (req, res) => {
+  try {
+    const newDestination = new DestinationModel(req.body);
+    const savedDestination = await newDestination.save();
+    res.status(201).json(savedDestination);
+  } catch (error) {
+    res.status(400).json({message: error.message})
+  }
+}
+
+module.exports = { findAllDestinations, findOneDescription, postNewDestination };
