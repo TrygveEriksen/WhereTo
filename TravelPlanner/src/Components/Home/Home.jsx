@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API } from "../../API/API";
+import Navbar from "../Navbar/Navbar";
+
 
 function Home() {
   const [destinations, setDestinations] = useState([]);
@@ -24,6 +26,7 @@ function Home() {
 
   return (
     <>
+      <Navbar />
       <h1>Destinations</h1>
       <ul>
         {destinations.map((destination) => (

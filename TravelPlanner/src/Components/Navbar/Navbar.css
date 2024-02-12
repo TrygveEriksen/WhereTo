@@ -1,17 +1,33 @@
 .navbar {
-	background-color: #333;
+	background-color: #63d471;
+	height: 85px;
+	display: flex;
 	padding: 1rem;
+	position: sticky;
+	top: 0;
+	overflow: hidden;
+	width: 100%;
+	justify-content: space-between;
   }
   
   .navbar-nav {
 	list-style: none;
 	padding: 0;
 	display: flex;
+	width: 100%;
+	flex-direction: row;
+	justify-content: space-between;
+	
   }
   
   .nav-item {
 	margin-right: 1rem;
   }
+
+  .navbar-nav:last-child{
+	margin-left: auto;
+  }
+
   
   .nav-link {
 	color: #fff;
@@ -21,15 +37,6 @@
   .nav-link:hover {
 	text-decoration: underline;
 }
-/*.navbar {
-	background-color: var(--box);
-	height: 126px;
-	padding: 1rem;
-}
-
-.navbar-nav {
-	list-style: none;
-}*/
 #nav-logo{
 	width: '50px';
 	margin-right: '10px'; 
