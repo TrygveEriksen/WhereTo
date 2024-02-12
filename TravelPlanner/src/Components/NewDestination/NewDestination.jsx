@@ -50,6 +50,7 @@ function NewDestination() {
 
     } catch (error) {
       // Handle error
+      setErrorMessage("Noe gikk galt");
       console.error("Error adding destination:", error);
     }
   };
