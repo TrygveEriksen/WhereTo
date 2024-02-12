@@ -33,7 +33,7 @@ const loginUser = async (req, res) => {
 
 const signUpUser = async (req, res) => {
   try {
-    const newUser = new UserModel(req.body);
+    const newUser = new UserModel({ ...req.body, permission: 0 });
     const result = await newUser.save();
     const token = jwt.sign({ userId: result._id }, secrets.jwt.signingSecret);
     return res.json({ message: "login", jwtToken: token });
