@@ -32,7 +32,7 @@ function Home() {
         {destinations.map((destination) => (
           <li key={destination._id}>
             <Link to={`/descriptions/${destination._id}`}>
-              <p>{destination.name}</p>
+              <p>{destination.place}, {destination.country}</p>
             </Link>
           </li>
         ))}
