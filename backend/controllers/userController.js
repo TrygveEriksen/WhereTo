@@ -1,7 +1,6 @@
 const UserModel = require("../models/User");
 const jwt = require("jsonwebtoken");
-
-const jwtSigningSecret = "sfdjfiudfghjklkuytresx";
+const { secrets } = require("../secrets");
 
 const getUsers = async (req, res) => {
   try {
@@ -23,7 +22,7 @@ const loginUser = async (req, res) => {
     }
 
     if (user.password === req.body.password) {
-      const token = jwt.sign({ userId: user._id }, jwtSigningSecret);
+      const token = jwt.sign({ userId: user._id }, secrets.jwt.signingSecret);
       return res.json({ message: "login", jwtToken: token });
     }
     res.status(400).json({ error: "wrong password" });
@@ -36,7 +35,7 @@ const signUpUser = async (req, res) => {
   try {
     const newUser = new UserModel(req.body);
     const result = await newUser.save();
-    const token = jwt.sign({ userId: result._id }, jwtSigningSecret);
+    const token = jwt.sign({ userId: result._id }, secrets.jwt.signingSecret);
     return res.json({ message: "login", jwtToken: token });
   } catch (error) {
     if (error.code === 11000) {
