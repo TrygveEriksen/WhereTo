@@ -1,8 +1,7 @@
 .navbar {
 	background-color: #63d471;
-	height: 85px;
+	height: 120px;
 	display: flex;
-	padding: 1rem;
 	position: sticky;
 	top: 0;
 	overflow: hidden;
@@ -11,12 +10,13 @@
   }
   
   .navbar-nav {
+	padding: 1rem;
 	list-style: none;
-	padding: 0;
 	display: flex;
 	width: 100%;
 	flex-direction: row;
 	justify-content: space-between;
+	align-items: center;
 	
   }
   
@@ -24,9 +24,9 @@
 	margin-right: 1rem;
   }
 
-  .navbar-nav:last-child{
+  /*.navbar-nav:last-child{
 	margin-left: auto;
-  }
+  }*/
 
   
   .nav-link {
@@ -38,6 +38,8 @@
 	text-decoration: underline;
 }
 #nav-logo{
-	width: '50px';
+
+	height: auto;
 	margin-right: '10px'; 
+	padding-top: 20px;
 }

@@ -1,7 +1,22 @@
+import { useEffect, useState } from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
+import { API } from '../../API/API';
 
 function Navbar(){
+	const [permission, setPermission] = useState(0);
+
+	useEffect(()=>{
+		load();
+	}, []);
+
+	const load = async ()=>{
+		const isAdmin = await API.get("/admin");
+		setPermission(isAdmin.data.permission);
+	}
+
+
+
 	return (
 		<nav className="navbar">
 			<ul className="navbar-nav">
@@ -11,7 +26,11 @@ function Navbar(){
 						<span>Where to?</span>
 					</Link>
 				</li>
-				<li></li>
+				{permission == 1?<li >
+					<Link to="/newdestination">
+						Jeg er admin
+					</Link>
+					</li>:null}
 				<li className="nav-item">Mypage</li>
 				<li>				
 					<Link to="/login" className="signout" onClick={() => localStorage.removeItem("user")}>
