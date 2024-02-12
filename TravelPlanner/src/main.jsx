@@ -4,7 +4,7 @@ import Home from "./Components/Home/Home";
 import Descriptions from "./Components/Descriptions/Descriptions";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
-
+import NewDestination from "./Components/NewDestination/NewDestination"
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -25,6 +25,10 @@ const router = createBrowserRouter([
     path: "/descriptions/:id",
     element: <Descriptions />,
   },
+  {
+    path: "/newdestination",
+    element: <NewDestination />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
