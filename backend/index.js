@@ -6,6 +6,7 @@ const cors = require("cors");
 const { AuthMiddleware } = require("./routers/middelware");
 const { destinationRouter } = require("./routers/destinationRouter");
 const { secrets } = require("./secrets");
+const { adminRouter } = require("./routers/adminRouter");
 
 const app = express();
 app.use(express.json());
@@ -21,6 +22,7 @@ app.use("/users", userRouter);
 //everything under middleware is now hidden from unathourized users
 app.use(AuthMiddleware);
 app.use("/destinations", destinationRouter);
+app.use("/admin", adminRouter);
 
 app.listen(3001, () => {
   console.log("server is running");

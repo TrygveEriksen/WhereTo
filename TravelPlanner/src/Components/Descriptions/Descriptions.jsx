@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { API } from "../../API/API";
+import Navbar from "../Navbar/Navbar";
 
 function Descriptions() {
   const [destinations, setDestinations] = useState([]);
@@ -27,12 +28,17 @@ function Descriptions() {
 
 
   return (
-    <div>
-      <h1>Description</h1>
+    <>
+      <Navbar />
+      
+      <div>
+        <h1>Description</h1>
 
-      <p>{destinations.description}</p>
-    </div>
+        <p>{destinations.description}</p>
+      </div>
+    </>
   );
+
 }
 
 export default Descriptions;
