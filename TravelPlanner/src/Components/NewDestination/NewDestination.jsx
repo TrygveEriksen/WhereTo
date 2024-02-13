@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { API } from "../../API/API";
 import "./NewDestination.css"
+import { useNavigate } from "react-router-dom";
 
 function NewDestination() {
   const [place, setPlace] = useState("");
@@ -9,6 +10,22 @@ function NewDestination() {
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  const navigate = useNavigate();
+  const load = async () => {
+    const adminData = await API.get("/admin");
+    if (adminData.data?.permission != 1) {
+      navigate('/')
+    }
+  };
+
+
+
 
   const handlePlaceChange = (e) => {
     setPlace(e.target.value);

@@ -18,6 +18,9 @@ function Login() {
   }, [username, password]);
 
   const load = async () => {
+    if (!localStorage.getItem('user')) {
+      return
+    }
     const res = await API.get("/auth");
     if (!res) return;
     if (res?.data?.auth) navigate("/");
