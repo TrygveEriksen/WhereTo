@@ -11,7 +11,7 @@ class API {
   static async get(path) {
     const response = await axios.get(urlBuilder(path), headerBuilder());
     if (response.data?.redirect) {
-      window.location.href="/login"
+      await new Promise(() => {window.location.href = "/login"})
       return;
     }
     return response;
@@ -20,7 +20,7 @@ class API {
   static async post(path, body) {
     const response = await axios.post(urlBuilder(path), body, headerBuilder());
     if (response.data?.redirect) {
-      window.location.href="/login"
+      await new Promise(() => {window.location.href = "/login"})
       return;
     }
     return response;
@@ -29,7 +29,7 @@ class API {
   static async put(path, body) {
     const response = await axios.put(urlBuilder(path), body, headerBuilder());
     if (response.data?.redirect) {
-      window.location.href="/login"
+      await new Promise(() => {window.location.href = "/login"})
       return;
     }
     return response;
@@ -38,7 +38,7 @@ class API {
   static async delete(path) {
     const response = await axios.delete(urlBuilder(path), headerBuilder());
     if (response.data?.redirect) {
-      window.location.href="/login"
+      await new Promise(() => {window.location.href = "/login"})
       return;
     }
     return response;
