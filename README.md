@@ -48,7 +48,7 @@ npm start
 
 ### Run frontend:
 
-##### Navigate to backend
+##### Navigate to frontend
 ```bash
 cd /reiseutforsker/TravelPlanner
 ```

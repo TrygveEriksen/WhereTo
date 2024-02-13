@@ -1,0 +1,30 @@
+.loadingContainer {
+
+  background-color: var(--background);
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+
+  .spinner {
+    border: 16px solid var(--background); 
+    border-top: 16px solid var(--primary); 
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 0.5s linear infinite;
+  }
+
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

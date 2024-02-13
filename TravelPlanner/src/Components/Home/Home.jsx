@@ -1,33 +1,35 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { API } from "../../API/API";
 import Navbar from "../Navbar/Navbar";
+import Loading from "../Loading/Loading";
 
 
 function Home() {
   const [destinations, setDestinations] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   //fetch data from the server when the page starts running and set it in the state destination
-  const navigate = useNavigate();
   useEffect(() => {
     load();
   }, []);
 
   const load = async () => {
-    const res = await API.get("/auth");
-    if (!res?.data?.auth) return navigate("/login");
-
     const destRes = await API.get("/destinations");
     if (destRes) {
-      return setDestinations(destRes.data);
+      setDestinations(destRes.data);
+      return setLoading(false);
     }
   };
+
 
   return (
     <>
       <Navbar />
       <h1>Destinations</h1>
+      {isLoading && <Loading/>}
+      
       <ul>
         {destinations.map((destination) => (
           <li key={destination._id}>
@@ -37,9 +39,7 @@ function Home() {
           </li>
         ))}
       </ul>
-      <Link to="/login" className="signup" onClick={() => localStorage.removeItem("user")}>
-        Logg ut
-      </Link>
+      
     </>
   );
 }
