@@ -56,6 +56,7 @@ function Signup() {
             Brukernavn
           </label>
           <input
+          autoFocus
             type="text"
             className="loginInput"
             placeholder="Brukernavn"

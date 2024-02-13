@@ -1,6 +1,7 @@
 const secrets = {
   jwt: {
     signingSecret: "sfdjfiudfghjklkuytresx",
+    pepper: "secretPepper"
   },
   db: {
     username: "whereto72",

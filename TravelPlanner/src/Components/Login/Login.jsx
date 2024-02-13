@@ -40,7 +40,7 @@ function Login() {
       return setError("Brukernavn eller Passord er feil");
     }
 
-    setError("Noe gikk");
+    setError("Noe gikk galt");
   };
 
   return (
