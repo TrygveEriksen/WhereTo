@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { API } from "../../API/API";
 import Navbar from "../Navbar/Navbar";
+import Loading from "../Loading/Loading";
 
 
 function Home() {
@@ -27,7 +28,7 @@ function Home() {
     <>
       <Navbar />
       <h1>Destinations</h1>
-      {isLoading && <h3>Loading...</h3>}
+      {isLoading && <Loading/>}
       
       <ul>
         {destinations.map((destination) => (

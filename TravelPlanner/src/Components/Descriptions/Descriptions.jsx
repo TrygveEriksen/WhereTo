@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { API } from "../../API/API";
 import Navbar from "../Navbar/Navbar";
+import Loading from "../Loading/Loading";
 
 function Descriptions() {
   const [destinations, setDestinations] = useState([]);
@@ -30,7 +31,7 @@ function Descriptions() {
       
       <div>
         <h1>Description</h1>
-        {isLoading && <h3>Loading...</h3>}
+        {isLoading && <Loading/>}
         <p>{destinations.description}</p>
       </div>
     </>
