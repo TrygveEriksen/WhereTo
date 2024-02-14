@@ -18,7 +18,7 @@ function Navbar(){
 
 
 	return (
-		<nav className="navbar">
+		<nav className="navbar" data-testid="navbar-test">
 			<ul className="navbar-nav">
 				<li className="nav-item">
 					<Link to="/"> 

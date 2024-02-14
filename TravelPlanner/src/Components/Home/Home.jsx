@@ -26,7 +26,7 @@ function Home() {
 
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <h1>Destinations</h1>
       {isLoading && <Loading/>}
       
