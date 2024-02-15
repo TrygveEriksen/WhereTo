@@ -6,7 +6,6 @@ import Navbar from "../Navbar/Navbar";
 import Loading from "../Loading/Loading";
 import "./Home.css";
 
-
 function Home() {
   const [destinations, setDestinations] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -24,27 +23,31 @@ function Home() {
     }
   };
 
-
   return (
     <>
       <Navbar />
       <div className="homeContainer">
-        <h1 className="homeHeader">Destinations</h1>
-        {isLoading && <Loading/>}
-        
-        <ul className="destinations">
-          {destinations.map((destination) => (
-            <li className="oneDestination"key={destination._id}>
-              <Link className="destAnchor" to={`/descriptions/${destination._id}`}>
-                <p className="destLink">{destination.place}, {destination.country}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="homeContent">
+          
+          {isLoading && <Loading />}
+
+          <ul className="destinations">
+            {destinations.map((destination) => (
+              <li className="oneDestination" key={destination._id}>
+                <Link
+                  className="destAnchor"
+                  to={`/descriptions/${destination._id}`}
+                >
+                  <p className="destLink dest1">{destination.place}, </p>
+                  <p className="destLink dest2">{destination.country}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      
     </>
   );
 }
-
+ 
 export default Home;
