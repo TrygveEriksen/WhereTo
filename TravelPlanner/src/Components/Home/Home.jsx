@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { API } from "../../API/API";
 import Navbar from "../Navbar/Navbar";
 import Loading from "../Loading/Loading";
-
+import "./Home.css";
 
 function Home() {
   const [destinations, setDestinations] = useState([]);
@@ -23,25 +23,31 @@ function Home() {
     }
   };
 
-
   return (
     <>
       <Navbar />
-      <h1>Destinations</h1>
-      {isLoading && <Loading/>}
-      
-      <ul>
-        {destinations.map((destination) => (
-          <li key={destination._id}>
-            <Link to={`/descriptions/${destination._id}`}>
-              <p>{destination.place}, {destination.country}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      
+      <div className="homeContainer">
+        <div className="homeContent">
+          
+          {isLoading && <Loading />}
+
+          <ul className="destinations">
+            {destinations.map((destination) => (
+              <li className="oneDestination" key={destination._id}>
+                <Link
+                  className="destAnchor"
+                  to={`/descriptions/${destination._id}`}
+                >
+                  <p className="destLink dest1">{destination.place}, </p>
+                  <p className="destLink dest2">{destination.country}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </>
   );
 }
-
+ 
 export default Home;
