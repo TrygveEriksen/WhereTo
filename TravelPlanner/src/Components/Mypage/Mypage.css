@@ -17,6 +17,7 @@ html {
 .divBox {
   padding: 20px;
   flex: 1;
+  display: flex;
 }
 
 .profile-image {
@@ -24,4 +25,8 @@ html {
   height: 140px;
   width: 80%;
   margin: 0 auto;
+}
+
+.myPageContainer {
+  display: flex;
 }
