@@ -4,7 +4,8 @@ import Home from "./Components/Home/Home";
 import Descriptions from "./Components/Descriptions/Descriptions";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
-import NewDestination from "./Components/NewDestination/NewDestination"
+import NewDestination from "./Components/NewDestination/NewDestination";
+import MyPage from "./Components/Mypage/Mypage";
 import "./index.css";
 import "./Colors/lightmode.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
   {
     path: "/newdestination",
     element: <NewDestination />,
+    loader: redirectNotLoggedIn
+  },
+  {
+    path: "/mypage",
+    element: <MyPage />,
     loader: redirectNotLoggedIn
   }
 ]);
