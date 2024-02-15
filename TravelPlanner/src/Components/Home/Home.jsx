@@ -70,6 +70,7 @@ function Home() {
               onChange={handleSearch}
               value={searchWord}
               autoFocus
+              placeholder="Søk"
             ></input>
           </div>
           <ul className="destinations">
