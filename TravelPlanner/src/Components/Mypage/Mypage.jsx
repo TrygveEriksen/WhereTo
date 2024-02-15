@@ -1,4 +1,5 @@
 import Navbar from "../Navbar/Navbar"
+import Footer from "../Footer/Footer";
 import { useEffect, useState } from "react";
 import { API } from "../../API/API";
 
@@ -23,6 +24,7 @@ function Mypage() {
 		<p>Dette er din brukerside</p>
 		<p>Her vil det etterhvert vært mulig å slette brukeren din</p>
     </div>
+  <Footer />
 	</>
   )
 

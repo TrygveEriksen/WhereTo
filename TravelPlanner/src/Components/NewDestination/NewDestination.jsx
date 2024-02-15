@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { API } from "../../API/API";
+import Navbar from "../Navbar/Navbar"
+import Footer from "../Footer/Footer";
 import "./NewDestination.css"
 import { useNavigate } from "react-router-dom";
 
@@ -75,7 +77,9 @@ function NewDestination() {
   
 
   return (
-    <div>
+    <>
+    <Navbar />
+    <div className="newDestinationCont">
       {errorMessage && (<p className="error"> {errorMessage} </p>)}
       <form onSubmit={handleSubmit}>
         <label htmlFor="place">Sted:</label>
@@ -117,6 +121,8 @@ function NewDestination() {
       </form>
       {successMessage && (<p className="success"> {successMessage} </p>)}
     </div>
+    <Footer />
+    </>
   );
   }
 
