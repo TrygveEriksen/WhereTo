@@ -1,32 +1,67 @@
-body,
-html {
-  height: 100%;
-  margin: 0;
+.myPageContainer {
+  max-width: 1000px;
+  display: flex;
+}
+
+.divBox {
+  flex: 1;
+  padding: 20px;
+  background-color: lightgray;
+}
+
+.myPageContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .divMypage {
   text-align: center;
   border: 1px solid #bdb5b5;
-  padding: 10px;
   height: 100vh;
-  width: 20%;
   display: flex;
   flex-direction: column;
-}
-
-.divBox {
   padding: 20px;
-  flex: 1;
-  display: flex;
 }
 
 .profile-image {
-  object-fit: cover;
-  height: 140px;
   width: 80%;
-  margin: 0 auto;
+  max-width: 200px;
+  border: 2px solid #545452;
+  border-radius: 50%;
+  margin: 20px auto;
 }
 
-.myPageContainer {
+.staredPlaces {
+  flex: 2;
+  padding: 20px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.staredPlaces h1 {
+  text-align: center;
+  width: 100%;
+}
+
+hr {
+  width: 80%;
+}
+
+/** Media query for small screens */
+@media only screen and (max-width: 600px) {
+  .myPageContainer {
+    flex-direction: column;
+  }
+
+  .divBox,
+  .staredPlaces {
+    padding: 20px;
+  }
+
+  .profile-image {
+    width: 100%;
+    max-width: 70%;
+  }
 }

@@ -26,18 +26,24 @@ function Mypage() {
       <Navbar />
       <div className="myPageContainer">
         <div className="divBox">
-          <div className="divMypage">
-            <h1 className="myPage">Min side</h1>
-            <img
-              src={myImage}
-              alt="My profile picture"
-              className="profile-image"
-            ></img>
-            <h3>Brukernavn: {user}</h3>
-            <p>Dette er min bruker side mere info kommer i neste sprint</p>
-            <Button variant="outlined" size="small" startIcon={<DeleteIcon />}>
-              Slett
-            </Button>
+          <div className="myPageContent">
+            <div className="divMypage">
+              <h1 className="myPage">Min side</h1>
+              <img
+                src={myImage}
+                alt="My profile picture"
+                className="profile-image"
+              ></img>
+              <h3>Brukernavn: {user}</h3>
+              <p>Dette er min bruker side mere info kommer i neste sprint</p>
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={<DeleteIcon />}
+              >
+                Slett
+              </Button>
+            </div>
           </div>
         </div>
         <StaredPlaces />

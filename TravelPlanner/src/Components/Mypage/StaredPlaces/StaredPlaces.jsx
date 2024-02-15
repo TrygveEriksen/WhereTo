@@ -1,15 +1,13 @@
 import React from "react";
-import "./StaredPlaces.css";
+import "../Mypage.css";
 
 function StaredPlaces() {
   return (
-    <div>
+    <div className="staredPlaces">
       <h1>Steder jeg har vært</h1>
-      <ul>
-        <li>Sted 1</li>
-        <li>Sted 2</li>
-        <li>Sted 3</li>
-      </ul>
+      <hr />
+      {/**Dette må fjernes når vi får lagt til funksjonalitet */}
+      <p>Du har ikke lagt til noen steder ennå!</p>
     </div>
   );
 }
