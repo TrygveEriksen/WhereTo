@@ -1,3 +1,5 @@
+/**Plass på siden til reklame i neste sprint */
+
 .myPageContainer {
   max-width: 1000px;
   display: flex;
@@ -6,7 +8,8 @@
 .divBox {
   flex: 1;
   padding: 20px;
-  background-color: lightgray;
+  background-color: var(--background);
+  border-radius: 10px;
 }
 
 .myPageContent {
@@ -17,36 +20,51 @@
 
 .divMypage {
   text-align: center;
-  border: 1px solid #bdb5b5;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .profile-image {
   width: 80%;
   max-width: 200px;
-  border: 2px solid #545452;
+  border: 2px solid var(--copy-light);
   border-radius: 50%;
   margin: 20px auto;
 }
 
-.staredPlaces {
+.viewBox {
   flex: 2;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.staredPlaces h1 {
-  text-align: center;
+.staredPlaces,
+.myReviews {
   width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.staredPlaces h1,
+.myReviews h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 hr {
-  width: 80%;
+  margin-bottom: 40px;
 }
 
 /** Media query for small screens */
@@ -56,7 +74,8 @@ hr {
   }
 
   .divBox,
-  .staredPlaces {
+  .staredPlaces,
+  .myReviews {
     padding: 20px;
   }
 

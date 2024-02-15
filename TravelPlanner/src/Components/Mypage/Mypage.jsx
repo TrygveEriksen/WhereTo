@@ -8,6 +8,7 @@ import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 import myImage from "./Picture/myprofile.png";
 import StaredPlaces from "./StaredPlaces/StaredPlaces";
+import MyReviews from "./MyReviews/MyReviews";
 
 function Mypage() {
   const [user, setUser] = useState("");
@@ -46,7 +47,11 @@ function Mypage() {
             </div>
           </div>
         </div>
-        <StaredPlaces />
+        <div className="viewBox">
+          <MyReviews />
+          <br />
+          <StaredPlaces />
+        </div>
       </div>
     </>
   );
