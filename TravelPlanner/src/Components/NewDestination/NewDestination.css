@@ -40,3 +40,7 @@
   .submit-btn:hover {
     background-color: #0056
   }
+
+  .newDestinationCont {
+    min-height: 100vh;
+  }

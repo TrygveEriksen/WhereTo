@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { API } from "../../API/API";
 import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import "./Home.css";
 
@@ -46,6 +47,7 @@ function Home() {
           </ul>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

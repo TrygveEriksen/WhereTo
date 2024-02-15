@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { API } from "../../API/API";
 import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 
 function Descriptions() {
@@ -34,6 +35,8 @@ function Descriptions() {
         {isLoading && <Loading/>}
         <p>{destinations.description}</p>
       </div>
+
+      <Footer />
     </>
   );
 
