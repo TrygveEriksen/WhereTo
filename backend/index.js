@@ -23,6 +23,7 @@ app.use("/users", userRouter);
 app.use(AuthMiddleware);
 app.use("/destinations", destinationRouter);
 app.use("/admin", adminRouter);
+app.get("/getUser", (req, res) => res.json(req.user));
 
 app.listen(3001, () => {
   console.log("server is running");
