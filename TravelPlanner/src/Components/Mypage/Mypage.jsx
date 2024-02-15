@@ -22,13 +22,15 @@ function Mypage() {
   return (
     <>
       <Navbar />
-      <div className="divMypage">
-        <h1>My page</h1>
-        <h2>Username: {user}</h2>
-        <p>This is my userpage</p>
-        <Button variant="outlined" startIcon={<DeleteIcon />}>
-          Delete
-        </Button>
+      <div className="divBox">
+        <div className="divMypage">
+          <h1>My account</h1>
+          <h3>Username: {user}</h3>
+          <p>This is my userpage</p>
+          <Button variant="outlined" size="small" startIcon={<DeleteIcon />}>
+            Delete
+          </Button>
+        </div>
       </div>
     </>
   );
