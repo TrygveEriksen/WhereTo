@@ -5,6 +5,7 @@ import { API } from "../../API/API";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
+import "./Descriptions.css"
 
 function Descriptions() {
   const [destinations, setDestinations] = useState([]);
@@ -21,6 +22,7 @@ function Descriptions() {
     const destRes = await API.get(`/destinations/${id}`)
     if (destRes) {
       setDestinations(destRes.data)
+      console.log(destRes.data)
       return setLoading(false);
     }
   };
@@ -31,9 +33,29 @@ function Descriptions() {
       <Navbar />
       
       <div>
-        <h1>Description</h1>
+        <div className="descriptionsContainer">
         {isLoading && <Loading/>}
-        <p>{destinations.description}</p>
+        <h1 className="descriptionsHeader">{destinations.place}</h1>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+        <h2> <span class="icon"><i class="fas fa-globe"></i></span>
+          {destinations.country}, {destinations.continent}</h2>
+        </div>
+        <div className="column-container">
+          <div className="labels">
+            <h3>Egenskaper:</h3>
+            <p>{destinations.labels}</p> {/* må fikses*/}
+          </div>
+
+          <div className="descriptionContainer">
+            <h3>Beskrivelse:</h3>
+            <p className="descriptionsText">{destinations.description}</p>
+          </div>
+
+          <div>
+            <h3></h3>
+          </div>
+
+        </div>
       </div>
 
       <Footer />
