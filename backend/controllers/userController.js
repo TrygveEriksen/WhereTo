@@ -2,14 +2,6 @@ const UserModel = require("../models/User");
 const jwt = require("jsonwebtoken");
 const { secrets } = require("../secrets");
 
-const getUsers = async (req, res) => {
-  try {
-    const users = await UserModel.find();
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
 
 const loginUser = async (req, res) => {
   try {
@@ -50,4 +42,4 @@ const signUpUser = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, loginUser, signUpUser };
+module.exports = { loginUser, signUpUser };

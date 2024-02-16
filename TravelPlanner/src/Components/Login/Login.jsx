@@ -34,7 +34,7 @@ function Login() {
     if (!password) return setError("Du må ha passord");
 
     try {
-      const res = await API.post("/users/login", { username, password });
+      const res = await API.post("/entry/login", { username, password });
       if (res?.data?.jwtToken) {
         localStorage.setItem("user", res.data.jwtToken);
         navigate("/");
