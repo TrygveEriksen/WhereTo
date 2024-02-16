@@ -39,7 +39,7 @@ function Signup() {
       return setError("Passordene må være like");
 
     try {
-      const res = await API.post("/users/signup", { username, password });
+      const res = await API.post("/entry/signup", { username, password });
       if (res?.data?.jwtToken) {
         localStorage.setItem("user", res.data.jwtToken);
         navigate("/");
