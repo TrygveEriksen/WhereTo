@@ -1,37 +1,39 @@
+.descriptionContent {
 
-.descriptionsContainer {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 100vh;
+
+
+  .descriptionsContainer {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px 0;
     padding-left: 20px;
     .descriptionsHeader {
-        color: var(--primary-dark)
-}
+      color: var(--primary-dark);
+    }
     .icon {
-    margin-right: 10px; /* Spacing between icon and text */
-}
-}
+      margin-right: 10px; /* Spacing between icon and text */
+    }
+  }
 
-
-
-.column-container {
-  
+  .column-container {
     column-gap: 20px; /* Gap between columns */
     max-width: 800px; /* Maximum width of the container */
     margin: 0 auto 0 20px; /* Center the container */
     display: flex;
     flex-direction: row;
-
-}
-/* Styling for individual columns */
-    .labels, descriptionContainer {
-        border-radius: 10px;
-        background-color: var(--secondary-light);
-        margin-bottom: 20px; 
-        padding-left: 20px;
-        width: 300px;
-        display: flex;
-        flex-direction: column;
-}
-    .descriptionsText {
+  }
+  /* Styling for individual columns */
+  .labels,
+  descriptionContainer {
+    border-radius: 10px;
+    background-color: var(--secondary-light);
+    margin-bottom: 20px;
     padding-left: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  .descriptionsText {
+    padding-left: 20px;
+  }
 }

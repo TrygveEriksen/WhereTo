@@ -32,7 +32,7 @@ function Descriptions() {
     <>
       <Navbar />
       
-      <div>
+      <div className="descriptionContent">
         <div className="descriptionsContainer">
         {isLoading && <Loading/>}
         <h1 className="descriptionsHeader">{destinations.place}</h1>
