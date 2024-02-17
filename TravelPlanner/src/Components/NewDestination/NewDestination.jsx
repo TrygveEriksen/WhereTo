@@ -4,7 +4,6 @@ import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer";
 import "./NewDestination.css"
 import { useNavigate } from "react-router-dom";
-import Navbar from "../Navbar/Navbar";
 
 function NewDestination() {
   const [place, setPlace] = useState("");
@@ -131,9 +130,11 @@ function NewDestination() {
         </form>
         {successMessage && (<p className="success"> {successMessage} </p>)}
       </div>
-      <Footer />
-    </>
-    );
+    </div>
+    <Footer />
+  </>)
 }
 
-    export default NewDestination;
+
+
+export default NewDestination;
