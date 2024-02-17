@@ -4,6 +4,7 @@ import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer";
 import "./NewDestination.css"
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 
 function NewDestination() {
   const [place, setPlace] = useState("");
@@ -26,8 +27,7 @@ function NewDestination() {
     }
   };
 
-
-
+  const message = successMessage || errorMessage;
 
   const handlePlaceChange = (e) => {
     setPlace(e.target.value);
@@ -59,7 +59,7 @@ function NewDestination() {
 
       // Handle success response
       console.log("Destination added successfully:");
-      
+
       // Reset form fields after submission
       setPlace("");
       setCountry("");
@@ -74,56 +74,66 @@ function NewDestination() {
       console.error("Error adding destination:", error);
     }
   };
-  
 
-  return (
-    <>
+
+  return (<>
     <Navbar />
-    <div className="newDestinationCont">
-      {errorMessage && (<p className="error"> {errorMessage} </p>)}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="place">Sted:</label>
-        <input
-          type="text"
-          id="place"
-          value={place}
-          onChange={handlePlaceChange}
-          placeholder="Skriv sted her"
-        />
-        <label htmlFor="country">Land:</label>
-        <input
-          type="text"
-          id="country"
-          value={country}
-          onChange={handleCountryChange}
-          placeholder="Skriv land her"
-        />
-        <label htmlFor="continent">Kontinent:</label>
-        <input
-          type="text"
-          id="continent"
-          value={continent}
-          onChange={handleContinentChange}
-          placeholder="Skriv kontinent her"
-        />
+    <div className="newDestinationContainer">
 
-        <label htmlFor="description">Beskrivelse:</label>
-        <textarea
-          id="description"
-          placeholder="Beskrivelse"
-          value={description}
-          onChange={handleDescriptionChange}
-        >
-          
-        </textarea>
+      <div className="newDestinationDiv">
+        <h1 className="newDestinationHeader">Legg til destinasjon</h1>
+        {errorMessage && <div className="error">
+          <p>{errorMessage}</p>
+        </div>
+        }
 
-        <button type="submit">Submit</button>
-      </form>
-      {successMessage && (<p className="success"> {successMessage} </p>)}
-    </div>
-    <Footer />
+        <form onSubmit={handleSubmit} className="newDestinationForm">
+          <label htmlFor="place">Sted:</label>
+          <input
+            type="text"
+            id="place"
+            value={place}
+            onChange={handlePlaceChange}
+            placeholder="Skriv sted her"
+            className="newDestinationInput"
+          />
+          <label htmlFor="country">Land:</label>
+          <input
+            type="text"
+            id="country"
+            value={country}
+            onChange={handleCountryChange}
+            placeholder="Skriv land her"
+            className="newDestinationInput"
+          />
+          <label htmlFor="continent">Kontinent:</label>
+          <input
+            type="text"
+            id="continent"
+            value={continent}
+            onChange={handleContinentChange}
+            placeholder="Skriv kontinent her"
+            className="newDestinationInput"
+          />
+
+          <label htmlFor="description">Beskrivelse:</label>
+          <textarea
+            id="description"
+            placeholder="Beskrivelse"
+            value={description}
+            onChange={handleDescriptionChange}
+            className="descriptionInput"
+          >
+
+          </textarea>
+
+          <button type="submit">Submit</button>
+        </form>
+        {successMessage && (<p className="success"> {successMessage} </p>)}
+      </div>
+      <Footer />
     </>
-  );
-  }
+    );
+}
 
-export default NewDestination;
+    export default NewDestination;
