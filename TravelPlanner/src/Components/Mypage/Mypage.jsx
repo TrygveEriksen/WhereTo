@@ -9,6 +9,7 @@ import Stack from "@mui/material/Stack";
 import myImage from "./Picture/myprofile.png";
 import StaredPlaces from "./StaredPlaces/StaredPlaces";
 import MyReviews from "./MyReviews/MyReviews";
+import Footer from "../Footer/Footer";
 
 function Mypage() {
   const [user, setUser] = useState("");
@@ -53,6 +54,7 @@ function Mypage() {
           <StaredPlaces />
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
