@@ -6,6 +6,7 @@ import Navbar from "../Navbar/Navbar";
 import Loading from "../Loading/Loading";
 
 
+
 function Home() {
   const [destinations, setDestinations] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -30,7 +31,7 @@ function Home() {
       <h1>Destinations</h1>
       {isLoading && <Loading/>}
       
-      <ul>
+      <ul data-testid="destination-list-test">
         {destinations.map((destination) => (
           <li key={destination._id}>
             <Link to={`/descriptions/${destination._id}`}>
