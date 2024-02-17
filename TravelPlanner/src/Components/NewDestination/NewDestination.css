@@ -5,9 +5,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   scroll-behavior: smooth;
-  direction: ttb;
+  padding-top: 10vh;
 
   .newDestinationDiv {
     background-color: var(--foreground);
@@ -34,7 +33,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;
+    width: 80vw;
+    max-width: 600px;
     gap: 5px;
   }
 
@@ -44,7 +44,6 @@
   }
 
   .newDestinationInput {
-    border: none;
     border: 1px solid var(--primary);
     height: 40px;
     width: 100%;
@@ -90,11 +89,10 @@
 
   .descriptionInput {
     resize: none;
-    border: none;
     text-wrap: wrap;
     border: 1px solid var(--primary);
     height: 30vh;
-    min-height: 30vh;
+    min-height: 20vh;
     width: 100%;
     border-radius: 5px;
     padding: 0px 5px;
