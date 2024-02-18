@@ -20,6 +20,7 @@ function Home() {
     const destRes = await API.get("/destinations");
     if (destRes) {
       setDestinations(destRes.data);
+      console.log(destRes.data)
       return setLoading(false);
     }
   };

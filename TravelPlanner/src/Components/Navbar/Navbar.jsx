@@ -11,6 +11,7 @@ function Navbar(){
 	}, []);
 
 	const load = async ()=>{
+		
 		const isAdmin = await API.get("/admin");
 		setPermission(isAdmin.data.permission);
 	}
