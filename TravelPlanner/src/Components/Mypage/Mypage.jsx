@@ -38,13 +38,6 @@ function Mypage() {
               ></img>
               <h3>Brukernavn: {user}</h3>
               <p>Dette er min bruker side mere info kommer i neste sprint</p>
-              <Button
-                variant="outlined"
-                size="small"
-                startIcon={<DeleteIcon />}
-              >
-                Slett
-              </Button>
             </div>
           </div>
         </div>
@@ -54,7 +47,7 @@ function Mypage() {
           <StaredPlaces />
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
