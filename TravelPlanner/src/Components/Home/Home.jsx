@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import "./Home.css";
 
+
 function Home() {
   const [destinations, setDestinations] = useState([]);
   const [visibleDestinations, setVisibleDestinations] = useState([]);

@@ -1,4 +1,4 @@
-:root{
+/*:root{
 
     --primary: #21d760;
     --primary-content: #000000;
@@ -28,9 +28,22 @@
     --error-content: #fef9f9;
 
     --footer: #6f7270;
+}*/
 
+:root {
+  --text: #09150d;
+  --primary: #5ace82;
+  --parimary-dark: #50b874;
+  --secondary: #a1d4ce;
+  --accent: #7abbc2;
 
+  --background: #f0f0f0;
+  --foreground: #fbfbfb;
+  --border: #dfdfdf;
+  --footer: #6f7270;
 
+  --copy-light: #666666;
 
-
+  --error: #d72121;
+  --error-content: #fef9f9;
 }
