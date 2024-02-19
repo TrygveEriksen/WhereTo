@@ -37,7 +37,6 @@ function Mypage() {
                 className="profile-image"
               ></img>
               <h3>Brukernavn: {user}</h3>
-              <p>Dette er min bruker side mere info kommer i neste sprint</p>
             </div>
           </div>
         </div>
