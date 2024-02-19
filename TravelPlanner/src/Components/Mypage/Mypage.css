@@ -36,7 +36,7 @@
     border-radius: 50%;
     margin: 20px auto;
     aspect-ratio: 1/1;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .viewBox {
