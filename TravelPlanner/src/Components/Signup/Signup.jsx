@@ -47,7 +47,7 @@ function Signup() {
     } catch (error) {
       setError("Brukernavnet er opptatt");
     }
-    setError("Noe gikk");
+    setError("Noe gikk galt");
   };
 
   return (
