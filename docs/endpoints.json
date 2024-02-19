@@ -1,0 +1,172 @@
+[
+  {
+    "entry": [
+      {
+        "verb": "POST",
+        "endpoint": "/login",
+        "description": "Authenticate user login.",
+        "request_body": {
+          "username": "string",
+          "password": "string"
+        },
+        "response": {
+          "status_code": {
+            "success": 200,
+            "not found": 404,
+            "bad request": 400
+          },
+          "body": [
+            [
+              "JSON object containing login message and JWT token on success",
+              { "message": "login", "jwtToken": "string" }
+            ],
+            ["Errormessage if error", { "error": "string" }]
+          ]
+        }
+      },
+      {
+        "verb": "POST",
+        "endpoint": "/signup",
+        "description": "Register a new user.",
+        "request_body": {
+          "username": "string",
+          "password": "string"
+        },
+        "response": {
+          "status_code": {
+            "success": 200,
+            "username taken": 400,
+            "bad request": 400
+          },
+          "body": [
+            [
+              "JSON object containing login message and JWT token on success",
+              { "message": "login", "jwtToken": "string" }
+            ],
+            ["Error if username taken", { "error": "username taken" }],
+            ["Errormessage if error", { "error": "string" }]
+          ]
+        }
+      }
+    ],
+    "auth": [
+      {
+        "verb": "GET",
+        "endpoint": "",
+        "description": "Checks if the user is authenticated.",
+        "response": {
+          "status_code": { "success": 200 },
+          "body": [
+            ["if user is authenticated: ", { "auth": "true" }],
+            ["if user is not authenticated: ", { "auth": "false" }]
+          ]
+        }
+      }
+    ],
+    "destinations": [
+      {
+        "verb": "GET",
+        "endpoint": "",
+        "description": "Retrieves a list of all destinations.",
+        "response": {
+          "status_code": { "success": 200 },
+          "body": [
+            [
+              "if destination is found: ",
+              [
+                {
+                  "place": "string",
+                  "country": "string",
+                  "continent": "string",
+                  "description": "string",
+                  "labels": [],
+                  "img": "string"
+                }
+              ]
+            ],
+            ["if error: ", { "error": "string" }]
+          ]
+        }
+      },
+      {
+        "verb": "GET",
+        "endpoint": "/{id}",
+        "description": "Retrieves a destination by its unique ID.",
+        "parameters": [
+          "{id} (Path Parameter): The ID of the destination to retrieve."
+        ],
+        "response": {
+          "status_code": {
+            "found": 200,
+            "not found": 404,
+            "error": 500
+          },
+          "body": [
+            [
+              "if destination is found: ",
+              {
+                "place": "string",
+                "country": "string",
+                "continent": "string",
+                "description": "string",
+                "labels": [],
+                "img": "string"
+              }
+            ],
+            [
+              "if destination not found: ",
+              { "message": "Destinasjon ikke funnet" }
+            ],
+            ["if error: ", { "error": "string" }]
+          ]
+        }
+      },
+      {
+        "verb": "POST",
+        "endpoint": "",
+        "description": "Creates a new destination.",
+        "request_body": {
+          "place": "string",
+          "country": "string",
+          "continent": "string",
+          "description": "string"
+        },
+        "response": {
+          "status_code": {
+            "created": 201,
+            "bad request": 400
+          },
+          "body": [
+            [
+              "if destination is saved sucessfully: ",
+              {
+                "_id": "string",
+                "place": "string",
+                "country": "string",
+                "continent": "string",
+                "description": "string",
+                "labels": [],
+                "img": "string"
+              }
+            ],
+            ["if error: ", { "error": "string" }]
+          ]
+        }
+      }
+    ],
+    "admin": [
+      {
+        "verb": "GET",
+        "endpoint": "/permission",
+        "description": "Checks the permission level of the user.",
+        "response": {
+          "status_code": { "found": 200 },
+          "body": [
+            ["if user is admin: ", { "permission": 1 }],
+            ["if user is not admin: ", { "permission": 0 }]
+          ]
+        }
+      }
+    ]
+  }
+]

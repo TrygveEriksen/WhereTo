@@ -9,7 +9,7 @@ const findAllDestinations = async (req, res) => {
   }
 };
 
-const findOneDescription = async (req, res) => {
+const findOneDestination = async (req, res) => {
   try {
     const destinationId = req.params.id;
     const destination = await DestinationModel.findOne({
@@ -17,7 +17,7 @@ const findOneDescription = async (req, res) => {
     });
 
     if (destination) {
-      res.json({ description: destination.description });
+      res.json(destination);
     } else {
       res.status(404).json({ message: "Destinasjon ikke funnet!" });
     }
@@ -36,4 +36,4 @@ const postNewDestination = async (req, res) => {
   }
 }
 
-module.exports = { findAllDestinations, findOneDescription, postNewDestination };
+module.exports = { findAllDestinations, findOneDestination, postNewDestination };
