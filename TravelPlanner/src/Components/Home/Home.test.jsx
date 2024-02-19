@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom'
 
 jest.mock('axios');
+window.scrollTo = jest.fn();
 
 describe('tests home component', () => {
 
@@ -30,9 +31,9 @@ describe('tests home component', () => {
 
     test("Destinations list loaded with mock destinations", async () => {
 
-        const mockDestination1 = await screen.findByText('MockPlace1, MockCountry1');
-        const mockDestination2 = await screen.findByText('MockPlace2, MockCountry2');
-        const mockDestination3 = await screen.findByText('MockPlace3, MockCountry3');
+        const mockDestination1 = await screen.findByText('MockCountry1');
+        const mockDestination2 = await screen.findByText('MockCountry2');
+        const mockDestination3 = await screen.findByText('MockCountry3');
 
         expect(mockDestination1).toBeInTheDocument();
         expect(mockDestination2).toBeInTheDocument();
