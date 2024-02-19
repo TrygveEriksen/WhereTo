@@ -64,7 +64,7 @@
     border-radius: 10px;
     border: 2px solid var(--border);
     position: sticky;
-    top: 140px;
+    top: 21vh;
   }
 
   .searchField {
