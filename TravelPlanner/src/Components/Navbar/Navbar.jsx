@@ -11,6 +11,7 @@ function Navbar(){
 	}, []);
 
 	const load = async ()=>{
+		
 		const isAdmin = await API.get("/admin");
 		setPermission(isAdmin.data.permission);
 	}
@@ -18,7 +19,7 @@ function Navbar(){
 
 
 	return (
-		<nav className="navbar">
+		<nav className="navbar" data-testid="navbar-test">
 			<ul className="navbar-nav">
 				<li className="nav-item">
 					<Link to="/"> 
