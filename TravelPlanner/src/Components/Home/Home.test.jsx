@@ -8,7 +8,6 @@ import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom'
 
 jest.mock('axios');
-window.scrollTo = jest.fn();
 
 describe('tests home component', () => {
 
@@ -39,7 +38,6 @@ describe('tests home component', () => {
         expect(mockDestination2).toBeInTheDocument();
         expect(mockDestination3).toBeInTheDocument();
 
-        screen.debug()
     });
 
     

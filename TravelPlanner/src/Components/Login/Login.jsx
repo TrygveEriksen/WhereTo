@@ -78,6 +78,7 @@ function Login() {
             type="submit"
             className="submitBtn"
             value="Logg inn"
+            data-testid="submit-test"
             onClick={handleLogin}
           />
         </form>
