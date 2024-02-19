@@ -32,7 +32,11 @@ function Navbar(){
 						Jeg er admin
 					</Link>
 					</li>:null}
-				<li className="nav-item">Mypage</li>
+				<li className="nav-item">
+					<Link to= "/myPage">
+						Mypage
+					</Link>
+				</li>
 				<li>				
 					<Link to="/login" className="signout" onClick={() => localStorage.removeItem("user")}>
 						Logg ut

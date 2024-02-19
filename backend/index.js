@@ -18,11 +18,12 @@ mongoose
   .then(() => console.log("connected to db"))
   .catch((err) => console.error("error connecting to db", err));
 
-app.use("/users", userRouter);
+app.use("/entry", userRouter);
 //everything under middleware is now hidden from unathourized users
 app.use(AuthMiddleware);
 app.use("/destinations", destinationRouter);
 app.use("/admin", adminRouter);
+app.get("/getUser", (req, res) => res.json(req.user));
 
 app.listen(3001, () => {
   console.log("server is running");

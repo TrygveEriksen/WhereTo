@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="endpointContainer">
+      <!-- Placeholder for dynamic sections -->
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const endpointContainer = document.querySelector(".endpointContainer");
+
+        // Fetch the JSON data
+        fetch("endpoints.json")
+          .then((response) => response.json())
+          .then((data) => {
+            // Loop through each section in the JSON data
+            Object.keys(data[0]).forEach((sectionName) => {
+              const sectionData = data[0][sectionName];
+
+              // Create a <div> element for the section
+              const sectionDiv = document.createElement("div");
+              sectionDiv.className = "endpointSection";
+
+              // Create an <h1> element for the section header
+              const sectionHeader = document.createElement("h1");
+              sectionHeader.textContent = `/${sectionName}`;
+              sectionDiv.appendChild(sectionHeader);
+
+              // Loop through each endpoint in the section data
+              sectionData.forEach((endpoint) => {
+                // Create a <details> element
+                const details = document.createElement("details");
+                details.className = endpoint.verb.toLowerCase() + "-summary";
+
+                // Create a <summary> element
+                const summary = document.createElement("summary");
+
+                // Create and populate the <h2> elements
+                const verb = document.createElement("h2");
+                verb.className = endpoint.verb.toLowerCase() + " verb";
+                verb.textContent = endpoint.verb;
+
+                const endpointTitle = document.createElement("h2");
+                endpointTitle.className = "endpoint";
+                endpointTitle.textContent = `/${sectionName}${endpoint.endpoint}`;
+
+                const dropdown = document.createElement("h2");
+                dropdown.className = "dropdown";
+                dropdown.textContent = "▼";
+
+                // Append the <h2> elements to the <summary> element
+                summary.appendChild(verb);
+                summary.appendChild(endpointTitle);
+                summary.appendChild(dropdown);
+
+                // Create and populate the <div> element
+                const detailsContent = document.createElement("div");
+
+                ////////////////////////////////////////////////////////////////////response code
+                const statusCodeHeader = document.createElement("h3");
+                statusCodeHeader.textContent = "HTTP Status Code:";
+                detailsContent.appendChild(statusCodeHeader);
+
+                // Create and populate the <ul> element for response status codes
+                const statusCodesUl = document.createElement("ul");
+                // Check if the status_code is an object (indicating multiple possible codes)
+                if (typeof endpoint.response.status_code === "object") {
+                  // Loop through each key-value pair in the status_code object
+                  Object.entries(endpoint.response.status_code).forEach(
+                    ([key, value]) => {
+                      // Create a list item for each error code
+                      const statusCodeLi = document.createElement("li");
+                      statusCodeLi.textContent = `${key}: ${value}`;
+                      // Append the list item to the <ul> element
+                      statusCodesUl.appendChild(statusCodeLi);
+                    }
+                  );
+                } else {
+                  // Create a single list item for the status code
+                  const statusCodeLi = document.createElement("li");
+                  statusCodeLi.textContent = endpoint.response.status_code;
+                  // Append the list item to the <ul> element
+                  statusCodesUl.appendChild(statusCodeLi);
+                }
+
+                // Append the <ul> element for response status codes to the <div> element
+                detailsContent.appendChild(statusCodesUl);
+
+                ////////////////////////////////////////////////////////////response body
+
+                // Create and populate the <h3> element for response body header
+                const responseBodyHeader = document.createElement("h3");
+                responseBodyHeader.textContent = "Response Body:";
+                detailsContent.appendChild(responseBodyHeader);
+
+                // Iterate over the elements of endpoint.response.body
+                endpoint.response.body.forEach((responseItem) => {
+                  // Create a <pre> element for each response item
+                  const responseBodyDiv = document.createElement("div");
+                  responseBodyDiv.className="codeBlock";
+                  const responseBodytitle = document.createElement("h4");
+                  responseBodytitle.textContent = responseItem[0];
+                  const responseBodyPre = document.createElement("pre");
+                  // Set the text content of the <pre> element to the current response item
+                  responseBodyPre.textContent = JSON.stringify(
+                    responseItem[1],
+                    null,
+                    2
+                  ); // Assuming responseItem is JSON data
+                  // Append the <pre> element to the <div> element
+                  responseBodyDiv.appendChild(responseBodytitle);
+                  responseBodyDiv.appendChild(responseBodyPre);
+                  detailsContent.appendChild(responseBodyDiv);
+                });
+
+                ///////////////////////////////////////////////////////////////request body
+
+                if (endpoint.request_body) {
+                  const requestBodyHeader = document.createElement("h3");
+                  requestBodyHeader.textContent = "Request Body:";
+                  detailsContent.appendChild(requestBodyHeader);
+
+                  // Create and populate the <pre> element for request body
+                  const requestBodyPre = document.createElement("pre");
+                  requestBodyPre.className = "codeBlock"
+                  requestBodyPre.textContent = JSON.stringify(
+                    endpoint.request_body,
+                    null,
+                    2
+                  ); // Assuming endpoint.request_body is the JSON object
+                  detailsContent.appendChild(requestBodyPre);
+                }
+
+                ///////////////////////////////////////////////////////////////////////appendig to section
+
+                // Append the <summary> and <div> elements to the <details> element
+                details.appendChild(summary);
+                details.appendChild(detailsContent);
+
+                // Append the <details> element to the section
+                sectionDiv.appendChild(details);
+              });
+
+              // Append the section <div> to the endpoint container
+              endpointContainer.appendChild(sectionDiv);
+            });
+          })
+          .catch((error) => console.error("Error fetching JSON:", error));
+
+        // Add event listener for dynamically generated <details> elements
+        endpointContainer.addEventListener("toggle", function (event) {
+          const details = event.target.closest("details");
+          if (details && details.open) {
+            const endpoint = details
+              .querySelector(".endpoint")
+              .textContent.trim();
+            console.log("Fetching data for endpoint:", endpoint);
+            // You can fetch additional data or perform other actions here if needed
+          }
+        });
+      });
+    </script>
+
+    <style>
+      * {
+        font-family: "Rubik", Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+      }
+
+      .codeBlock{
+        background-color: #555;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        
+        h4{
+            color: #ddd;
+            font-weight: bold;
+        }
+      }
+
+      summary {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        cursor: pointer;
+        user-select: none;
+        border-radius: 5px;
+
+        margin: 10px 0px;
+        padding: 10px;
+      }
+
+      h2 {
+        margin: 0px;
+        color: #fff;
+      }
+
+      li {
+        color: #000;
+      }
+
+      div {
+        padding: 10px;
+        border-radius: 5px;
+      }
+      details {
+        border-radius: 10px;
+      }
+
+      .post-summary {
+        background-color: #eaf6f0;
+        border: 3px solid #5bca93;
+      }
+
+      .delete-summary {
+        background-color: #fae8e8;
+        border: 3px solid #f24845;
+      }
+
+      .get-summary {
+        background-color: #ecf3fa;
+        border: 3px solid #68aefa;
+      }
+
+      .put-summary {
+        background-color: #fbf1e6;
+        border: 3px solid #fca130;
+      }
+
+      .put {
+        background-color: #fca130;
+      }
+
+      .post {
+        background-color: #5bca93;
+      }
+
+      .delete {
+        background-color: #f24845;
+      }
+
+      .get {
+        background-color: #68aefa;
+      }
+
+      .verb {
+        border-radius: 5px;
+        padding: 10px;
+        width: 120px;
+        text-align: center;
+      }
+
+      .endpoint {
+        color: #000;
+        padding: 10px;
+        border-bottom: 0;
+      }
+      .dropdown {
+        color: #000;
+        padding: 10px;
+        border-bottom: 0;
+        margin-left: auto;
+      }
+
+      body {
+        background-color: #ddd;
+      }
+
+      .endpointContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .endpointSection {
+        border: 4px solid #ccc;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+        background-color: #fff;
+      }
+    </style>
+  </body>
+</html>
