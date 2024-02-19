@@ -6,45 +6,41 @@ import {render, waitFor,screen} from '@testing-library/react';
 import Home from './Home';
 import { BrowserRouter } from 'react-router-dom'; 
 import '@testing-library/jest-dom'
-import API from '../../API/API'
-import MockAdapter from 'axios-mock-adapter';
-import axios from 'axios'
+
+jest.mock('axios');
 
 describe('tests home component', () => {
 
-   
-    test('renders Home component with expected child components', async () => {
-        await waitFor(() => {
-            const { getByTestId } = render(
-                <BrowserRouter basename="/">
-                    <Home />
-                </BrowserRouter>
-            );
+    beforeEach(() => {
+        render(
+            <BrowserRouter basename="/">
+                <Home />
+            </BrowserRouter>
+        );
 
-        })
-        
+    })
+
+    test('renders Home component with Navbar', async () => {        
         
         await waitFor(() => {
-            const navbar = getByTestId('navbar-test');
+            const navbar = screen.getByTestId('navbar-test');
             expect(navbar).toBeInTheDocument();
         });
     });
 
     test("Destinations list loaded with mock destinations", async () => {
 
-        
-        await waitFor(() => {
-        render(
-            <BrowserRouter basename="/">
-                <Home />
-            </BrowserRouter>
-            );
+        const mockDestination1 = await screen.findByText('MockPlace1, MockCountry1');
+        const mockDestination2 = await screen.findByText('MockPlace2, MockCountry2');
+        const mockDestination3 = await screen.findByText('MockPlace3, MockCountry3');
 
-        })
-            
-    
-        expect(screen.getByText('MockPlace1, MockCountry1')).toBeInTheDocument();
-        expect(screen.getByText('MockPlace2, MockCountry2')).toBeInTheDocument();
+        expect(mockDestination1).toBeInTheDocument();
+        expect(mockDestination2).toBeInTheDocument();
+        expect(mockDestination3).toBeInTheDocument();
+
+        screen.debug()
     });
+
+    
 })
 

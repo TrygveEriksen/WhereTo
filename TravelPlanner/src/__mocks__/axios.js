@@ -1,22 +1,30 @@
 const axiosMock = jest.createMockFromModule('axios');
 
-// Mocking the get request for '/destinations' endpoint
-axiosMock.get.mockImplementation((url) => {
-  if (url === '/destinations') {
-    return Promise.resolve({ data: [{ _id: '1', place: 'MockPlace1', country: 'MockCountry1' }] });
-  }
-  return Promise.resolve({ data: [] }); // Default mock response for any other endpoint
-});
+const urlBuilder = (path) => `http://localhost:3001${path}`;
 
-// Mocking the get request for '/admin' endpoint
-axiosMock.get.mockImplementationOnce((url) => {
-  if (url === '/admin') {
-    return Promise.resolve({ permission: 0 });
+// Mocking the get request for the different endpoints
+axiosMock.get.mockImplementation((path) => {
+
+  switch(path) {
+    case urlBuilder('/destinations'):
+      return Promise.resolve({ data: [
+      { _id: '1', place: 'MockPlace1', country: 'MockCountry1'},
+      { _id: '2', place: 'MockPlace2', country: 'MockCountry2'},
+      { _id: '3', place: 'MockPlace3', country: 'MockCountry3'}
+    ] });
+
+    case urlBuilder('/admin'):
+      return Promise.resolve({data: {permission: 0}});
+    
+    default:
+      return Promise.reject(new Error('Not found'));
   }
-  return Promise.resolve({}); // Default mock response for any other endpoint
 });
 
 // Mocking other HTTP methods
 axiosMock.post.mockResolvedValue({ data: {} });
 axiosMock.put.mockResolvedValue({ data: {} });
 axiosMock.delete.mockResolvedValue({ data: {} });
+
+
+export default axiosMock;
