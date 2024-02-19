@@ -22,6 +22,9 @@
   
   .nav-item {
 	margin-right: 1rem;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
   }
 
   /*.navbar-nav:last-child{
@@ -30,16 +33,29 @@
 
   
   .nav-link {
-	color: #fff;
+	color: black;
 	text-decoration: none;
   }
   
-  .nav-link:hover {
-	text-decoration: underline;
+.nav-link:hover {
+	color: white;
 }
-#nav-logo{
 
-	height: auto;
-	margin-right: '10px'; 
-	padding-top: 20px;
+.nav-text{
+	text-decoration: none;
+}
+.nav-logo{
+	/*fill: blue;*/
+}
+.nav-logo:hover,
+.nav-logo:focus{
+	/*
+	filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(150deg) brightness(104%) contrast(97%);
+	*/
+	filter: invert(100%);
+	/*filter: brightness(50%);
+	filter: hue-rotate(100deg);
+	fill: hotpink;*/
+
+
 }
