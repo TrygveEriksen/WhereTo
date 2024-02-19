@@ -8,15 +8,18 @@ import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom'
 
 jest.mock('axios');
+window.scrollTo = jest.fn();
 
 describe('tests home component', () => {
 
-    beforeEach(() => {
+    beforeEach(async () => {
         render(
             <BrowserRouter basename="/">
                 <Home />
             </BrowserRouter>
         );
+
+        await screen.findAllByTestId('navbar-test')
 
     })
 
