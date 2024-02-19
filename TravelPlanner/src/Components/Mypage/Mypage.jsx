@@ -15,6 +15,7 @@ function Mypage() {
 
   const load = async () => {
     const username = await API.get("/getUser");
+    window.scrollTo(0, 0);
     setUser(username.data.username);
   };
 
