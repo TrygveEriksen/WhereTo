@@ -21,8 +21,8 @@ function Descriptions() {
   const load = async () => {
     const destRes = await API.get(`/destinations/${id}`)
     if (destRes) {
+      window.scrollTo(0,0);
       setDestinations(destRes.data)
-      console.log(destRes.data)
       return setLoading(false);
     }
   };
@@ -36,14 +36,21 @@ function Descriptions() {
         <div className="descriptionsContainer">
         {isLoading && <Loading/>}
         <h1 className="descriptionsHeader">{destinations.place}</h1>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-        <h2> <span class="icon"><i class="fas fa-globe"></i></span>
+
+        <h2> <span className="icon"><i className="fas fa-globe"></i></span>
           {destinations.country}, {destinations.continent}</h2>
         </div>
         <div className="column-container">
           <div className="labels">
             <h3>Egenskaper:</h3>
-            <p>{destinations.labels}</p> {/* må fikses*/}
+            <ul className="destinationLabels">
+              {destinations?.labels?.map(((destinationLabel)=>(
+              <li key={destinationLabel}>
+
+                {destinationLabel}
+              </li>
+
+            )))}</ul>
           </div>
 
           <div className="descriptionContainer">
