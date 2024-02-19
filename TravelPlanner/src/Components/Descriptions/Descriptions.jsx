@@ -5,7 +5,7 @@ import { API } from "../../API/API";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
-import "./Descriptions.css"
+import "./Descriptions.css";
 
 function Descriptions() {
   const [destinations, setDestinations] = useState([]);
@@ -14,31 +14,37 @@ function Descriptions() {
 
   //fetch data from the server when the page starts running and set it in the state destination
   useEffect(() => {
-    load()
+    load();
   }, []);
 
-
   const load = async () => {
-    const destRes = await API.get(`/destinations/${id}`)
+    const destRes = await API.get(`/destinations/${id}`);
     if (destRes) {
-      setDestinations(destRes.data)
-      console.log(destRes.data)
+      setDestinations(destRes.data);
+      console.log(destRes.data);
       return setLoading(false);
     }
   };
 
-
   return (
     <>
       <Navbar />
-      
+
       <div className="descriptionContent">
         <div className="descriptionsContainer">
-        {isLoading && <Loading/>}
-        <h1 className="descriptionsHeader">{destinations.place}</h1>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-        <h2> <span class="icon"><i class="fas fa-globe"></i></span>
-          {destinations.country}, {destinations.continent}</h2>
+          {isLoading && <Loading />}
+          <h1 className="descriptionsHeader">{destinations.place}</h1>
+          <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+            rel="stylesheet"
+          />
+          <h2>
+            {" "}
+            <span class="icon">
+              <i class="fas fa-globe"></i>
+            </span>
+            {destinations.country}, {destinations.continent}
+          </h2>
         </div>
         <div className="column-container">
           <div className="labels">
@@ -54,14 +60,12 @@ function Descriptions() {
           <div>
             <h3></h3>
           </div>
-
         </div>
       </div>
 
       <Footer />
     </>
   );
-
 }
 
 export default Descriptions;
