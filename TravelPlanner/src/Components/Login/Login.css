@@ -14,11 +14,12 @@
     padding: 30px;
     gap: 30px;
     border-radius: 10px;
-    border: 2px solid var(--border)
+    border: 2px solid var(--border);
+    box-shadow: 0px 0px 15px 0px var(--border);
   }
 
-  .loginHeader{
-    margin: 0
+  .loginHeader {
+    margin: 0;
   }
 
   .loginForm {
@@ -34,7 +35,7 @@
     text-align: left;
     width: 100%;
   }
-  
+
   .loginInput {
     border: none;
     border: 1px solid var(--primary);
@@ -61,7 +62,6 @@
     border: none;
     background-color: var(--primary-dark);
   }
-
 
   .error {
     background-color: var(--error);
