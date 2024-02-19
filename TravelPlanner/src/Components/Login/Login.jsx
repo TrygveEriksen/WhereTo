@@ -47,47 +47,56 @@ function Login() {
   };
 
   return (
-    <div className="loginContainer">
-      <div className="loginDiv">
-        <h1 className="loginHeader">Logg inn</h1>
-        <form className="loginForm">
-          <label className="loginLabel" htmlFor="brukernavn">
-            Brukernavn
-          </label>
-          <input
-            autoFocus
-            className="loginInput"
-            type="text"
-            placeholder="Brukernavn"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <label className="loginLabel" htmlFor="passord">
-            Passord
-          </label>
-          <input
-            className="loginInput"
-            type="password"
-            placeholder="Passord"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <input
-            type="submit"
-            className="submitBtn"
-            value="Logg inn"
-            onClick={handleLogin}
-          />
-        </form>
-        {error && <div className="error">{error}</div>}
-        <div className="linkDiv">
-          <p className="loginText">Ny her? </p> 
-          <Link className="loginLink" to="/signup"> Opprett bruker</Link>
+    <>
+      <nav className="login-navbar">
+        <div className='navbar-item' id='navbar-left'>
+            <img src='/images/SVG/logo_home.svg' alt="logo" className='nav-logo' height="50px" />
+        </div>
+      </nav>
+
+
+      <div className="loginContainer">
+        <div className="loginDiv">
+          <h1 className="loginHeader">Logg inn</h1>
+          <form className="loginForm">
+            <label className="loginLabel" htmlFor="brukernavn">
+              Brukernavn
+            </label>
+            <input
+              autoFocus
+              className="loginInput"
+              type="text"
+              placeholder="Brukernavn"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <label className="loginLabel" htmlFor="passord">
+              Passord
+            </label>
+            <input
+              className="loginInput"
+              type="password"
+              placeholder="Passord"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <input
+              type="submit"
+              className="submitBtn"
+              value="Logg inn"
+              onClick={handleLogin}
+            />
+          </form>
+          {error && <div className="error">{error}</div>}
+          <div className="linkDiv">
+            <p className="loginText">Ny her? </p>
+            <Link className="loginLink" to="/signup"> Opprett bruker</Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

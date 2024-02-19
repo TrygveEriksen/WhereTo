@@ -51,6 +51,13 @@ function Signup() {
   };
 
   return (
+    <>
+    <nav className="login-navbar">
+    <div className='navbar-item' id='navbar-left'>
+        <img src='/images/SVG/logo_home.svg' alt="logo" className='nav-logo' height="50px" />
+    </div>
+  </nav>
+
     <div className="loginContainer">
       <div className="loginDiv">
         <h1 className="loginHeader">Opprett bruker</h1>
@@ -105,7 +112,9 @@ function Signup() {
         </div>
       </div>
     </div>
+    </>
   );
+
 }
 
 export default Signup;
