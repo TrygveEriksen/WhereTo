@@ -18,32 +18,45 @@ function Navbar(){
 
 
 
-	return (
-		<nav className="navbar" data-testid="navbar-test">
-			<ul className="navbar-nav">
-				<li className="nav-item">
-					<Link to="/"> 
-						<img src={'/images/logo.svg'} alt="logo" id='nav-logo'/> 
-						<span>Where to?</span>
-					</Link>
-				</li>
-				{permission == 1?<li >
-					<Link to="/newdestination">
-						Jeg er admin
-					</Link>
-					</li>:null}
-				<li className="nav-item">
-					<Link to= "/myPage">
-						Mypage
-					</Link>
-				</li>
-				<li>				
-					<Link to="/login" className="signout" onClick={() => localStorage.removeItem("user")}>
-						Logg ut
-					</Link>
-				</li>
 
-			</ul>
+	return (
+		<nav className="navbar">
+			
+			<div className='navbar-item' id='navbar-left'>
+				
+				<Link to="/" className='nav-link'> 
+					<img src='/images/SVG/logo_home.svg' alt="logo" className='nav-logo' height="50px"/>
+				</Link>
+			</div>
+			<div className='navbar-item' id='navbar-right'>
+				<div className='navbar-item'>
+				{permission == 1?
+					<Link to="/newdestination" className='nav-link'>
+						<img src='/images/SVG/admin2.svg' alt="admin" className='nav-logo' height="60px"/>
+						<br />
+						<span className='nav-text'>Admin</span>
+					</Link>
+					:null}
+				</div>
+				<div className='navbar-item'>
+				
+					<Link to= "/myPage" className='nav-link'>
+						<img src='/images/SVG/mypage.svg' alt="my_page" className='nav-logo' height="60px"/>
+						<br />
+						<span className='nav-text'>Min side</span>
+					</Link>
+				
+
+								
+					<Link to="/login" className="signout nav-link" onClick={() => localStorage.removeItem("user")}>
+						<img src='/images/SVG/logout.svg' alt="log_out" className='nav-logo' height="60px"/>
+						<br />
+						<span className='navText'>Logg ut</span>
+					</Link>
+				
+				</div>
+			</div>
+			
 		</nav>
 	)
 }
