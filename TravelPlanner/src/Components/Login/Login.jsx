@@ -85,6 +85,7 @@ function Login() {
             <input
               type="submit"
               className="submitBtn"
+              data-testid="submit-test"
               value="Logg inn"
               onClick={handleLogin}
             />

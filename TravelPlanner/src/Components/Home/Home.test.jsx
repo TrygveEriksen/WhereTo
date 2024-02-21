@@ -12,12 +12,14 @@ window.scrollTo = jest.fn();
 
 describe('tests home component', () => {
 
-    beforeEach(() => {
+    beforeEach(async () => {
         render(
             <BrowserRouter basename="/">
                 <Home />
             </BrowserRouter>
         );
+
+        await screen.findAllByTestId('navbar-test')
 
     })
 
@@ -39,7 +41,6 @@ describe('tests home component', () => {
         expect(mockDestination2).toBeInTheDocument();
         expect(mockDestination3).toBeInTheDocument();
 
-        screen.debug()
     });
 
     

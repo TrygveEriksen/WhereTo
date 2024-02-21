@@ -22,7 +22,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="navbar">
+      <nav className="navbar" data-testid="navbar-test">
         <div className="navbar-item" id="navbar-left">
           <Link to="/" className="nav-link">
             <img

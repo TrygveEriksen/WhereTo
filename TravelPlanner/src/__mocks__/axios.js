@@ -22,7 +22,19 @@ axiosMock.get.mockImplementation((path) => {
 });
 
 // Mocking other HTTP methods
-axiosMock.post.mockResolvedValue({ data: {} });
+axiosMock.post.mockImplementation((path, {username, password}) => {
+  switch(path) {
+    case urlBuilder('/entry/login'):
+      if(username === 'mockuser' && password === 'mockpassword') {
+        return Promise.resolve({data: {message: 'login', jwtToken: 'testToken'}})
+      }
+    
+    default:
+      return Promise.reject(new Error('not valid'))
+  }
+
+
+});
 axiosMock.put.mockResolvedValue({ data: {} });
 axiosMock.delete.mockResolvedValue({ data: {} });
 
