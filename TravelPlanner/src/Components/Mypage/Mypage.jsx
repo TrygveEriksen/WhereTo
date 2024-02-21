@@ -2,7 +2,6 @@ import Navbar from "../Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { API } from "../../API/API";
 import "./Mypage.css";
-import myImage from "./Picture/myprofile.png";
 import StaredPlaces from "./StaredPlaces/StaredPlaces";
 import MyReviews from "./MyReviews/MyReviews";
 import Footer from "../Footer/Footer";
@@ -16,6 +15,7 @@ function Mypage() {
 
   const load = async () => {
     const username = await API.get("/getUser");
+    window.scrollTo(0, 0);
     setUser(username.data.username);
   };
 
@@ -28,7 +28,7 @@ function Mypage() {
             <div className="divMypage">
               <h1 className="myPage">Min side</h1>
               <img
-                src={myImage}
+                src="/images/SVG/mypage.svg"
                 alt="My profile picture"
                 className="profile-image"
               ></img>
