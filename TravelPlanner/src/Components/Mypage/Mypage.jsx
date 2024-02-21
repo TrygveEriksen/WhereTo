@@ -2,11 +2,6 @@ import Navbar from "../Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { API } from "../../API/API";
 import "./Mypage.css";
-import Button from "@mui/material/Button";
-import DeleteIcon from "@mui/icons-material/Delete";
-import SendIcon from "@mui/icons-material/Send";
-import Stack from "@mui/material/Stack";
-import myImage from "./Picture/myprofile.png";
 import StaredPlaces from "./StaredPlaces/StaredPlaces";
 import MyReviews from "./MyReviews/MyReviews";
 import Footer from "../Footer/Footer";
@@ -20,6 +15,7 @@ function Mypage() {
 
   const load = async () => {
     const username = await API.get("/getUser");
+    window.scrollTo(0, 0);
     setUser(username.data.username);
   };
 
@@ -32,19 +28,11 @@ function Mypage() {
             <div className="divMypage">
               <h1 className="myPage">Min side</h1>
               <img
-                src={myImage}
+                src="/images/SVG/mypage.svg"
                 alt="My profile picture"
                 className="profile-image"
               ></img>
               <h3>Brukernavn: {user}</h3>
-              <p>Dette er min bruker side mere info kommer i neste sprint</p>
-              <Button
-                variant="outlined"
-                size="small"
-                startIcon={<DeleteIcon />}
-              >
-                Slett
-              </Button>
             </div>
           </div>
         </div>
@@ -54,7 +42,7 @@ function Mypage() {
           <StaredPlaces />
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

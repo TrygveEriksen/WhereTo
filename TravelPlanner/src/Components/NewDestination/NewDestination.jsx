@@ -20,6 +20,7 @@ function NewDestination() {
   const navigate = useNavigate();
   const load = async () => {
     const adminData = await API.get("/admin");
+    window.scrollTo(0, 0);
     if (adminData.data?.permission != 1) {
       navigate("/");
     }

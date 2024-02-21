@@ -1,11 +1,10 @@
-import './Footer.css'
+import "./Footer.css";
 
-function Footer(){
-
-	return (
-		<footer className="footer">
-            <p>Trademarked property</p>
-        </footer>
-	)
+function Footer() {
+  return (
+    <footer className="footer">
+      <p>Reiseutforsker - 2024</p>
+    </footer>
+  );
 }
-export default Footer
+export default Footer;

@@ -1,6 +1,6 @@
 .loginContainer {
   background-color: var(--background);
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -14,11 +14,12 @@
     padding: 30px;
     gap: 30px;
     border-radius: 10px;
-    border: 2px solid var(--border)
+    border: 2px solid var(--border);
+    box-shadow: 0px 0px 15px 0px var(--border);
   }
 
-  .loginHeader{
-    margin: 0
+  .loginHeader {
+    margin: 0;
   }
 
   .loginForm {
@@ -34,7 +35,7 @@
     text-align: left;
     width: 100%;
   }
-  
+
   .loginInput {
     border: none;
     border: 1px solid var(--primary);
@@ -62,7 +63,6 @@
     background-color: var(--primary-dark);
   }
 
-
   .error {
     background-color: var(--error);
     color: var(--error-content);
@@ -82,3 +82,24 @@
     margin: 0 5px 0 0;
   }
 }
+
+.login-navbar {
+	background-color: var(--primary);
+	height: 20vh;
+	display: flex;
+
+	position: sticky;
+	top: 0;
+	overflow: hidden;
+	width: 100%;
+	align-items: center;
+	padding-left: 30px;
+	padding-right: 30px;
+	justify-content: space-between;
+	
+  }
+
+  .login-nav-link {
+    color: black;
+    text-decoration: none;
+    }
