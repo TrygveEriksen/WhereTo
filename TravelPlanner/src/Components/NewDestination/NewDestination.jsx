@@ -161,20 +161,16 @@ function NewDestination() {
             <label className="loginLabel">Egneskaper:</label>
 
             <Box sx={{ display: "flex" }}>
-              <FormControl
-                sx={{ m: 3 }}
-                component="fieldset"
-                variant="standard"
-              >
+              <FormControl component="fieldset" variant="standard">
                 {allLabels.map((label, index) => (
-                  <FormGroup key={index}>
-                    <FormControlLabel
-                      control={
-                        <Checkbox onChange={handleLabelChange} name={label} />
-                      }
-                      label={label}
+                  <label key={index}>
+                    <input
+                      type="checkbox"
+                      onChange={handleLabelChange}
+                      name={label}
                     />
-                  </FormGroup>
+                    {label}
+                  </label>
                 ))}
               </FormControl>
             </Box>
