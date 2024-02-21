@@ -42,6 +42,7 @@ function NewDestination() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!(place && country && continent && description)) {
+      console.log(place + country + continent + description);
       setErrorMessage("Du må fylle ut alle feltene!");
       return;
     }
@@ -105,14 +106,19 @@ function NewDestination() {
             <label className="loginLabel" htmlFor="continent">
               Kontinent:
             </label>
-            <input
-              type="text"
-              id="continent"
+            <select
               value={continent}
               onChange={handleContinentChange}
-              placeholder="Skriv kontinent her"
               className="newDestinationInput"
-            />
+            >
+              <option value="">Velg et kontient</option>
+              <option value="Europa">Europa</option>
+              <option value="Asia">Asia</option>
+              <option value="Afrika">Afrika</option>
+              <option value="Nord-Amerika">Nord-Amerika</option>
+              <option value="Sør-Amerika">Sør-Amerika</option>
+              <option value="Oseania">Oseania</option>
+            </select>
 
             <label className="loginLabel" htmlFor="description">
               Beskrivelse:
