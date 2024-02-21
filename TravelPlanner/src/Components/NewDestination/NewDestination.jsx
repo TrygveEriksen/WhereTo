@@ -4,6 +4,13 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./NewDestination.css";
 import { useNavigate } from "react-router-dom";
+import Checkbox from "@mui/material/Checkbox";
+import Box from "@mui/material/Box";
+import FormLabel from "@mui/material/FormLabel";
+import FormControl from "@mui/material/FormControl";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormHelperText from "@mui/material/FormHelperText";
 
 function NewDestination() {
   const [place, setPlace] = useState("");
@@ -12,6 +19,18 @@ function NewDestination() {
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [labels, setLabels] = useState([]);
+  const allLabels = [
+    "Strand",
+    "Natur",
+    "Storby",
+    "Kultur",
+    "Mat",
+    "Arkitektur",
+    "Eksotisk",
+    "Historie",
+    "Sol",
+  ];
 
   useEffect(() => {
     load();
@@ -37,6 +56,10 @@ function NewDestination() {
   };
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
+  };
+
+  const handleLabelChange = (e) => {
+    console.log(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -124,6 +147,27 @@ function NewDestination() {
               onChange={handleDescriptionChange}
               className="descriptionInput"
             ></textarea>
+
+            <label className="loginLabel">Egneskaper:</label>
+
+            <Box sx={{ display: "flex" }}>
+              <FormControl
+                sx={{ m: 3 }}
+                component="fieldset"
+                variant="standard"
+              >
+                {allLabels.map((label, index) => (
+                  <FormGroup key={index}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox onChange={handleLabelChange} name="Strand" />
+                      }
+                      label={label}
+                    />
+                  </FormGroup>
+                ))}
+              </FormControl>
+            </Box>
 
             <button className="submitBtn" type="submit">
               Legg til
