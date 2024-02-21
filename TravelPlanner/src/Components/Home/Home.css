@@ -83,7 +83,9 @@
   }
 }
 @media only screen and (max-width: 767px) {
-  .searchBox {
-    top: 16vh;
+  .homeContainer {
+    .searchBox {
+      top: 16vh;
+    }
   }
 }
