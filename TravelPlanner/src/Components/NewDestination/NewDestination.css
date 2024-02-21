@@ -98,4 +98,8 @@
     margin-bottom: 5px;
     color: var(--text);
   }
+
+  .label {
+    padding: 10px;
+  }
 }

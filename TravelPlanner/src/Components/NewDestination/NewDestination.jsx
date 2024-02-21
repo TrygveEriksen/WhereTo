@@ -4,11 +4,8 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./NewDestination.css";
 import { useNavigate } from "react-router-dom";
-import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 
 function NewDestination() {
   const [place, setPlace] = useState("");
@@ -160,10 +157,14 @@ function NewDestination() {
 
             <label className="loginLabel">Egneskaper:</label>
 
-            <Box sx={{ display: "flex" }}>
+            <Box
+              sx={{
+                display: "flex",
+              }}
+            >
               <FormControl component="fieldset" variant="standard">
                 {allLabels.map((label, index) => (
-                  <label key={index}>
+                  <label key={index} className="label">
                     <input
                       type="checkbox"
                       onChange={handleLabelChange}
