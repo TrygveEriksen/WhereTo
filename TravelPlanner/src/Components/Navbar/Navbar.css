@@ -25,6 +25,7 @@
   .nav-link {
 	color: black;
 	text-decoration: none;
+	text-align: center;
   }
   
 .nav-link:hover {
