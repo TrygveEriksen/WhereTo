@@ -6,11 +6,9 @@ import "./NewDestination.css";
 import { useNavigate } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
-import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormHelperText from "@mui/material/FormHelperText";
 
 function NewDestination() {
   const [place, setPlace] = useState("");
@@ -19,7 +17,7 @@ function NewDestination() {
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [labels, setLabels] = useState([]);
+  let labels = [];
   const allLabels = [
     "Strand",
     "Natur",
@@ -59,7 +57,11 @@ function NewDestination() {
   };
 
   const handleLabelChange = (e) => {
-    console.log(e.target.value);
+    if (e.target.checked) {
+      labels.push(e.target.name);
+    } else {
+      labels = labels.filter((label) => label !== e.target.name);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -75,6 +77,7 @@ function NewDestination() {
         place,
         country,
         continent,
+        labels,
       });
 
       // Handle success response
@@ -87,6 +90,13 @@ function NewDestination() {
       setDescription("");
       setErrorMessage("");
       setSuccessMessage("Destinasjon lagt til!");
+
+      // Uncheck all checkboxes
+      document
+        .querySelectorAll('input[type="checkbox"]')
+        .forEach((checkbox) => {
+          checkbox.checked = false;
+        });
     } catch (error) {
       // Handle error
       setErrorMessage("Noe gikk galt");
@@ -160,7 +170,7 @@ function NewDestination() {
                   <FormGroup key={index}>
                     <FormControlLabel
                       control={
-                        <Checkbox onChange={handleLabelChange} name="Strand" />
+                        <Checkbox onChange={handleLabelChange} name={label} />
                       }
                       label={label}
                     />
