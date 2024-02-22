@@ -27,13 +27,23 @@ function NewDestination() {
   };
 
   const handlePlaceChange = (e) => {
-    setPlace(e.target.value);
+    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
+      return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
+    });
+    setPlace(capitalizedInput);
   };
+
   const handleCountryChange = (e) => {
-    setCountry(e.target.value);
+    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
+      return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
+    });
+    setCountry(capitalizedInput);
   };
   const handleContinentChange = (e) => {
-    setContinent(e.target.value);
+    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
+      return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
+    });
+    setContinent(capitalizedInput);
   };
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
