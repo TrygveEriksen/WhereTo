@@ -102,4 +102,11 @@
   .label {
     padding: 10px;
   }
+
+
+  .MuiFormControl-root{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
 }
