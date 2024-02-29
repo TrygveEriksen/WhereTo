@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const { userRouter } = require("./routers/userRouter");
+const { entryRouter } = require("./routers/entryRouter");
+const { reviewRouter } = require("./routers/reviewRouter");
 const cors = require("cors");
 const { AuthMiddleware } = require("./routers/middelware");
 const { destinationRouter } = require("./routers/destinationRouter");
@@ -18,10 +19,11 @@ mongoose
   .then(() => console.log("connected to db"))
   .catch((err) => console.error("error connecting to db", err));
 
-app.use("/entry", userRouter);
+app.use("/entry", entryRouter);
 //everything under middleware is now hidden from unathourized users
 app.use(AuthMiddleware);
 app.use("/destinations", destinationRouter);
+app.use("/review", reviewRouter);
 app.use("/admin", adminRouter);
 app.get("/getUser", (req, res) => res.json(req.user));
 
