@@ -25,6 +25,7 @@ function NewDestination() {
     "Eksotisk",
     "Historie",
     "Sol",
+    "Ute liv",
   ];
 
   useEffect(() => {
