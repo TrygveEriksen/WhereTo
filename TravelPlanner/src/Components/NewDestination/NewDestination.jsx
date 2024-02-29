@@ -4,6 +4,8 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./NewDestination.css";
 import { useNavigate } from "react-router-dom";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
 
 function NewDestination() {
   const [place, setPlace] = useState("");
@@ -12,6 +14,19 @@ function NewDestination() {
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  let labels = [];
+  const allLabels = [
+    "Strand",
+    "Natur",
+    "Storby",
+    "Kultur",
+    "Mat",
+    "Arkitektur",
+    "Eksotisk",
+    "Historie",
+    "Sol",
+    "Ute liv",
+  ];
 
   useEffect(() => {
     load();
@@ -49,6 +64,14 @@ function NewDestination() {
     setDescription(e.target.value);
   };
 
+  const handleLabelChange = (e) => {
+    if (e.target.checked) {
+      labels.push(e.target.name);
+    } else {
+      labels = labels.filter((label) => label !== e.target.name);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!(place && country && continent && description)) {
@@ -63,6 +86,7 @@ function NewDestination() {
         place,
         country,
         continent,
+        labels,
       });
 
       // Handle success response
@@ -75,6 +99,13 @@ function NewDestination() {
       setDescription("");
       setErrorMessage("");
       setSuccessMessage("Destinasjon lagt til!");
+
+      // Uncheck all checkboxes
+      document
+        .querySelectorAll('input[type="checkbox"]')
+        .forEach((checkbox) => {
+          checkbox.checked = false;
+        });
     } catch (error) {
       // Handle error
       setErrorMessage("Noe gikk galt");
@@ -140,6 +171,27 @@ function NewDestination() {
               onChange={handleDescriptionChange}
               className="descriptionInput"
             ></textarea>
+
+            <label className="loginLabel">Egneskaper:</label>
+
+            <Box
+              sx={{
+                display: "flex",
+              }}
+            >
+              <FormControl component="fieldset" variant="standard">
+                {allLabels.map((label, index) => (
+                  <label key={index} className="label">
+                    <input
+                      type="checkbox"
+                      onChange={handleLabelChange}
+                      name={label}
+                    />
+                    {label}
+                  </label>
+                ))}
+              </FormControl>
+            </Box>
 
             <button className="submitBtn" type="submit">
               Legg til
