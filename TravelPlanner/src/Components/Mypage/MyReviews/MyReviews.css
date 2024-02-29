@@ -1,0 +1,18 @@
+.myReviews {
+    
+  .reviewUl {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .oneDestination {
+    background-color: var(--foreground);
+    border: 2px solid var(--border);
+    padding: 15px;
+
+    border-radius: 10px;
+  }
+}

@@ -7,7 +7,8 @@ import MyReviews from "./MyReviews/MyReviews";
 import Footer from "../Footer/Footer";
 
 function Mypage() {
-  const [user, setUser] = useState("");
+  const [username, setUserName] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     load();
@@ -16,7 +17,8 @@ function Mypage() {
   const load = async () => {
     const username = await API.get("/getUser");
     window.scrollTo(0, 0);
-    setUser(username.data.username);
+    setUserName(username.data.username);
+    setUserId(username.data._id);
   };
 
   return (
@@ -32,12 +34,12 @@ function Mypage() {
                 alt="My profile picture"
                 className="profile-image"
               ></img>
-              <h3>Brukernavn: {user}</h3>
+              <h3>Brukernavn: {username}</h3>
             </div>
           </div>
         </div>
         <div className="viewBox">
-          <MyReviews />
+          <MyReviews userId={userId} />
           <br />
           <StaredPlaces />
         </div>
