@@ -12,6 +12,7 @@ function Home() {
   const [visibleDestinations, setVisibleDestinations] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [searchWord, setSearchWord] = useState("");
+  const [toggledFilters, setToggledFilters] = useState([]);
 
   //fetch data from the server when the page starts running and set it in the state destination
   useEffect(() => {
@@ -24,6 +25,33 @@ function Home() {
       setDestinations(destRes.data);
       setVisibleDestinations(destRes.data);
       return setLoading(false);
+    }
+  };
+
+  const handleFilter = (wordToFilterOn) => {
+    if (toggledFilters.includes(wordToFilterOn)) {
+      // Remove from the list if already present
+      setToggledFilters((prevFilters) =>
+        prevFilters.filter((filter) => filter !== wordToFilterOn)
+      );
+      console.log(toggledFilters);
+    } else {
+      // Add to the list if not present
+      setToggledFilters((prevFilters) => [...prevFilters, wordToFilterOn]);
+      console.log(toggledFilters);
+    }
+
+    if (toggledFilters.length === 0) {
+      setVisibleDestinations(destinations);
+    } else {
+      setVisibleDestinations(
+        destinations.filter((destination) => {
+          // Check if any of the toggled filters are in the destination labels
+          return toggledFilters.every((filter) =>
+            destination.labels.includes(filter)
+          );
+        })
+      );
     }
   };
 
@@ -67,7 +95,7 @@ function Home() {
               placeholder="Søk"
             ></input>
           </div>
-          <FilterCheckbox />
+          <FilterCheckbox handleFilter={handleFilter} />
           <ul className="destinations">
             {visibleDestinations.map((destination) => (
               <li className="oneDestination" key={destination._id}>
