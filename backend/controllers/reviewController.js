@@ -12,7 +12,7 @@ const findAllReviewsByDID = async (req, res) => {
                         .populate("user"," username")
                         .select("user comment stars timestamp title")
                                          
-    res.json(reviews);
+    res.status(200).json(reviews);
   }
   catch(error){
     //server error om du kommer hit
@@ -29,8 +29,8 @@ const findAllReviewsByUID = async (req, res) => {
       }
     const reviews = await ReviewModel
                         .find({user:userId})
-                        .populate("destination")
-                        .select("destination comment stars")
+                        .populate("destination", "place country")
+                        .select("destination comment stars timestamp title")
                                          
     res.json(reviews);
   }
