@@ -1,5 +1,5 @@
 .descriptionContent {
-  height: 100vh;
+  min-height: 100vh;
 
   .descriptionsContainer {
     padding: 10px 0;
