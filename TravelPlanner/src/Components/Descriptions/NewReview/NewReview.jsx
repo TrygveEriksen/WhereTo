@@ -44,6 +44,11 @@ function NewReview(props) {
     }
 
     setErrorMessage("");
+    setDestination("");
+    setComment("");
+    setStars(0);
+    setTitle("");
+
 
 
     try {
@@ -135,6 +140,7 @@ function NewReview(props) {
           type="text"
           id="title"
           placeholder="Tittel"
+          value={title}
           onChange={handleTitleChange}
           className="newDestinationInput"
         ></input>
