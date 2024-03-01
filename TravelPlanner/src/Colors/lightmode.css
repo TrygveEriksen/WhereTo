@@ -1,5 +1,8 @@
 :root {
   --text: #09150d;
+  --text-2: #616161;
+  --star-filled: #f2c94c;
+  --star-empty: #e4e4e4;
   --primary: #5ace82;
   --primary-dark: #50b874;
   --secondary: #a1d4ce;
