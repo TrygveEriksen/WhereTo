@@ -72,7 +72,7 @@ function Descriptions() {
 
           <div></div>
         </div>
-        <NewReview destinationId={destinations._id} />
+        <NewReview destinationId={destinations._id} onReviewSubmit={handleReviewSubmit}/>
         <DescriptionReview destinationId={destinations._id} key={reloadReviews} />
       </div>
 

@@ -45,7 +45,6 @@ function NewReview(props) {
 
     setErrorMessage("");
 
-    console.log(title, comment, destination, stars);
 
     try {
       const response = await API.post("/review/new", {
