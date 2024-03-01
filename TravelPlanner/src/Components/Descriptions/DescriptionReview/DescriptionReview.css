@@ -1,10 +1,26 @@
 .descriptionReviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--foreground);
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+
+
   h1 {
     color: var(--text);
     margin-bottom: 20px;
   }
 
   .reviewUl {
+    width: 100%;
     list-style-type: none;
     display: flex;
     flex-direction: column;
@@ -43,16 +59,16 @@
           .starDate {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             align-items: center;
             gap: 10px;
 
-            .fa-star {
-              height: 5px;
-            }
-            .fa-star.filled {
+
+  
+            .filled {
               color: var(--star-filled);
             }
-            .fa-star.empty {
+            .empty {
               color: var(--star-empty);
             }
 

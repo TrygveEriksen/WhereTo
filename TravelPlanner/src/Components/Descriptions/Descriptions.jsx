@@ -57,16 +57,16 @@ function Descriptions() {
         </div>
         <div className="column-container">
           <div className="labels">
-            <h3>Egenskaper:</h3>
+            <h3 className="destinationHeader">Egenskaper:</h3>
             <ul className="destinationLabels">
               {destinations?.labels?.map((destinationLabel) => (
-                <li key={destinationLabel}>{destinationLabel}</li>
+                <li className="label" key={destinationLabel}>{destinationLabel}</li>
               ))}
             </ul>
           </div>
 
           <div className="descriptionContainer">
-            <h3>Beskrivelse:</h3>
+            <h3 className="descriptionHeader">Beskrivelse:</h3>
             <p className="descriptionsText">{destinations.description}</p>
           </div>
 

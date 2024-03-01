@@ -72,7 +72,7 @@ function NewReview(props) {
       <h1>Ny vurderinger</h1>
       {isLoading && <Loading />}
 
-      <form onSubmit={handleSubmit} className="newDestinationForm">
+      <form onSubmit={handleSubmit} className="newReviewForm">
         <div className="starRating">
           <input
             type="radio"
@@ -136,16 +136,19 @@ function NewReview(props) {
           ></label>
         </div>
 
+        <label className="descriptionLabel" htmlFor="title">
+          Tittel:
+        </label>
         <input
           type="text"
           id="title"
           placeholder="Tittel"
           value={title}
           onChange={handleTitleChange}
-          className="newDestinationInput"
+          className="newReviewInput"
         ></input>
 
-        <label className="loginLabel" htmlFor="description">
+        <label className="descriptionLabel" htmlFor="description">
           Beskrivelse:
         </label>
         <textarea
@@ -154,9 +157,10 @@ function NewReview(props) {
           value={comment}
           onChange={handleCommentChange}
           className="descriptionInput"
+          rows={5}
         ></textarea>
 
-        <input type="submit" value="submit" />
+        <input type="submit" className="submitBtn" value="Legg til" />
       </form>
       {errorMessage && <div className="error">{errorMessage}</div>}
     </div>
