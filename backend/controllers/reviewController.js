@@ -43,6 +43,12 @@ const findAllReviewsByUID = async (req, res) => {
 
 const createReview = async (req, res) => {
     try {
+
+        if (req.user) {
+            req.body.user = req.user._id;
+          
+        }
+
         const newReview = new ReviewModel(req.body);
         const savedReview = await newReview.save()
         res.status(201).json(savedReview);
