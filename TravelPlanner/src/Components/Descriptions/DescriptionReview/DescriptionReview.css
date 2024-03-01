@@ -1,0 +1,73 @@
+.descriptionReviews {
+  h1 {
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .reviewUl {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+
+    .oneDestination {
+      background-color: var(--foreground);
+      border: 2px solid var(--border);
+      padding: 15px;
+      border-radius: 10px;
+
+      .userHeader {
+        display: flex;
+        gap: 10px;
+        flex-direction: row;
+        align-items: center;
+
+        .userImage {
+          width: 50px;
+          aspect-ratio: 1/1;
+          border-radius: 50%;
+          border: 2px solid var(--border);
+        }
+
+        .starUsernameDate {
+          display: flex;
+          flex-direction: column;
+
+          .username {
+            color: var(--text-2);
+            margin: 0px;
+            font-size: large;
+          }
+
+          .starDate {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+
+            .fa-star {
+              height: 5px;
+            }
+            .fa-star.filled {
+              color: var(--star-filled);
+            }
+            .fa-star.empty {
+              color: var(--star-empty);
+            }
+
+            .date {
+              color: var(--text-2);
+              font-size: smaller;
+              margin: 0;
+            }
+          }
+        }
+      }
+
+      .reviewContent {
+        padding: 0 5px;
+      }
+    }
+  }
+}

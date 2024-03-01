@@ -6,6 +6,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import "./Descriptions.css";
+import DescriptionReview from "./DescriptionReview/DescriptionReview";
 
 function Descriptions() {
   const [destinations, setDestinations] = useState([]);
@@ -58,10 +59,9 @@ function Descriptions() {
             <p className="descriptionsText">{destinations.description}</p>
           </div>
 
-          <div>
-            <h3></h3>
-          </div>
+          <div></div>
         </div>
+        <DescriptionReview destinationId={destinations._id} />
       </div>
 
       <Footer />
