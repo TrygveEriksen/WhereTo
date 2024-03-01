@@ -1,0 +1,75 @@
+
+
+
+
+.newReview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+
+
+
+    .newDestinationForm{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        background-color: #f5f5f5;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    
+        .starRating {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+
+            .starCheckbox {
+                display: none;
+
+
+            }
+
+            .filled {
+                color: var(--star-filled);
+            }
+            .empty {
+                color: var(--star-empty);
+            }   
+
+
+
+
+        }
+    
+    
+    }
+
+    .error {
+        background-color: var(--error);
+        color: var(--error-content);
+        padding: 5px;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+}

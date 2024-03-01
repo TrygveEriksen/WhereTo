@@ -7,11 +7,15 @@ import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import "./Descriptions.css";
 import DescriptionReview from "./DescriptionReview/DescriptionReview";
+import NewReview from "./NewReview/NewReview";
 
 function Descriptions() {
   const [destinations, setDestinations] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [reloadReviews, setReloadDescription] = useState(false);
   const { id } = useParams();
+
+
 
   //fetch data from the server when the page starts running and set it in the state destination
   useEffect(() => {
@@ -26,6 +30,13 @@ function Descriptions() {
       return setLoading(false);
     }
   };
+
+
+  const handleReviewSubmit = () => {
+    setReloadDescription(prevState => !prevState); 
+  };
+
+
 
   return (
     <>
@@ -61,7 +72,8 @@ function Descriptions() {
 
           <div></div>
         </div>
-        <DescriptionReview destinationId={destinations._id} />
+        <NewReview destinationId={destinations._id} />
+        <DescriptionReview destinationId={destinations._id} key={reloadReviews} />
       </div>
 
       <Footer />
