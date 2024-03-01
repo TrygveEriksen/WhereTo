@@ -14,14 +14,18 @@ function MyReviews(props) {
   }, [props.userId]);
 
   const load = async () => {
-  const link = `/review/user/${props.userId}`;
-   const reviewRes = await API.get(link);
 
-    if (reviewRes && reviewRes.data) {
-      setReviews(reviewRes.data);
-      return setLoading(false);
-    }else{
-      setReviews([])
+    if (props.userId) {
+      
+      const link = `/review/user/${props.userId}`;
+      const reviewRes = await API.get(link);
+      
+      if (reviewRes && reviewRes.data) {
+        setReviews(reviewRes.data);
+        return setLoading(false);
+      }else{
+        setReviews([])
+      }
     }
   };
 
