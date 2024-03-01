@@ -11,14 +11,19 @@ const ReviewSchema = new mongoose.Schema({
     ref: "destinations",
     required: true,
   },
+  title: {
+    type: String,
+
+  },
   comment: {
     type: String,
-    required: true,
+
   },
   stars: {
     type: Number,
     required: true,
   },
+  timestamp: { type: Date, default: Date.now } 
 });
 
 const ReviewModel = mongoose.model("reviews", ReviewSchema);
