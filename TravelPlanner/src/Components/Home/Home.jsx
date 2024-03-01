@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { API } from "../../API/API";
@@ -6,7 +5,7 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import "./Home.css";
-
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function Home() {
   const [destinations, setDestinations] = useState([]);
@@ -39,15 +38,9 @@ function Home() {
       setVisibleDestinations(
         destinations.filter((destination) => {
           return (
-            destination.place
-              .toLowerCase()
-              .includes(sWord.toLowerCase()) ||
-            destination.country
-              .toLowerCase()
-              .includes(sWord.toLowerCase()) ||
-            destination.continent
-              .toLowerCase()
-              .includes(sWord.toLowerCase())
+            destination.place.toLowerCase().includes(sWord.toLowerCase()) ||
+            destination.country.toLowerCase().includes(sWord.toLowerCase()) ||
+            destination.continent.toLowerCase().includes(sWord.toLowerCase())
           );
         })
       );
@@ -74,6 +67,7 @@ function Home() {
               placeholder="Søk"
             ></input>
           </div>
+          <FilterCheckbox />
           <ul className="destinations">
             {visibleDestinations.map((destination) => (
               <li className="oneDestination" key={destination._id}>
@@ -90,7 +84,10 @@ function Home() {
               <li className="oneDestination">
                 <a className="destAnchor">
                   <p className="destLink dest1">Ingen resultater matcher:</p>
-                  <p className="destLink dest2">{"<"} <span className="noResults">{searchWord}</span>{">"}</p>
+                  <p className="destLink dest2">
+                    {"<"} <span className="noResults">{searchWord}</span>
+                    {">"}
+                  </p>
                 </a>
               </li>
             )}

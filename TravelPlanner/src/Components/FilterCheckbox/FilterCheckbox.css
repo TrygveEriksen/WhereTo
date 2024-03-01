@@ -1,0 +1,6 @@
+.MuiFormControl-root {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: auto;
+}
