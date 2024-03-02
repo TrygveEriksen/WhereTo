@@ -238,7 +238,7 @@
       },
       {
         "verb": "POST",
-        "endpoint": "/new",
+        "endpoint": "",
         "description": "Creates a new review",
         "request_body": {
           "destination": "(ID)string",

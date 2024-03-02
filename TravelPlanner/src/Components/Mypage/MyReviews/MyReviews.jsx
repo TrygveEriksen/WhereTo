@@ -4,6 +4,7 @@ import "./MyReviews.css";
 import { API } from "../../../API/API";
 import Loading from "../../Loading/Loading";
 import StarRating from "../../StarRating/StarRating";
+import { Link } from "react-router-dom";
 
 function MyReviews(props) {
   const [reviews, setReviews] = useState([]);
@@ -36,12 +37,21 @@ function MyReviews(props) {
       {isLoading && <Loading />}
       <ul className="reviewUl">
         {reviews.map((review) => (
+          <Link to={`/descriptions/${review.destination._id}`} className="linkToDestination" key={review._id}>
           <li className="oneDestination" key={review._id}>
             <p className="">{review.destination.place}, {review.destination.country}</p>
-
+            <div className="starDate">
               <StarRating stars={review.stars}/>
-            <p className="">{review.comment}</p>
+              <p className="date">
+                    {new Date(review.timestamp).toLocaleString('en-GB')}
+                  </p>
+              </div>
+              <div className="reviewContent">
+              {review.title && <h3>{review.title}</h3>}
+              {review.comment && <p>{review.comment}</p>}
+            </div>
           </li>
+          </Link>
         ))}
       </ul>
     </div>
