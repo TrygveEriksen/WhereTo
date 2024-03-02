@@ -44,7 +44,6 @@ function NewReview(props) {
     }
 
     setErrorMessage("");
-    setDestination("");
     setComment("");
     setStars(0);
     setTitle("");
