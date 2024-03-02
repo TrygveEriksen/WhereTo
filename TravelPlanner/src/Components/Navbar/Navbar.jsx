@@ -43,7 +43,7 @@ function Navbar() {
                 height="60px"
               />
               <br />
-              <span className="nav-text">New destination</span>
+              <span className="nav-text">Ny destinasjon</span>
             </Link>
           
           </div>
@@ -90,7 +90,7 @@ function Navbar() {
           <ul className="listMenu">
             <li>
               <Link to="/newdestination" className="nav-link">
-                <span className="menu-link-text">New destination</span>
+                <span className="menu-link-text">Ny destinasjon</span>
               </Link>
             </li>
             <li>
