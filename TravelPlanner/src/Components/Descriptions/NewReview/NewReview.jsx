@@ -80,6 +80,7 @@ function NewReview(props) {
             className="starCheckbox"
             value="1"
             onChange={handleStars}
+            checked= {false}
           />
           <label
             htmlFor="star1"
@@ -92,6 +93,7 @@ function NewReview(props) {
             className="starCheckbox"
             value="2"
             onChange={handleStars}
+            checked= {false}
           />
           <label
             htmlFor="star2"
@@ -104,6 +106,7 @@ function NewReview(props) {
             className="starCheckbox"
             value="3"
             onChange={handleStars}
+            checked= {false}
           />
           <label
             htmlFor="star3"
@@ -116,6 +119,7 @@ function NewReview(props) {
             className="starCheckbox"
             value="4"
             onChange={handleStars}
+            checked= {false}
           />
           <label
             htmlFor="star4"
@@ -128,6 +132,7 @@ function NewReview(props) {
             className="starCheckbox"
             value="5"
             onChange={handleStars}
+            checked= {false}
           />
           <label
             htmlFor="star5"
