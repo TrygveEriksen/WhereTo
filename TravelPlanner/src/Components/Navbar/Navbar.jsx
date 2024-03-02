@@ -37,7 +37,7 @@ function Navbar() {
           <div className="navbar-item">
             <Link to="/newdestination" className="nav-link">
               <img
-                src="/images/SVG/admin2.svg"
+                src="/images/SVG/pluss.svg"
                 alt="new_destination"
                 className="nav-logo"
                 height="60px"
