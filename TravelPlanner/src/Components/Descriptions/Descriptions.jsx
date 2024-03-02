@@ -30,9 +30,13 @@ function Descriptions() {
     setPermission(isAdmin.data.permission)
     try {
     const destRes = await API.get(`/destinations/${id}`);
+    const user = await API.get('/getUser');
     if (destRes) {
       window.scrollTo(0, 0);
       setDestinations(destRes.data);
+      if (user) {
+        setVisitButton(user.data.visited.includes(id));
+      }
       return setLoading(false);
     }
     }
@@ -40,6 +44,28 @@ function Descriptions() {
       window.location.href = "/"
     }
   };
+  const handleVisited = async () => {
+    const user = await API.get('/getUser')
+    const res = await API.put('/entry/toggleVisited', { id: id, userId: user.data._id })
+
+    if (res.data.message === "success") {
+      console.log("success");
+      load()
+    }
+    console.log(res);
+  };
+
+  const setVisitButton = (visited) => {
+    const button = document.getElementById('visitedButton');
+    if (visited) {
+      button.innerHTML = "Unvisit";
+    }
+    else {
+      button.innerHTML = "Visit";
+    }
+  }
+
+
 
 
   const handleReviewSubmit = () => {
@@ -63,6 +89,8 @@ function Descriptions() {
               <i className="fas fa-globe"></i>
             </span>
             {destinations.country}, {destinations.continent}
+            {"                      "}
+            <button type="button" onClick={handleVisited} id="visitedButton">Click me!</button>
           </h2>
           {permission == 1?
           <Link to={`/editdestination/${id}`} className="destAnchor">
