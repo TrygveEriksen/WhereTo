@@ -11,6 +11,7 @@ const findAllReviewsByDID = async (req, res) => {
                         .find({destination:destinationId})
                         .populate("user"," username")
                         .select("user comment stars timestamp title")
+                        .sort({timestamp:-1})
                                          
     res.status(200).json(reviews);
   }
@@ -31,6 +32,7 @@ const findAllReviewsByUID = async (req, res) => {
                         .find({user:userId})
                         .populate("destination", "place country")
                         .select("destination comment stars timestamp title")
+                        .sort({timestamp:-1})
                                          
     res.json(reviews);
   }
