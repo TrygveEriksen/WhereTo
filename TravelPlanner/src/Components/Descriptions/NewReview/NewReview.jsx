@@ -51,7 +51,7 @@ function NewReview(props) {
 
 
     try {
-      const response = await API.post("/review/new", {
+      const response = await API.post("/review", {
         title,
         comment,
         destination,
