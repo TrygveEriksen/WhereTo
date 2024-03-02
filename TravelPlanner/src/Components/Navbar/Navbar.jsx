@@ -35,18 +35,17 @@ function Navbar() {
         </div>
         <div className="navbar-item" id="navbar-right">
           <div className="navbar-item">
-            {permission == 1 ? (
-              <Link to="/newdestination" className="nav-link">
-                <img
-                  src="/images/SVG/admin2.svg"
-                  alt="admin"
-                  className="nav-logo"
-                  height="60px"
-                />
-                <br />
-                <span className="nav-text">Admin</span>
-              </Link>
-            ) : null}
+            <Link to="/newdestination" className="nav-link">
+              <img
+                src="/images/SVG/pluss.svg"
+                alt="new_destination"
+                className="nav-logo"
+                height="60px"
+              />
+              <br />
+              <span className="nav-text">Ny destinasjon</span>
+            </Link>
+          
           </div>
           <div className="navbar-item">
             <Link to="/myPage" className="nav-link">
@@ -90,11 +89,9 @@ function Navbar() {
         <div className="mobileMenuList">
           <ul className="listMenu">
             <li>
-              {permission == 1 ? (
-                <Link to="/newdestination" className="nav-link">
-                  <span className="menu-link-text">Admin</span>
-                </Link>
-              ) : null}
+              <Link to="/newdestination" className="nav-link">
+                <span className="menu-link-text">Ny destinasjon</span>
+              </Link>
             </li>
             <li>
               <Link to="/myPage" className="nav-link">
