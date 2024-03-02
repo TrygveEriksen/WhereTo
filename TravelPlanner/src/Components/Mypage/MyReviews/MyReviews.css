@@ -6,13 +6,57 @@
     flex-direction: column;
     gap: 10px;
     padding: 10px;
+
+    max-height: 30vh;
+    overflow: auto;
+
+
+
+    
+    .linkToDestination{
+      text-decoration: none;
+      color: var(--text);
+      
+    }
+
+    .oneDestination {
+      background-color: var(--foreground);
+      border: 2px solid var(--border);
+      padding: 15px;
+      border-radius: 10px;
+  
+  
+  
+      
+      .starDate {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px; 
+  
+  
+  
+        .filled {
+          color: var(--star-filled);
+        }
+        .empty {
+          color: var(--star-empty);
+        }
+  
+        .date {
+          color: var(--text-2);
+          font-size: smaller;
+          margin: 0;
+        }
+      }
+
+
+      .reviewContent {
+        padding: 0 5px;
+      }
+  
+    }
   }
 
-  .oneDestination {
-    background-color: var(--foreground);
-    border: 2px solid var(--border);
-    padding: 15px;
-
-    border-radius: 10px;
-  }
 }
