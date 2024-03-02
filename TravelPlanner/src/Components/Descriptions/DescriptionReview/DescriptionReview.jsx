@@ -44,7 +44,7 @@ function DescriptionReview(props) {
                 <div className="starDate">
                   <StarRating stars={review.stars} />
                   <p className="date">
-                    {new Date(review.timestamp).toLocaleString()}
+                    {new Date(review.timestamp).toLocaleString('en-GB')}
                   </p>
                 </div>
               </div>
