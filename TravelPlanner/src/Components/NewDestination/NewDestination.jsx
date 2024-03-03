@@ -14,6 +14,7 @@ function NewDestination() {
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [isVerified,setVerified] = useState("");
   let labels = [];
   const allLabels = [
     "Strand",
@@ -37,38 +38,35 @@ function NewDestination() {
   const navigate = useNavigate();
   const load = async () => {
     const adminData = await API.get("/admin");
-    window.scrollTo(0, 0);
-    if (adminData.data?.permission != 1) {
-      navigate("/");
+
+    if(adminData.data.permission != 1) {
+      setVerified(0)
     }
+    else {
+      setVerified(1)
+    }
+    
+    window.scrollTo(0, 0);
   };
 
+
   const handlePlaceChange = (e) => {
-    const capitalizedInput = e.target.value.replace(
-      /([a-zA-Z]+)|([\s-]+)/g,
-      (match, word) => {
-        return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
-      }
-    );
+    const capitalizedInput = e.target.value.replace(/([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g, (match, word) => {
+      return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
+    });
     setPlace(capitalizedInput);
   };
 
   const handleCountryChange = (e) => {
-    const capitalizedInput = e.target.value.replace(
-      /([a-zA-Z]+)|([\s-]+)/g,
-      (match, word) => {
-        return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
-      }
-    );
+    const capitalizedInput = e.target.value.replace(/([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g, (match, word) => {
+      return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
+    });
     setCountry(capitalizedInput);
   };
   const handleContinentChange = (e) => {
-    const capitalizedInput = e.target.value.replace(
-      /([a-zA-Z]+)|([\s-]+)/g,
-      (match, word) => {
-        return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
-      }
-    );
+    const capitalizedInput = e.target.value.replace(/([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g, (match, word) => {
+      return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
+    });
     setContinent(capitalizedInput);
   };
   const handleDescriptionChange = (e) => {
@@ -98,6 +96,7 @@ function NewDestination() {
         country,
         continent,
         labels,
+        isVerified
       });
 
       // Handle success response
