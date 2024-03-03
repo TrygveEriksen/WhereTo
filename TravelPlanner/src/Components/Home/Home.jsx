@@ -107,7 +107,7 @@ function Home() {
 
   return (
     <>
-      <Navbar />
+      <Navbar className="navbar" />
       <div className="homeContainer">
         <div className="homeContent">
           {isLoading && <Loading />}

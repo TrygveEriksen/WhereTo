@@ -13,14 +13,17 @@ function FilterCheckbox({ handleFilter }) {
     "Historie",
     "Sol",
     "Ute liv",
+    "Snø",
+    "Vin",
   ];
 
   return (
-    <div>
+    <div className="filterCheckbox">
       <FormControl component="fieldset" variant="standard">
         {allLabels.map((label, index) => (
           <label key={index} className="label">
             <input
+              className="checkbox"
               type="checkbox"
               onChange={() => handleFilter(label)}
               name={label}

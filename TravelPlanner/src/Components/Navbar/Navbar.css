@@ -11,6 +11,7 @@
   padding-left: 30px;
   padding-right: 30px;
   justify-content: space-between;
+  z-index: 5000;
 }
 
 .navbar-item {
@@ -25,12 +26,12 @@
   text-decoration: none;
 }
 
-  .nav-link {
-	color: black;
-	text-decoration: none;
-	text-align: center;
-  }
-  
+.nav-link {
+  color: black;
+  text-decoration: none;
+  text-align: center;
+}
+
 .nav-link:hover {
   color: white;
 }
@@ -38,9 +39,8 @@
   filter: invert(100%);
 }
 
-.listMenu{
+.listMenu {
   margin: 0;
-
 }
 
 .mobileMenu {
