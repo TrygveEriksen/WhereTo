@@ -97,6 +97,12 @@ function Descriptions() {
             {"                      "}
             <button type="button" onClick={handleVisited} id="visitedButton">Click me!</button>
           </h2>
+          {permission == 1 ?
+            <Link to={`/editdestination/${id}`} className="destAnchor">
+              <button>Rediger
+              </button>
+            </Link>
+            : null}
         </div>
         <div className="column-container">
           <div className="labels">
