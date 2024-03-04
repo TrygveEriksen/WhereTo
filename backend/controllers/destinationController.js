@@ -70,10 +70,25 @@ const updateDestination = async (req, res) => {
   }
 };
 
+
+const getVisitedPlaces = async (req, res) => {
+  console.log(req.body.visited)
+  try {
+    const visitedPlaces = await DestinationModel.find({
+      _id: { $in: req.body.visited }
+    })
+    return res.json(visitedPlaces)
+  }
+  catch (error) {
+    console.log("error")
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   findAllDestinations,
   findOneDestination,
   postNewDestination,
   deleteDestination,
-  updateDestination,
+  updateDestination, getVisitedPlaces
 };
