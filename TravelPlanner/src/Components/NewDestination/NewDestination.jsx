@@ -15,7 +15,7 @@ function NewDestination() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isVerified,setVerified] = useState("");
-  const [authoredBy,setAuthor] = userState("");
+  const [authoredBy,setAuthor] = useState("");
   let labels = [];
   const allLabels = [
     "Strand",

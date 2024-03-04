@@ -74,6 +74,8 @@ function Descriptions() {
         </div>
         <NewReview destinationId={destinations._id} onReviewSubmit={handleReviewSubmit}/>
         <DescriptionReview destinationId={destinations._id} key={reloadReviews} />
+
+        <p>Authored by: {destinations.authoredBy}</p>
       </div>
 
       <Footer />
