@@ -214,14 +214,16 @@ function UpdateDestination() {
               </FormControl>
             </Box>
 
+
             <button className="submitBtn" type="submit">
               Oppdater
             </button>
 
-            <button className="submitBtn" id="deleteBtn" type="submit">
-              Slett destinasjon
-            </button>
+
           </form>
+          <button className="submitBtn" id="deleteBtn" onClick={handleDelete}>
+            Slett destinasjon
+          </button>
           {errorMessage && <div className="error">{errorMessage}</div>}
           {successMessage && <p className="success"> {successMessage} </p>}
         </div>
