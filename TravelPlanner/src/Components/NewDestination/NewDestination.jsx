@@ -15,6 +15,7 @@ function NewDestination() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isVerified,setVerified] = useState("");
+  const [authoredBy,setAuthor] = useState("");
   let labels = [];
   const allLabels = [
     "Strand",
@@ -41,9 +42,13 @@ function NewDestination() {
 
     if(adminData.data.permission != 1) {
       setVerified(0)
+      const username = await API.get("/getUser");
+      setAuthor(username.data.username);
+      
     }
     else {
       setVerified(1)
+      setAuthor("admin")
     }
     
     window.scrollTo(0, 0);
@@ -96,7 +101,8 @@ function NewDestination() {
         country,
         continent,
         labels,
-        isVerified
+        isVerified,
+        authoredBy
       });
 
       // Handle success response
