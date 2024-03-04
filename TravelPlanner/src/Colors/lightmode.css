@@ -1,17 +1,23 @@
 :root {
   --text: #09150d;
+  --text-2: #616161;
   --primary: #5ace82;
   --primary-dark: #50b874;
   --secondary: #a1d4ce;
   --accent: #7abbc2;
-
+  
   --background: #f0f0f0;
   --foreground: #fbfbfb;
   --border: #dfdfdf;
   --footer: #6f7270;
-
+  
   --copy-light: #666666;
-
+  
   --error: #d72121;
   --error-content: #fef9f9;
+
+
+  --label: #ebebeb;
+  --star-filled: #f2c94c;
+  --star-empty: #e4e4e4;
 }

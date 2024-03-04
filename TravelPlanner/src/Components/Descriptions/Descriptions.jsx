@@ -6,11 +6,16 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import "./Descriptions.css";
+import DescriptionReview from "./DescriptionReview/DescriptionReview";
+import NewReview from "./NewReview/NewReview";
 
 function Descriptions() {
   const [destinations, setDestinations] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [reloadReviews, setReloadDescription] = useState(false);
   const { id } = useParams();
+
+
 
   //fetch data from the server when the page starts running and set it in the state destination
   useEffect(() => {
@@ -25,6 +30,13 @@ function Descriptions() {
       return setLoading(false);
     }
   };
+
+
+  const handleReviewSubmit = () => {
+    setReloadDescription(prevState => !prevState); 
+  };
+
+
 
   return (
     <>
@@ -45,23 +57,23 @@ function Descriptions() {
         </div>
         <div className="column-container">
           <div className="labels">
-            <h3>Egenskaper:</h3>
+            <h3 className="destinationHeader">Egenskaper:</h3>
             <ul className="destinationLabels">
               {destinations?.labels?.map((destinationLabel) => (
-                <li key={destinationLabel}>{destinationLabel}</li>
+                <li className="label" key={destinationLabel}>{destinationLabel}</li>
               ))}
             </ul>
           </div>
 
           <div className="descriptionContainer">
-            <h3>Beskrivelse:</h3>
+            <h3 className="descriptionHeader">Beskrivelse:</h3>
             <p className="descriptionsText">{destinations.description}</p>
           </div>
 
-          <div>
-            <h3></h3>
-          </div>
+          <div></div>
         </div>
+        <NewReview destinationId={destinations._id} onReviewSubmit={handleReviewSubmit}/>
+        <DescriptionReview destinationId={destinations._id} key={reloadReviews} />
       </div>
 
       <Footer />

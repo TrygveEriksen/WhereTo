@@ -73,11 +73,29 @@
 @media only screen and (max-width: 767px) {
   .myPageContainer {
     flex-direction: column;
-    .divMypage {
-      height: auto;
+    
+    .divBox{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+
+      .myPageContent{
+        max-width: 500px;
+        width: 100%;
+        .divMypage {
+          .profile-image{
+            width: 50%;
+          }
+          height: auto;
+          width: 100%;
+        }
+
+      }
+      
     }
 
-    .divBox,
     .staredPlaces,
     .myReviews {
       padding: 20px;
