@@ -46,7 +46,7 @@ function Descriptions() {
   };
   const handleVisited = async () => {
     const user = await API.get('/getUser')
-    const res = await API.put('/entry/toggleVisited', { id: id, userId: user.data._id })
+    const res = await API.put('/user/toggleVisited', { id: id, userId: user.data._id })
 
     if (res.data.message === "success") {
       console.log("success");
@@ -69,7 +69,7 @@ function Descriptions() {
 
 
   const handleReviewSubmit = () => {
-    setReloadDescription(prevState => !prevState); 
+    setReloadDescription(prevState => !prevState);
   };
 
 
@@ -116,7 +116,7 @@ function Descriptions() {
 
           <div></div>
         </div>
-        <NewReview destinationId={destinations._id} onReviewSubmit={handleReviewSubmit}/>
+        <NewReview destinationId={destinations._id} onReviewSubmit={handleReviewSubmit} />
         <DescriptionReview destinationId={destinations._id} key={reloadReviews} />
 
         <p>Authored by: {destinations.authoredBy}</p>
