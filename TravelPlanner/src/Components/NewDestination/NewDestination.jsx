@@ -106,9 +106,8 @@ function NewDestination() {
         continent,
         labels,
         isVerified,
-        authoredBy
-        isVerified,
-        authoredBy
+        authoredBy,
+
       });
 
       // Handle success response
