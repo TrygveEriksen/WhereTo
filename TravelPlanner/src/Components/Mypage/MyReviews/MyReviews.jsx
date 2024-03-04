@@ -4,15 +4,14 @@ import "./MyReviews.css";
 import { API } from "../../../API/API";
 import Loading from "../../Loading/Loading";
 import StarRating from "../../StarRating/StarRating";
-import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
-import EditReview from "./EditReview";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import "../../Descriptions/NewReview/NewReview.css";
+import ClearIcon from "@mui/icons-material/Clear";
 
 function MyReviews(props) {
   const [reviews, setReviews] = useState([]);
@@ -52,17 +51,6 @@ function MyReviews(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("submit");
-
-    // if (stars < 1 || stars > 5) {
-    //   setErrorMessage("Du må velge antall stjerner");
-    //   return;
-    // }
-
-    // setErrorMessage("");
-    // setComment("");
-    // setStars(0);
-    // setTitle("");
 
     try {
       await API.put(`/review/update/${reviewToEdit._id}`, {
@@ -139,6 +127,7 @@ function MyReviews(props) {
         ))}
         {/* <EditReview {...{ open, handleClose, handleDelete, reviewToEdit }} /> */}
         <Dialog open={open} onClose={handleClose}>
+          <ClearIcon onClick={handleClose} />
           <DialogTitle>Rediger din vurdering</DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -237,11 +226,15 @@ function MyReviews(props) {
                 {/* <p>{reviewToEdit.stars}</p> */}
 
                 <input type="submit" className="submitBtn" value="Oppdater" />
+                <input
+                  type="submit"
+                  className="submitBtn"
+                  value="Slett"
+                  onClick={() => handleDelete(reviewToEdit._id)}
+                />
               </form>
             </DialogContentText>
           </DialogContent>
-          <Button onClick={() => handleDelete(reviewToEdit._id)}>Slett</Button>
-          <Button onClick={handleClose}>Close</Button>
         </Dialog>
       </ul>
     </div>
