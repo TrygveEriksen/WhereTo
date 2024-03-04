@@ -96,4 +96,24 @@ const updateReview = async (req, res) => {
 
 };
 
-module.exports = { findAllReviewsByDID, findAllReviewsByUID, createReview, deleteReview, updateReview };
+const findReviewByUD = async (req, res) => {
+  try {
+    const userID = req.user._id;
+    const destID = req.params.id;
+    const review = await ReviewModel.findone({
+      user:userID,
+      dest:destID
+    });
+    if(review) {
+      res.json(review);
+
+    }
+    else {
+      res.status(404).json({message: "review ikke funnet!"});
+    }
+  } catch(error) {
+    res.status(500).json({error: error.message});
+  }
+}
+
+module.exports = { findAllReviewsByDID, findAllReviewsByUID, createReview, deleteReview, updateReview , findReviewByUD};

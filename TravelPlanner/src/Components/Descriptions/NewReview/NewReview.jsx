@@ -11,6 +11,7 @@ function NewReview(props) {
   const [title, setTitle] = useState("");
   const [comment, setComment] = useState("");
   const [stars, setStars] = useState(0);
+  const [oldReview,setOldReview] = useState("");
 
   useEffect(() => {
     load();
@@ -18,9 +19,35 @@ function NewReview(props) {
 
   useEffect(() => {
     setDestination(props.destinationId);
+    populateForm();
+
+      
+     
   }, [props.destinationId]);
 
+  const populateForm = async () => {
+    if(dprops.destinationId) {
+
+    
+    try {
+          const review = await API.get(`/review/${props.destinationId}`);
+
+          console.log(review);
+          setTitle(review.title);
+          setComment(review.comment);
+          setStars(review.stars);
+
+        }catch(error) {
+          console.log()
+
+        }
+      }
+        
+  }
+
+
   const load = async () => {
+   
     setLoading(false);
   };
 
