@@ -7,7 +7,8 @@ const DestinationSchema = new mongoose.Schema({
   labels:  [String], //Bør kanskje endres på senere?
   continent: {type: String, required: true},
   img: {type: String},
-  isVerified: {type: Number,required: true}
+  isVerified: {type: Number,required: true},
+  authoredBy: {type: mongoose.Schema.Types.ObjectId, ref: "users", required: true,}
 });
 
 const DestinationModel = mongoose.model("destinations", DestinationSchema);
