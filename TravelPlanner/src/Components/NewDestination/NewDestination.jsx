@@ -27,6 +27,8 @@ function NewDestination() {
     "Historie",
     "Sol",
     "Ute liv",
+    "Snø",
+    "Vin",
   ];
 
   useEffect(() => {

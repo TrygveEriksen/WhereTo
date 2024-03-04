@@ -1,0 +1,22 @@
+.filterCheckbox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-behavior: smooth;
+  padding-top: 10vh;
+
+  .label {
+    padding: 10px;
+    font-size: 18px;
+  }
+  .MuiFormControl-root {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .checkbox {
+    margin-right: 7px;
+  }
+}
