@@ -9,6 +9,7 @@ import MyPage from "./Components/Mypage/Mypage";
 import "./index.css";
 import "./Colors/lightmode.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import UpdateDestination from "./Components/UpdateDestination/UpdateDestination";
 
 
 // redirects if users not logged in (if localstorage empty)
@@ -47,6 +48,11 @@ const router = createBrowserRouter([
   {
     path: "/mypage",
     element: <MyPage />,
+    loader: redirectNotLoggedIn
+  },
+  {
+    path: "/editdestination/:id",
+    element: <UpdateDestination />,
     loader: redirectNotLoggedIn
   }
 ]);
