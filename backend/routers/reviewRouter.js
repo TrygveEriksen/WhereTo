@@ -1,7 +1,8 @@
 const {
     findAllReviewsByDID,
     findAllReviewsByUID,
-    createReview
+    createReview,
+    deleteAllByDestination
   } = require("../controllers/reviewController");
   
   const { Router } = require("express");
@@ -10,6 +11,7 @@ const {
   reviewRouter.get("/destination/:id", findAllReviewsByDID);
   reviewRouter.get("/user/:id", findAllReviewsByUID);
   reviewRouter.post("/", createReview)
+  reviewRouter.delete("/bydestination/:id", deleteAllByDestination)
   
   module.exports = { reviewRouter };
   

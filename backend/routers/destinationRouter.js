@@ -10,8 +10,8 @@ const { Router } = require("express");
 const destinationRouter = Router();
 
 destinationRouter.get("/", findAllDestinations);
-destinationRouter.get("/:id", findOneDestination);
 destinationRouter.post("/new", postNewDestination);
+destinationRouter.get("/:id", findOneDestination);
 destinationRouter.delete("/delete/:id", deleteDestination);
 destinationRouter.put("/update/:id", updateDestination);
 

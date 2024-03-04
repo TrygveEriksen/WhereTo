@@ -61,4 +61,23 @@ const createReview = async (req, res) => {
 
 }
 
-module.exports = { findAllReviewsByDID, findAllReviewsByUID, createReview };
+const deleteAllByDestination = async (req, res) => {
+  try {
+ 
+
+
+    const reviews = await ReviewModel
+    
+          .deleteMany({destination:req.params.id})
+                                         
+    res.status(200).json(reviews);
+  }
+  catch(error){
+    //server error om du kommer hit
+    res.status(500).json({error:error.message});
+  }
+
+}
+
+
+module.exports = { findAllReviewsByDID, findAllReviewsByUID, createReview, deleteAllByDestination };

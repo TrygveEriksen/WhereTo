@@ -28,11 +28,16 @@ function Descriptions() {
   const load = async () => {
     const isAdmin = await API.get('/admin');
     setPermission(isAdmin.data.permission)
+    try {
     const destRes = await API.get(`/destinations/${id}`);
     if (destRes) {
       window.scrollTo(0, 0);
       setDestinations(destRes.data);
       return setLoading(false);
+    }
+    }
+    catch (error) {
+      window.location.href = "/"
     }
   };
 

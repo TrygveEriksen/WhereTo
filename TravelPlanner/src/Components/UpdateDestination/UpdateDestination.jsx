@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
+import {Link} from "react-router-dom";
 
 function UpdateDestination() {
   const [place, setPlace] = useState("");
@@ -52,6 +53,7 @@ function UpdateDestination() {
   };
 
   const handlePlaceChange = (e) => {
+    setErrorMessage("");
     const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
@@ -59,22 +61,26 @@ function UpdateDestination() {
   };
 
   const handleCountryChange = (e) => {
+    setErrorMessage("");
     const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setCountry(capitalizedInput);
   };
   const handleContinentChange = (e) => {
+    setErrorMessage("");
     const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setContinent(capitalizedInput);
   };
   const handleDescriptionChange = (e) => {
+    setErrorMessage("");
     setDescription(e.target.value);
   };
 
   const handleLabelChange = (e) => {
+    setErrorMessage("");
     if (e.target.checked) {
       labels.push(e.target.name);
     } else {
@@ -97,19 +103,36 @@ function UpdateDestination() {
         country,
         continent,
         labels,
-        isVerified //må legge til knapp for dette
+        isVerified:0 //må legge til knapp for dette
       });
 
       // Handle success response
       console.log("Destination updated successfully:");
       
       setSuccessMessage("Destinasjon ble oppdatert!");
+      window.history.back()
     } catch (error) {
       // Handle error
       setErrorMessage("Noe gikk galt");
       console.error("Error adding destination:", error);
     }
   };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    const confirmed = window.confirm("Er du sikker på at du vil slette denne destinasjonen?");
+    if (confirmed) {
+    try {
+    
+        const res = await API.delete(`/review/bydestination/${id}`)
+        const response = await API.delete(`/destinations/delete/${id}`)
+        window.location.href="/"
+    }
+    catch (error) {
+    setErrorMessage("Noe gikk galt");
+      console.error("Error deleting destination:", error);
+    }
+  }}
 
   return (
     <>
@@ -190,14 +213,16 @@ function UpdateDestination() {
               </FormControl>
             </Box>
 
+
             <button className="submitBtn" type="submit">
               Oppdater
             </button>
 
-            <button className="submitBtn" id="deleteBtn" type="submit">
+
+          </form>
+            <button className="submitBtn" id="deleteBtn" onClick = {handleDelete}>
               Slett destinasjon
             </button>
-          </form>
           {errorMessage && <div className="error">{errorMessage}</div>}
           {successMessage && <p className="success"> {successMessage} </p>}
         </div>
