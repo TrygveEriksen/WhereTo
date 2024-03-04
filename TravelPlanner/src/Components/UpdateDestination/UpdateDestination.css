@@ -1,0 +1,9 @@
+#deleteBtn{
+    background-color: red;
+}
+
+
+  
+  #deleteBtn:hover {
+    background-color: hotpink;
+  }
