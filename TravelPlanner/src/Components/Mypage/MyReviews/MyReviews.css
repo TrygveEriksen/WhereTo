@@ -1,5 +1,4 @@
 .myReviews {
-    
   .reviewUl {
     list-style-type: none;
     display: flex;
@@ -10,13 +9,9 @@
     max-height: 30vh;
     overflow: auto;
 
-
-
-    
-    .linkToDestination{
+    .linkToDestination {
       text-decoration: none;
       color: var(--text);
-      
     }
 
     .oneDestination {
@@ -24,26 +19,21 @@
       border: 2px solid var(--border);
       padding: 15px;
       border-radius: 10px;
-  
-  
-  
-      
+
       .starDate {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
-        gap: 10px; 
-  
-  
-  
+        gap: 10px;
+
         .filled {
           color: var(--star-filled);
         }
         .empty {
           color: var(--star-empty);
         }
-  
+
         .date {
           color: var(--text-2);
           font-size: smaller;
@@ -51,12 +41,99 @@
         }
       }
 
-
       .reviewContent {
         padding: 0 5px;
       }
-  
+    }
+  }
+}
+
+.newReviewForm {
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px;
+  gap: 5px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .starRating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    .starCheckbox {
+      display: none;
+    }
+
+    .fa-star {
+      font-size: xx-large;
+      cursor: pointer;
+    }
+
+    .filled {
+      color: var(--star-filled);
+    }
+    .empty {
+      color: var(--star-empty);
     }
   }
 
+  .newReviewInput {
+    border: 1px solid var(--primary);
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 0px 5px;
+    margin-bottom: 5px;
+
+    color: var(--text);
+  }
+
+  .descriptionInput {
+    resize: none;
+    text-wrap: wrap;
+    border: 1px solid var(--primary);
+
+    height: auto;
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px 5px;
+    margin-bottom: 5px;
+    color: var(--text);
+  }
+
+  .descriptionLabel {
+    text-align: left;
+    width: 100%;
+  }
+
+  .submitBtn {
+    cursor: pointer;
+    border: none;
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--primary);
+    color: white;
+  }
+
+  .submitBtn:hover {
+    cursor: pointer;
+    border: none;
+    background-color: var(--primary-dark);
+  }
+}
+
+.error {
+  background-color: var(--error);
+  color: var(--error-content);
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
 }
