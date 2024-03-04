@@ -14,8 +14,8 @@ function NewDestination() {
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [isVerified,setVerified] = useState("");
-  const [authoredBy,setAuthor] = useState("");
+  const [isVerified, setVerified] = useState("");
+  const [authoredBy, setAuthor] = userState("");
   let labels = [];
   const allLabels = [
     "Strand",
@@ -40,17 +40,21 @@ function NewDestination() {
   const load = async () => {
     const adminData = await API.get("/admin");
 
-    if(adminData.data.permission != 1) {
+    if (adminData.data.permission != 1) {
       setVerified(0)
       const username = await API.get("/getUser");
       setAuthor(username.data.username);
-      
+
+      const username = await API.get("/getUser");
+      setAuthor(username.data.username);
+
     }
     else {
       setVerified(1)
       setAuthor("admin")
+      setAuthor("admin")
     }
-    
+
     window.scrollTo(0, 0);
   };
 
@@ -101,6 +105,8 @@ function NewDestination() {
         country,
         continent,
         labels,
+        isVerified,
+        authoredBy
         isVerified,
         authoredBy
       });
