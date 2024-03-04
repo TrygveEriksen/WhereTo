@@ -97,16 +97,17 @@ const updateReview = async (req, res) => {
 };
 
 const findReviewByUD = async (req, res) => {
+  
   try {
     const userID = req.user._id;
+    
     const destID = req.params.id;
-    const review = await ReviewModel.findone({
+    const review = await ReviewModel.findOne({
       user:userID,
-      dest:destID
+      destination:destID
     });
     if(review) {
       res.json(review);
-
     }
     else {
       res.status(404).json({message: "review ikke funnet!"});

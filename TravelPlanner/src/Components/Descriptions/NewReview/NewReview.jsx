@@ -11,7 +11,7 @@ function NewReview(props) {
   const [title, setTitle] = useState("");
   const [comment, setComment] = useState("");
   const [stars, setStars] = useState(0);
-  const [oldReview,setOldReview] = useState("");
+  const[oldReviewId,setOldReviewId] = useState("");
 
   useEffect(() => {
     load();
@@ -26,23 +26,21 @@ function NewReview(props) {
   }, [props.destinationId]);
 
   const populateForm = async () => {
-    if(dprops.destinationId) {
+    if(props.destinationId) {
 
     
     try {
           const review = await API.get(`/review/${props.destinationId}`);
 
-          console.log(review);
-          setTitle(review.title);
-          setComment(review.comment);
-          setStars(review.stars);
-
+          setTitle(review.data.title);
+          setComment(review.data.comment);
+          setStars(review.data.stars);
+          setOldReviewId(review.data._id);
+          console.log(review.data._id);
         }catch(error) {
           console.log()
-
         }
       }
-        
   }
 
 
@@ -69,27 +67,38 @@ function NewReview(props) {
       setErrorMessage("Du må velge antall stjerner");
       return;
     }
-
-    setErrorMessage("");
-    setComment("");
-    setStars(0);
-    setTitle("");
-
-
-
-    try {
-      const response = await API.post("/review", {
-        title,
-        comment,
-        destination,
-        stars,
-      });
-        //if there is a callback, run it (for refreshing the reviews on the page)
-        props.onReviewSubmit?.();
-      
-    }catch (error) {
-      setErrorMessage("Noe gikk galt, prøv igjen");
+    if(!oldReviewId) {
+      try {
+        const response = await API.post("/review", {
+          title,
+          comment,
+          destination,
+          stars,
+        });
+          //if there is a callback, run it (for refreshing the reviews on the page)
+          props.onReviewSubmit?.();        
+      }catch (error) {
+        console.log(error)
+        setErrorMessage("Noe gikk galt, prøv igjen");
+      }
     }
+    else {
+      try {
+        const response = await API.put(`/review/update/${oldReviewId}`, {
+          title,
+          comment,
+          destination,
+          stars,
+        });
+        console.log(response)
+          //if there is a callback, run it (for refreshing the reviews on the page)
+          props.onReviewSubmit?.();
+        
+      }catch (error) {
+        setErrorMessage("Noe gikk galt, prøv igjen");
+      }
+    }
+    populateForm()
 
   };
 

@@ -15,7 +15,7 @@ const {
   reviewRouter.post("/", createReview)
   reviewRouter.delete("/delete/:id", deleteReview);
   reviewRouter.put("/update/:id", updateReview);
-  reviewRouter.get(":id", findReviewByUD);
+  reviewRouter.get("/:id", findReviewByUD);
   
   module.exports = { reviewRouter };
   
