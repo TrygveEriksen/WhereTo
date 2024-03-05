@@ -36,6 +36,12 @@
     width: 80vw;
     max-width: 600px;
     gap: 5px;
+
+    select{
+      background-color: var(--foreground);
+    }
+
+
   }
 
   .loginLabel {
