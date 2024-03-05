@@ -1,7 +1,10 @@
 .descriptionContent {
   min-height: 100vh;
-
+  color: var(--text);
   padding: 030px;
+  img{
+    filter: var(--image-filter);
+  }
 
   .column-container {
     gap: 20px;

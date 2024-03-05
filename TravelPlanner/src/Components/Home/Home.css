@@ -64,10 +64,10 @@
     border-radius: 10px;
     border: 2px solid var(--border);
     position: sticky;
-    top: 21vh;
+    top: 160px;
     z-index: 100;
   }
-
+  
   .searchField {
     border: none;
     border: 1px solid var(--primary);
@@ -75,6 +75,7 @@
     width: 100%;
     border-radius: 5px;
     padding: 0px 5px;
+    background-color: var(--text-box);
 
     color: var(--text);
   }

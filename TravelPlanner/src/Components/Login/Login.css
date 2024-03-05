@@ -22,6 +22,10 @@
     margin: 0;
   }
 
+  .loginLink{
+    color: var(--primary);
+  }
+
   .loginForm {
     flex-direction: column;
     display: flex;
@@ -44,9 +48,19 @@
     border-radius: 5px;
     padding: 0px 5px;
     margin-bottom: 5px;
+    background-color: var(--text-box);
 
     color: var(--text);
   }
+
+
+  input[type="password"]::-webkit-contacts-auto-fill-button, 
+  input[type="password"]::-ms-reveal {
+    -webkit-text-fill-color: white;
+    color: white;
+    filter: var(--image-filter);
+}
+
   .submitBtn {
     cursor: pointer;
     border: none;
