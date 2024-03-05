@@ -70,7 +70,7 @@ function NewReview(props) {
         //if there is a callback, run it (for refreshing the reviews on the page)
         props.onReviewSubmit?.();
       } catch (error) {
-        console.log(error);
+        console.log("Error saving data: ", error);
         setErrorMessage("Noe gikk galt, prøv igjen");
       }
     } else {
@@ -81,10 +81,10 @@ function NewReview(props) {
           destination,
           stars,
         });
-        console.log(response);
         //if there is a callback, run it (for refreshing the reviews on the page)
         props.onReviewSubmit?.();
       } catch (error) {
+        console.log("Error saving data: ", error);
         setErrorMessage("Noe gikk galt, prøv igjen");
       }
     }
