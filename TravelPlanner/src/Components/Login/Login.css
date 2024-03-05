@@ -52,6 +52,15 @@
 
     color: var(--text);
   }
+
+
+  input[type="password"]::-webkit-contacts-auto-fill-button, 
+  input[type="password"]::-ms-reveal {
+    -webkit-text-fill-color: white;
+    color: white;
+    filter: var(--image-filter);
+}
+
   .submitBtn {
     cursor: pointer;
     border: none;
