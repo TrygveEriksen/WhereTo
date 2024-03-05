@@ -36,4 +36,4 @@ const postNewDestination = async (req, res) => {
   }
 }
 
-module.exports = { findAllDestinations, findOneDestination, postNewDestination };
+module.exports = { findAllDestinations, findOneDestination, postNewDestination};
