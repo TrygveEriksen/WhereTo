@@ -11,7 +11,7 @@ function NewReview(props) {
   const [title, setTitle] = useState("");
   const [comment, setComment] = useState("");
   const [stars, setStars] = useState(0);
-  const[oldReviewId,setOldReviewId] = useState("");
+  const [oldReviewId, setOldReviewId] = useState("");
 
   useEffect(() => {
     load();
@@ -20,39 +20,31 @@ function NewReview(props) {
   useEffect(() => {
     setDestination(props.destinationId);
     populateForm();
-
-      
-     
   }, [props.destinationId]);
 
   const populateForm = async () => {
-    if(props.destinationId) {
+    if (props.destinationId) {
+      try {
+        const review = await API.get(`/review/${props.destinationId}`);
 
-    
-    try {
-          const review = await API.get(`/review/${props.destinationId}`);
-
-          setTitle(review.data.title);
-          setComment(review.data.comment);
-          setStars(review.data.stars);
-          setOldReviewId(review.data._id);
-          console.log(review.data._id);
-        }catch(error) {
-          console.log()
-        }
+        setTitle(review.data.title);
+        setComment(review.data.comment);
+        setStars(review.data.stars);
+        setOldReviewId(review.data._id);
+      } catch (error) {
+        console.log("Error retrieving review:", error);
       }
-  }
-
+    }
+  };
 
   const load = async () => {
-   
     setLoading(false);
   };
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
-  const handleTitleChange = (e) => { 
+  const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
@@ -67,7 +59,7 @@ function NewReview(props) {
       setErrorMessage("Du må velge antall stjerner");
       return;
     }
-    if(!oldReviewId) {
+    if (!oldReviewId) {
       try {
         const response = await API.post("/review", {
           title,
@@ -75,14 +67,13 @@ function NewReview(props) {
           destination,
           stars,
         });
-          //if there is a callback, run it (for refreshing the reviews on the page)
-          props.onReviewSubmit?.();        
-      }catch (error) {
-        console.log(error)
+        //if there is a callback, run it (for refreshing the reviews on the page)
+        props.onReviewSubmit?.();
+      } catch (error) {
+        console.log(error);
         setErrorMessage("Noe gikk galt, prøv igjen");
       }
-    }
-    else {
+    } else {
       try {
         const response = await API.put(`/review/update/${oldReviewId}`, {
           title,
@@ -90,16 +81,14 @@ function NewReview(props) {
           destination,
           stars,
         });
-        console.log(response)
-          //if there is a callback, run it (for refreshing the reviews on the page)
-          props.onReviewSubmit?.();
-        
-      }catch (error) {
+        console.log(response);
+        //if there is a callback, run it (for refreshing the reviews on the page)
+        props.onReviewSubmit?.();
+      } catch (error) {
         setErrorMessage("Noe gikk galt, prøv igjen");
       }
     }
-    populateForm()
-
+    populateForm();
   };
 
   return (
@@ -116,7 +105,7 @@ function NewReview(props) {
             className="starCheckbox"
             value="1"
             onChange={handleStars}
-            checked= {false}
+            checked={false}
           />
           <label
             htmlFor="star1"
@@ -129,7 +118,7 @@ function NewReview(props) {
             className="starCheckbox"
             value="2"
             onChange={handleStars}
-            checked= {false}
+            checked={false}
           />
           <label
             htmlFor="star2"
@@ -142,7 +131,7 @@ function NewReview(props) {
             className="starCheckbox"
             value="3"
             onChange={handleStars}
-            checked= {false}
+            checked={false}
           />
           <label
             htmlFor="star3"
@@ -155,7 +144,7 @@ function NewReview(props) {
             className="starCheckbox"
             value="4"
             onChange={handleStars}
-            checked= {false}
+            checked={false}
           />
           <label
             htmlFor="star4"
@@ -168,7 +157,7 @@ function NewReview(props) {
             className="starCheckbox"
             value="5"
             onChange={handleStars}
-            checked= {false}
+            checked={false}
           />
           <label
             htmlFor="star5"
