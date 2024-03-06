@@ -8,7 +8,6 @@ export function useColorScheme() {
     if (localStorage.getItem("isDark") !== null) {
 
         prefersDark = localStorage.getItem("isDark") === "true";
-        console.log("from localstorage", prefersDark);
         
     }else{
         prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
