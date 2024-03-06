@@ -4,7 +4,8 @@ const {
     createReview,
     deleteReview,
     updateReview,
-    findReviewByUD
+    findReviewByUD,
+    deleteAllByDestination
   } = require("../controllers/reviewController");
   
   const { Router } = require("express");
@@ -16,6 +17,7 @@ const {
   reviewRouter.delete("/delete/:id", deleteReview);
   reviewRouter.put("/update/:id", updateReview);
   reviewRouter.get("/:id", findReviewByUD);
+  reviewRouter.delete("/bydestination/:id", deleteAllByDestination)
   
   module.exports = { reviewRouter };
   

@@ -10,7 +10,7 @@
   background-color: var(--foreground);
   width: 100%;
   max-width: 800px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 var(--border);
 
   .newReviewForm {
 
@@ -61,19 +61,23 @@
         margin-bottom: 5px;
     
         color: var(--text);
+        background-color: var(--text-box);
       }
 
       .descriptionInput {
         resize:none;
         text-wrap: wrap;
         border: 1px solid var(--primary);
-
+        background-color: var(--text-box);
         height: auto;
         width: 100%;
         border-radius: 5px;
         padding: 5px 5px;
         margin-bottom: 5px;
         color: var(--text);
+      }
+      .descriptionInput::placeholder, .newReviewInput::placeholder {
+        color: var(--text-2);
       }
 
       .descriptionLabel{

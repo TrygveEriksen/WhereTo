@@ -32,8 +32,48 @@ const postNewDestination = async (req, res) => {
     const savedDestination = await newDestination.save();
     res.status(201).json(savedDestination);
   } catch (error) {
-    res.status(400).json({message: error.message})
+    res.status(400).json({ message: error.message });
   }
-}
+};
 
-module.exports = { findAllDestinations, findOneDestination, postNewDestination};
+const deleteDestination = async (req, res) => {
+  try {
+    const destinationId = req.params.id;
+    const deletedDestination = await DestinationModel.findByIdAndDelete(
+      destinationId
+    );
+    if (deletedDestination) {
+      res.status(200).json(deletedDestination);
+    } else {
+      res.status(404).json({ message: "Destination Not Found" });
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const updateDestination = async (req, res) => {
+  try {
+    const destinationId = req.params.id;
+    const updatedDestination = await DestinationModel.findByIdAndUpdate(
+      destinationId,
+      req.body,
+      { new: true }
+    );
+    if (updatedDestination) {
+      res.status(200).json(updatedDestination);
+    } else {
+      res.status(404).json({ message: "Destination Not Found" });
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  findAllDestinations,
+  findOneDestination,
+  postNewDestination,
+  deleteDestination,
+  updateDestination,
+};

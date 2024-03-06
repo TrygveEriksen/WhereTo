@@ -2,20 +2,21 @@ import { useEffect, useState } from "react";
 import { API } from "../../API/API";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import "./NewDestination.css";
+import "./UpdateDestination.css";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
+import {Link} from "react-router-dom";
 
-function NewDestination() {
+function UpdateDestination() {
   const [place, setPlace] = useState("");
   const [country, setCountry] = useState("");
   const [continent, setContinent] = useState("");
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [isVerified,setVerified] = useState("");
-  const [authoredBy,setAuthor] = useState("");
+  const { id } = useParams();
   let labels = [];
   const allLabels = [
     "Strand",
@@ -28,8 +29,6 @@ function NewDestination() {
     "Historie",
     "Sol",
     "Ute liv",
-    "Snø",
-    "Vin",
   ];
 
   useEffect(() => {
@@ -39,46 +38,49 @@ function NewDestination() {
   const navigate = useNavigate();
   const load = async () => {
     const adminData = await API.get("/admin");
-
-    if(adminData.data.permission != 1) {
-      setVerified(0)
-      const username = await API.get("/getUser");
-      setAuthor(username.data.username);
-      
-    }
-    else {
-      setVerified(1)
-      setAuthor("admin")
-    }
-    
     window.scrollTo(0, 0);
+    if (adminData.data?.permission != 1) {
+      navigate("/");
+    }
+    //Fra chat:
+    const response = await API.get(`/destinations/${id}`); //må finne riktig destination
+      const destinationData = response.data;
+
+      setPlace(destinationData.place);
+      setCountry(destinationData.country);
+      setContinent(destinationData.continent);
+      setDescription(destinationData.description);
   };
 
-
   const handlePlaceChange = (e) => {
-    const capitalizedInput = e.target.value.replace(/([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g, (match, word) => {
+    setErrorMessage("");
+    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setPlace(capitalizedInput);
   };
 
   const handleCountryChange = (e) => {
-    const capitalizedInput = e.target.value.replace(/([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g, (match, word) => {
+    setErrorMessage("");
+    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setCountry(capitalizedInput);
   };
   const handleContinentChange = (e) => {
-    const capitalizedInput = e.target.value.replace(/([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g, (match, word) => {
+    setErrorMessage("");
+    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setContinent(capitalizedInput);
   };
   const handleDescriptionChange = (e) => {
+    setErrorMessage("");
     setDescription(e.target.value);
   };
 
   const handleLabelChange = (e) => {
+    setErrorMessage("");
     if (e.target.checked) {
       labels.push(e.target.name);
     } else {
@@ -95,33 +97,20 @@ function NewDestination() {
     }
 
     try {
-      const response = await API.post("/destinations/new", {
+      const response = await API.put(`/destinations/update/${id}`, {
         description,
         place,
         country,
         continent,
         labels,
-        isVerified,
-        authoredBy
+        isVerified:0 //må legge til knapp for dette
       });
 
       // Handle success response
-      console.log("Destination added successfully:");
-
-      // Reset form fields after submission
-      setPlace("");
-      setCountry("");
-      setContinent("");
-      setDescription("");
-      setErrorMessage("");
-      setSuccessMessage("Destinasjon lagt til!");
-
-      // Uncheck all checkboxes
-      document
-        .querySelectorAll('input[type="checkbox"]')
-        .forEach((checkbox) => {
-          checkbox.checked = false;
-        });
+      console.log("Destination updated successfully:");
+      
+      setSuccessMessage("Destinasjon ble oppdatert!");
+      window.history.back()
     } catch (error) {
       // Handle error
       setErrorMessage("Noe gikk galt");
@@ -129,12 +118,28 @@ function NewDestination() {
     }
   };
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    const confirmed = window.confirm("Er du sikker på at du vil slette denne destinasjonen?");
+    if (confirmed) {
+    try {
+    
+        const res = await API.delete(`/review/bydestination/${id}`)
+        const response = await API.delete(`/destinations/delete/${id}`)
+        window.location.href="/"
+    }
+    catch (error) {
+    setErrorMessage("Noe gikk galt");
+      console.error("Error deleting destination:", error);
+    }
+  }}
+
   return (
     <>
       <Navbar />
       <div className="newDestinationContainer">
         <div className="newDestinationDiv">
-          <h1 className="newDestinationHeader">Legg til destinasjon</h1>
+          <h1 className="newDestinationHeader">Oppdater destinasjon</h1>
 
           <form onSubmit={handleSubmit} className="newDestinationForm">
             <label className="loginLabel" htmlFor="place">
@@ -188,8 +193,7 @@ function NewDestination() {
               className="descriptionInput"
             ></textarea>
 
-            <label className="loginLabel">Egneskaper:</label>
-
+            <label className="loginLabel">Egenskaper:</label>
             <Box
               sx={{
                 display: "flex",
@@ -209,10 +213,16 @@ function NewDestination() {
               </FormControl>
             </Box>
 
+
             <button className="submitBtn" type="submit">
-              Legg til
+              Oppdater
             </button>
+
+
           </form>
+            <button className="submitBtn" id="deleteBtn" onClick = {handleDelete}>
+              Slett destinasjon
+            </button>
           {errorMessage && <div className="error">{errorMessage}</div>}
           {successMessage && <p className="success"> {successMessage} </p>}
         </div>
@@ -222,4 +232,4 @@ function NewDestination() {
   );
 }
 
-export default NewDestination;
+export default UpdateDestination;
