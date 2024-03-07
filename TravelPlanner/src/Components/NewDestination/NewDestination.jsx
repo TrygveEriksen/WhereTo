@@ -179,6 +179,37 @@ function NewDestination() {
     };
   };
 
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setImageText("");
+    setErrorMessage("");
+    const file = e.dataTransfer.files[0];
+    if (!file) {
+      return;
+    }
+    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+      setErrorMessage("Bildet må være av type jpeg eller png");
+      setFileKey((prevKey) => prevKey + 1);
+      return;
+      
+    }
+    if (file.size > 1000000) {
+      setErrorMessage("Bildet er for stort, maks 1MB");
+      setFileKey((prevKey) => prevKey + 1);
+      return;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64 = reader.result;
+      setImageText(base64);
+    };
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
  
 
   return (
@@ -262,7 +293,7 @@ function NewDestination() {
               </FormControl>
             </Box>
 
-            <div className="imgDiv">
+            <div className="imgDiv" onDrop={handleDrop} onDragOver={handleDragOver}>
               <input id="inputImage" type="file" key={fileKey} onChange={handleFile}></input>
               {imageText && (<img src={imageText} alt="destination" className="imgPreview" />)}
             </div>
