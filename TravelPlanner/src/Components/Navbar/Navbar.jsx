@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { API } from "../../API/API";
+import { DarkModeToggle } from "../DarkModeToggle/DarkModeToggle";
 
 function Navbar() {
   const [permission, setPermission] = useState(0);
@@ -45,6 +46,7 @@ function Navbar() {
               <br />
               <span className="nav-text">Ny destinasjon</span>
             </Link>
+            <DarkModeToggle />
           
           </div>
           <div className="navbar-item">

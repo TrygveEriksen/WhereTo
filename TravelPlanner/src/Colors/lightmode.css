@@ -16,6 +16,8 @@
   --error: #d72121;
   --error-content: #fef9f9;
 
+  --image-filter: invert(0);
+
 
   --label: #ebebeb;
   --star-filled: #f2c94c;

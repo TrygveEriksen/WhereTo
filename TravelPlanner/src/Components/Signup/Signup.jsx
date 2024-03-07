@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../Login/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { API } from "../../API/API";
+import { DarkModeToggle } from "../DarkModeToggle/DarkModeToggle";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -55,6 +56,7 @@ function Signup() {
     <nav className="login-navbar">
     <div className='navbar-item' id='navbar-left'>
         <img src='/images/SVG/logo_home.svg' alt="logo" className='nav-logo' height="50px" />
+        <DarkModeToggle />
     </div>
   </nav>
 
