@@ -42,6 +42,30 @@
     }
 
 
+    .imgDiv{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid var(--primary);
+
+      #inputImage{
+        cursor: pointer;
+        border: none;
+
+      }
+      .imgPreview{
+        max-height: 300px;
+       
+        border-radius: 5px;
+      }
+    }
+
+
+
   }
 
   .loginLabel {

@@ -3,7 +3,6 @@ import { API } from "../../API/API";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./NewDestination.css";
-import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 
@@ -11,13 +10,15 @@ function NewDestination() {
   const [place, setPlace] = useState("");
   const [country, setCountry] = useState("");
   const [continent, setContinent] = useState("");
-  
+  const [fileKey, setFileKey] = useState(0);
   const [labels, setLabels] = useState([]);
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isVerified, setVerified] = useState("");
   const [authoredBy, setAuthor] = useState("");
+  const [imageText, setImageText] = useState("");
+
   const allLabels = [
     "Strand",
     "Natur",
@@ -41,47 +42,57 @@ function NewDestination() {
     const adminData = await API.get("/admin");
 
     if (adminData.data.permission != 1) {
-      setVerified(0)
+      setVerified(0);
       const username = await API.get("/getUser");
       setAuthor(username.data.username);
-
-
-    }
-    else {
-      setVerified(1)
-      setAuthor("admin")
-      setAuthor("admin")
+    } else {
+      setVerified(1);
+      setAuthor("admin");
     }
 
     window.scrollTo(0, 0);
   };
 
-
   const handlePlaceChange = (e) => {
-    const capitalizedInput = e.target.value.replace(/([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g, (match, word) => {
-      return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
-    });
+    setErrorMessage("");
+    const capitalizedInput = e.target.value.replace(
+      /([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g,
+      (match, word) => {
+        return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
+      }
+    );
     setPlace(capitalizedInput);
   };
 
   const handleCountryChange = (e) => {
-    const capitalizedInput = e.target.value.replace(/([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g, (match, word) => {
-      return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
-    });
+    setErrorMessage("");
+    const capitalizedInput = e.target.value.replace(
+      /([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g,
+      (match, word) => {
+        return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
+      }
+    );
     setCountry(capitalizedInput);
   };
   const handleContinentChange = (e) => {
-    const capitalizedInput = e.target.value.replace(/([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g, (match, word) => {
-      return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
-    });
+    setErrorMessage("");
+
+    const capitalizedInput = e.target.value.replace(
+      /([a-zA-ZæÆøØåÅ]+)|([\s-]+)/g,
+      (match, word) => {
+        return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
+      }
+    );
     setContinent(capitalizedInput);
   };
   const handleDescriptionChange = (e) => {
+    setErrorMessage("");
+
     setDescription(e.target.value);
   };
 
-
   const handleLabelChange = (e) => {
+    
     setErrorMessage("");
     if (e.target.checked) {
       setLabels([...labels, e.target.name]);
@@ -92,6 +103,8 @@ function NewDestination() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
+
     if (!(place && country && continent && description)) {
       console.log(place + country + continent + description);
       setErrorMessage("Du må fylle ut alle feltene!");
@@ -107,7 +120,7 @@ function NewDestination() {
         labels,
         isVerified,
         authoredBy,
-
+        img: imageText,
       });
 
       // Handle success response
@@ -120,6 +133,9 @@ function NewDestination() {
       setDescription("");
       setErrorMessage("");
       setSuccessMessage("Destinasjon lagt til!");
+      setImageText("");
+      setFileKey((prevKey) => prevKey + 1);
+
 
       // Uncheck all checkboxes
       document
@@ -133,6 +149,33 @@ function NewDestination() {
       console.error("Error adding destination:", error);
     }
   };
+
+  const handleFile = (e) => {
+    const file = e.target.files[0];
+    setImageText("");
+    if (!file) {
+      return;
+    }
+    if (file.size > 1000000) {
+      setErrorMessage("Bildet er for stort, maks 1MB");
+      return;
+    }
+    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+      setErrorMessage("Bildet må være av type jpeg eller png");
+      return;
+      
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64 = reader.result;
+      setImageText(base64);
+    
+
+    };
+  };
+
+ 
 
   return (
     <>
@@ -214,6 +257,11 @@ function NewDestination() {
                 ))}
               </FormControl>
             </Box>
+
+            <div className="imgDiv">
+              <input id="inputImage" type="file" key={fileKey} onChange={handleFile}></input>
+              {imageText && (<img src={imageText} alt="destination" className="imgPreview" />)}
+            </div>
 
             <button className="submitBtn" type="submit">
               Legg til

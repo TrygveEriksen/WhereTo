@@ -11,7 +11,8 @@ const { adminRouter } = require("./routers/adminRouter");
 const { userRouter } = require("./routers/userRouter");
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cors());
 
 const url = `mongodb+srv://${secrets.db.username}:${secrets.db.password}@cluster0.nzo0zib.mongodb.net/${secrets.db.name}`;
