@@ -11,12 +11,13 @@ function NewDestination() {
   const [place, setPlace] = useState("");
   const [country, setCountry] = useState("");
   const [continent, setContinent] = useState("");
+  
+  const [labels, setLabels] = useState([]);
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isVerified, setVerified] = useState("");
-  const [authoredBy, setAuthor] = userState("");
-  let labels = [];
+  const [authoredBy, setAuthor] = useState("");
   const allLabels = [
     "Strand",
     "Natur",
@@ -36,7 +37,6 @@ function NewDestination() {
     load();
   }, []);
 
-  const navigate = useNavigate();
   const load = async () => {
     const adminData = await API.get("/admin");
 
@@ -80,11 +80,13 @@ function NewDestination() {
     setDescription(e.target.value);
   };
 
+
   const handleLabelChange = (e) => {
+    setErrorMessage("");
     if (e.target.checked) {
-      labels.push(e.target.name);
+      setLabels([...labels, e.target.name]);
     } else {
-      labels = labels.filter((label) => label !== e.target.name);
+      setLabels(labels.filter((label) => label !== e.target.name));
     }
   };
 
@@ -205,6 +207,7 @@ function NewDestination() {
                       type="checkbox"
                       onChange={handleLabelChange}
                       name={label}
+                      checked={labels.includes(label)}
                     />
                     {label}
                   </label>

@@ -210,7 +210,7 @@ function UpdateDestination() {
                       type="checkbox"
                       onChange={handleLabelChange}
                       name={label}
-                      checked={labels.includes(label) ? true : false}
+                      checked={labels.includes(label)}
                     />
                     {label}
                   </label>
