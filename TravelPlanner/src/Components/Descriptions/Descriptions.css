@@ -93,6 +93,25 @@
 
 
     }
+
+    .imageContainer{
+      max-width: 800px;
+      width: 100%;
+      background-color: var(--foreground);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      
+      .destImage{
+        width: 100%;
+        object-fit: cover;
+        overflow: hidden;
+        height: 400px;
+        border-radius: 10px;
+      }
+    }
+
+
   }
 
 

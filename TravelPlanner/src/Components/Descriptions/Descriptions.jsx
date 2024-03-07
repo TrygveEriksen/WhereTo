@@ -117,6 +117,14 @@ function Descriptions() {
 
 
           </div>
+
+          {destinations.img &&
+          <div className="imageContainer">
+            <img className="destImage" src={destinations.img} alt="" />
+          </div>
+          }
+
+
           <div className="descriptionContainer">
             <h3 className="descriptionHeader">Beskrivelse:</h3>
             <p className="descriptionText">{destinations.description}</p>
