@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
   permission: { type: Number, required: true },
   hash: { type: String, required: true },
   salt: { type: String, required: true },
+  visited: { type: [], required: false, default: [], ref: "destinations" },
 });
 
 UserSchema.methods.setPassword = function (password) {
@@ -19,7 +20,18 @@ UserSchema.methods.validPassword = function (password) {
   const hash = crypto
     .pbkdf2Sync(password, this.salt, 1000, 64, "sha512")
     .toString("hex");
-    return this.hash === hash;
+  return this.hash === hash;
+};
+
+UserSchema.methods.addVisited = function (id) {
+  if (!this.visited.includes(id)) {
+    this.visited.push(id);
+  }
+};
+UserSchema.methods.removeVisited = function (id) {
+  if (this.visited.includes(id)) {
+    this.visited = this.visited.filter((visited) => visited !== id);
+  }
 };
 
 const UserModel = mongoose.model("users", UserSchema);

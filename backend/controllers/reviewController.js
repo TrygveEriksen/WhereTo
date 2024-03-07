@@ -5,19 +5,19 @@ const findAllReviewsByDID = async (req, res) => {
   try {
     const destinationId = req.params.id;
     if (!mongoose.Types.ObjectId.isValid(destinationId)) {
-        return res.status(200).json([]);
-      }
+      return res.status(200).json([]);
+    }
     const reviews = await ReviewModel
-                        .find({destination:destinationId})
-                        .populate("user"," username")
-                        .select("user comment stars timestamp title")
-                        .sort({timestamp:-1})
-                                         
+      .find({ destination: destinationId })
+      .populate("user", " username")
+      .select("user comment stars timestamp title")
+      .sort({ timestamp: -1 })
+
     res.status(200).json(reviews);
   }
-  catch(error){
+  catch (error) {
     //server error om du kommer hit
-    res.status(500).json({error:error.message});
+    res.status(500).json({ error: error.message });
   }
 
 };
@@ -26,37 +26,37 @@ const findAllReviewsByUID = async (req, res) => {
   try {
     const userId = req.params.id;
     if (!mongoose.Types.ObjectId.isValid(userId)) {
-        return res.status(200).json([]);
-      }
+      return res.status(200).json([]);
+    }
     const reviews = await ReviewModel
-                        .find({user:userId})
-                        .populate("destination", "place country")
-                        .select("destination comment stars timestamp title")
-                        .sort({timestamp:-1})
-                                         
+      .find({ user: userId })
+      .populate("destination", "place country")
+      .select("destination comment stars timestamp title")
+      .sort({ timestamp: -1 })
+
     res.json(reviews);
   }
-  catch(error){
+  catch (error) {
     //server error om du kommer hit
-    res.status(500).json({error:error.message});
+    res.status(500).json({ error: error.message });
   }
 
 }
 
 const createReview = async (req, res) => {
-    try {
+  try {
 
-        if (req.user) {
-            req.body.user = req.user._id;
-          
-        }
+    if (req.user) {
+      req.body.user = req.user._id;
 
-        const newReview = new ReviewModel(req.body);
-        const savedReview = await newReview.save()
-        res.status(201).json(savedReview);
-    } catch (error) {
-        res.status(400).json({message: error.message})
     }
+
+    const newReview = new ReviewModel(req.body);
+    const savedReview = await newReview.save()
+    res.status(201).json(savedReview);
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
 
 
 }
@@ -97,44 +97,44 @@ const updateReview = async (req, res) => {
 };
 
 const findReviewByUD = async (req, res) => {
-  
+
   try {
     const userID = req.user._id;
-    
+
     const destID = req.params.id;
     const review = await ReviewModel.findOne({
-      user:userID,
-      destination:destID
+      user: userID,
+      destination: destID
     });
-    if(review) {
+    if (review) {
       res.json(review);
     }
     else {
-      res.status(404).json({message: "review ikke funnet!"});
+      res.status(404).json({ message: "review ikke funnet!" });
     }
-  } catch(error) {
-    res.status(500).json({error: error.message});
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 }
 
 const deleteAllByDestination = async (req, res) => {
   try {
- 
+
 
 
     const reviews = await ReviewModel
-    
-          .deleteMany({destination:req.params.id})
-                                         
+
+      .deleteMany({ destination: req.params.id })
+
     res.status(200).json(reviews);
   }
-  catch(error){
+  catch (error) {
     //server error om du kommer hit
-    res.status(500).json({error:error.message});
+    res.status(500).json({ error: error.message });
   }
 
 }
 
-module.exports = { findAllReviewsByDID, findAllReviewsByUID, createReview, deleteReview, updateReview , findReviewByUD, deleteAllByDestination};
+module.exports = { findAllReviewsByDID, findAllReviewsByUID, createReview, deleteReview, updateReview, findReviewByUD, deleteAllByDestination };
 
 

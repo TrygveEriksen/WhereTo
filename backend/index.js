@@ -8,6 +8,7 @@ const { AuthMiddleware } = require("./routers/middelware");
 const { destinationRouter } = require("./routers/destinationRouter");
 const { secrets } = require("./secrets");
 const { adminRouter } = require("./routers/adminRouter");
+const { userRouter } = require("./routers/userRouter");
 
 const app = express();
 app.use(express.json());
@@ -22,6 +23,7 @@ mongoose
 app.use("/entry", entryRouter);
 //everything under middleware is now hidden from unathourized users
 app.use(AuthMiddleware);
+app.use("/user", userRouter);
 app.use("/destinations", destinationRouter);
 app.use("/review", reviewRouter);
 app.use("/admin", adminRouter);

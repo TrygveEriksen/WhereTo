@@ -2,7 +2,7 @@ import Navbar from "../Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { API } from "../../API/API";
 import "./Mypage.css";
-import StaredPlaces from "./StaredPlaces/StaredPlaces";
+import VisitedPlaces from "./VisitedPlaces/VisitedPlaces";
 import MyReviews from "./MyReviews/MyReviews";
 import Footer from "../Footer/Footer";
 
@@ -41,7 +41,7 @@ function Mypage() {
         <div className="viewBox">
           <MyReviews userId={userId} />
           <br />
-          <StaredPlaces />
+          <VisitedPlaces />
         </div>
       </div>
       <Footer />

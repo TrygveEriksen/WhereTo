@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function UpdateDestination() {
   const [place, setPlace] = useState("");
@@ -46,12 +46,12 @@ function UpdateDestination() {
     }
     //Fra chat:
     const response = await API.get(`/destinations/${id}`); //må finne riktig destination
-      const destinationData = response.data;
+    const destinationData = response.data;
 
-      setPlace(destinationData.place);
-      setCountry(destinationData.country);
-      setContinent(destinationData.continent);
-      setDescription(destinationData.description);
+    setPlace(destinationData.place);
+    setCountry(destinationData.country);
+    setContinent(destinationData.continent);
+    setDescription(destinationData.description);
   };
 
   const handlePlaceChange = (e) => {
@@ -105,12 +105,12 @@ function UpdateDestination() {
         country,
         continent,
         labels,
-        isVerified:0 //må legge til knapp for dette
+        isVerified: 0 //må legge til knapp for dette
       });
 
       // Handle success response
       console.log("Destination updated successfully:");
-      
+
       setSuccessMessage("Destinasjon ble oppdatert!");
       window.history.back()
     } catch (error) {
@@ -124,17 +124,18 @@ function UpdateDestination() {
     e.preventDefault();
     const confirmed = window.confirm("Er du sikker på at du vil slette denne destinasjonen?");
     if (confirmed) {
-    try {
-    
+      try {
+
         const res = await API.delete(`/review/bydestination/${id}`)
         const response = await API.delete(`/destinations/delete/${id}`)
-        window.location.href="/"
+        window.location.href = "/"
+      }
+      catch (error) {
+        setErrorMessage("Noe gikk galt");
+        console.error("Error deleting destination:", error);
+      }
     }
-    catch (error) {
-    setErrorMessage("Noe gikk galt");
-      console.error("Error deleting destination:", error);
-    }
-  }}
+  }
 
   return (
     <>
@@ -222,9 +223,9 @@ function UpdateDestination() {
 
 
           </form>
-            <button className="submitBtn" id="deleteBtn" onClick = {handleDelete}>
-              Slett destinasjon
-            </button>
+          <button className="submitBtn" id="deleteBtn" onClick={handleDelete}>
+            Slett destinasjon
+          </button>
           {errorMessage && <div className="error">{errorMessage}</div>}
           {successMessage && <p className="success"> {successMessage} </p>}
         </div>
