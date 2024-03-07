@@ -1,7 +1,10 @@
 .descriptionContent {
   min-height: 100vh;
   color: var(--text);
-  padding: 030px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   img {
     filter: var(--image-filter);
