@@ -120,7 +120,6 @@ function Descriptions() {
           <div className="descriptionContainer">
             <h3 className="descriptionHeader">Beskrivelse:</h3>
             <p className="descriptionText">{destinations.description}</p>
-            <p className="descriptionText">{destinations.description}</p>
           </div>
         </div>
 
