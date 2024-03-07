@@ -11,6 +11,7 @@ function NewReview(props) {
   const [title, setTitle] = useState("");
   const [comment, setComment] = useState("");
   const [stars, setStars] = useState(0);
+  const[oldReviewId,setOldReviewId] = useState("");
 
   useEffect(() => {
     load();
@@ -18,9 +19,28 @@ function NewReview(props) {
 
   useEffect(() => {
     setDestination(props.destinationId);
+    populateForm();
+
   }, [props.destinationId]);
 
+  const populateForm = async () => {
+    if(props.destinationId) {
+
+    try {
+          const review = await API.get(`/review/${props.destinationId}`);
+
+          setTitle(review.data.title);
+          setComment(review.data.comment);
+          setStars(review.data.stars);
+          setOldReviewId(review.data._id);
+        }catch(error) {
+        }
+      }
+  }
+
+
   const load = async () => {
+   
     setLoading(false);
   };
 
@@ -42,33 +62,36 @@ function NewReview(props) {
       setErrorMessage("Du må velge antall stjerner");
       return;
     }
-
-    setErrorMessage("");
-    setComment("");
-    setStars(0);
-    setTitle("");
-
-
-
-    try {
-      const response = await API.post("/review", {
-        title,
-        comment,
-        destination,
-        stars,
-      });
+      try {
+        if(!oldReviewId) {
+          const response = await API.post("/review", {
+            title,
+            comment,
+            destination,
+            stars,
+          });
+        }
+        else {
+          const response = await API.put(`/review/update/${oldReviewId}`, {
+            title,
+            comment,
+            destination,
+            stars,
+          });
+        }
         //if there is a callback, run it (for refreshing the reviews on the page)
-        props.onReviewSubmit?.();
-      
-    }catch (error) {
-      setErrorMessage("Noe gikk galt, prøv igjen");
-    }
+        props.onReviewSubmit?.();        
+      }catch (error) {
+        setErrorMessage("Noe gikk galt, prøv igjen");
+      }
+   
+    populateForm()
 
   };
 
   return (
     <div className="newReview">
-      <h1>Ny vurderinger</h1>
+      <h1>Din vurdering</h1>
       {isLoading && <Loading />}
 
       <form onSubmit={handleSubmit} className="newReviewForm">
