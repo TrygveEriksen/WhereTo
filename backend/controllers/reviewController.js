@@ -106,12 +106,10 @@ const findReviewByUD = async (req, res) => {
       user: userID,
       destination: destID
     });
-    if (review) {
-      res.json(review);
-    }
-    else {
-      res.status(404).json({ message: "review ikke funnet!" });
-    }
+
+     res.json(review);
+
+    
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -28,6 +28,9 @@ function NewReview(props) {
 
       try {
         const review = await API.get(`/review/${props.destinationId}`);
+        if (!review) {
+          return;
+        }
 
         setTitle(review.data.title);
         setComment(review.data.comment);
