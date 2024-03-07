@@ -61,6 +61,62 @@ const createReview = async (req, res) => {
 
 }
 
+const deleteReview = async (req, res) => {
+  try {
+    const reviewId = req.params.id;
+    const deletedReview = await ReviewModel.findByIdAndDelete(
+      reviewId
+    );
+    if (deletedReview) {
+      res.status(200).json(deletedReview);
+    } else {
+      res.status(404).json({ message: "Review Not Found" });
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const updateReview = async (req, res) => {
+  try {
+    const reviewId = req.params.id;
+    const updatedReview = await ReviewModel.findByIdAndUpdate(
+      reviewId,
+      req.body,
+      { new: true }
+    );
+    if (updatedReview) {
+      res.status(200).json(updatedReview);
+    } else {
+      res.status(404).json({ message: "Destination Not Found" });
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+
+};
+
+const findReviewByUD = async (req, res) => {
+  
+  try {
+    const userID = req.user._id;
+    
+    const destID = req.params.id;
+    const review = await ReviewModel.findOne({
+      user:userID,
+      destination:destID
+    });
+    if(review) {
+      res.json(review);
+    }
+    else {
+      res.status(404).json({message: "review ikke funnet!"});
+    }
+  } catch(error) {
+    res.status(500).json({error: error.message});
+  }
+}
+
 const deleteAllByDestination = async (req, res) => {
   try {
  
@@ -79,5 +135,6 @@ const deleteAllByDestination = async (req, res) => {
 
 }
 
+module.exports = { findAllReviewsByDID, findAllReviewsByUID, createReview, deleteReview, updateReview , findReviewByUD, deleteAllByDestination};
 
-module.exports = { findAllReviewsByDID, findAllReviewsByUID, createReview, deleteAllByDestination };
+
