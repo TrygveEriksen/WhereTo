@@ -8,17 +8,19 @@ import Loading from "../Loading/Loading";
 import "./Descriptions.css";
 import DescriptionReview from "./DescriptionReview/DescriptionReview";
 import NewReview from "./NewReview/NewReview";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Descriptions() {
   const [destinations, setDestinations] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [reloadReviews, setReloadDescription] = useState(false);
   const { id } = useParams();
-
+  //for å endre greier:
+  const [currentImage, setCurrentImage] = useState('unvisited.svg')
+  const [visit, setVisit] = useState("");
   //her legger vi til admin-tilganger
-  const[permission, setPermission] = useState(0);
-  
+  const [permission, setPermission] = useState(0);
+
 
   //fetch data from the server when the page starts running and set it in the state destination
   useEffect(() => {
@@ -29,39 +31,42 @@ function Descriptions() {
     const isAdmin = await API.get('/admin');
     setPermission(isAdmin.data.permission)
     try {
-    const destRes = await API.get(`/destinations/${id}`);
-    const user = await API.get('/getUser');
-    if (destRes) {
-      window.scrollTo(0, 0);
-      setDestinations(destRes.data);
-      if (user) {
-        setVisitButton(user.data.visited.includes(id));
+      const destRes = await API.get(`/destinations/${id}`);
+      const user = await API.get('/getUser');
+      if (destRes) {
+        window.scrollTo(0, 0);
+        setDestinations(destRes.data);
+        if (user) {
+          setVisitButton(user.data.visited.includes(id));
+        }
+        return setLoading(false);
       }
-      return setLoading(false);
-    }
     }
     catch (error) {
       window.location.href = "/"
     }
   };
   const handleVisited = async () => {
+    console.log("handleVisited");
     const user = await API.get('/getUser')
     const res = await API.put('/user/toggleVisited', { id: id, userId: user.data._id })
 
     if (res.data.message === "success") {
-      console.log("success");
       load()
     }
-    console.log(res);
   };
 
   const setVisitButton = (visited) => {
     const button = document.getElementById('visitedButton');
     if (visited) {
-      button.innerHTML = "Unvisit";
+      setCurrentImage('/images/SVG/visited.svg')
+      setVisit("Besøkt")
+
     }
+
     else {
-      button.innerHTML = "Visit";
+      setCurrentImage('/images/SVG/unvisited.svg')
+      setVisit("Ikke besøkt")
     }
   }
 
@@ -92,12 +97,6 @@ function Descriptions() {
             {"                      "}
             <button type="button" onClick={handleVisited} id="visitedButton">Click me!</button>
           </h2>
-          {permission == 1?
-          <Link to={`/editdestination/${id}`} className="destAnchor">
-          <button>Rediger 
-          </button>
-          </Link>
-          :null} 
         </div>
         <div className="column-container">
           <div className="labels">
@@ -111,11 +110,10 @@ function Descriptions() {
 
           <div className="descriptionContainer">
             <h3 className="descriptionHeader">Beskrivelse:</h3>
-            <p className="descriptionsText">{destinations.description}</p>
+            <p className="descriptionText">{destinations.description}</p>
           </div>
-
-          <div></div>
         </div>
+
         <NewReview destinationId={destinations._id} onReviewSubmit={handleReviewSubmit} />
         <DescriptionReview destinationId={destinations._id} key={reloadReviews} />
 

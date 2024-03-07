@@ -1,4 +1,6 @@
 import "../Mypage.css";
+import "./VisitedPlaces.css";
+import Loading from "../../Loading/Loading";
 import { API } from "../../../API/API";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -9,40 +11,33 @@ import { useEffect, useState } from "react";
 function VisitedPlaces() {
 
     const [destinations, setDestinations] = useState([]);
-
+    const [isLoading, setLoading] = useState(true);
     useEffect(() => {
         load();
     }, []);
 
     const load = async () => {
-        const visited = await API.get("/getUser");
-        const res = await API.put("/destinations/getVisitedPlaces", { visited: visited.data.visited });
+        const res = await API.get(`/destinations/getVisitedPlaces`);
         setDestinations(res.data);
+        setLoading(false);
         return res.data;
     }
 
 
 
     return (
-        <div className="visitedPlaces">
-            <ul className="destinations">
-                {destinations.map((destination) => (
-                    <li className="oneDestination" key={destination._id}>
-                        <Link
-                            className="destAnchor"
-                            to={`/descriptions/${destination._id}`}
-                        >
-                            <p className="destLink dest1">{destination.place}, {destination.country} </p>
-                        </Link>
-                    </li>
+        <div className="myReviews">
+            <h1>Steder jeg har vært</h1>
+            {isLoading && <Loading />}
+            <ul className="reviewUl">
+                {destinations.map((dest) => (
+                    <Link to={`/descriptions/${dest._id}`} className="linkToDestination" key={dest._id}>
+                        <li className="oneDestination" key={dest._id}>
+                            <p className="">{dest.place}, {dest.country}</p>
+
+                        </li>
+                    </Link>
                 ))}
-                {destinations.length === 0 && (
-                    <li className="Du har ikke besøkt noen steder">
-                        <a className="destAnchor">
-                            <p className="destLink dest1">Ingen resultater matcher:</p>
-                        </a>
-                    </li>
-                )}
             </ul>
         </div>
     );

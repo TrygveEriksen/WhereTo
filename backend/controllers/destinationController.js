@@ -1,4 +1,5 @@
 const DestinationModel = require("../models/Destination");
+const UserModel = require("../models/User");
 
 const findAllDestinations = async (req, res) => {
   try {
@@ -72,15 +73,13 @@ const updateDestination = async (req, res) => {
 
 
 const getVisitedPlaces = async (req, res) => {
-  console.log(req.body.visited)
   try {
-    const visitedPlaces = await DestinationModel.find({
-      _id: { $in: req.body.visited }
-    })
-    return res.json(visitedPlaces)
+    const visitedPlaces = await UserModel.findOne({
+      _id: req.user._id
+    }).populate('visited')
+    return res.json(visitedPlaces.visited)
   }
   catch (error) {
-    console.log("error")
     res.status(500).json({ error: error.message });
   }
 };

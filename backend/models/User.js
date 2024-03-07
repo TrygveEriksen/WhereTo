@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
   permission: { type: Number, required: true },
   hash: { type: String, required: true },
   salt: { type: String, required: true },
-  visited: { type: [], required: false, default: [] },
+  visited: { type: [], required: false, default: [], ref: "destinations" },
 });
 
 UserSchema.methods.setPassword = function (password) {
