@@ -45,8 +45,6 @@ function NewDestination() {
       const username = await API.get("/getUser");
       setAuthor(username.data.username);
 
-      const username = await API.get("/getUser");
-      setAuthor(username.data.username);
 
     }
     else {
