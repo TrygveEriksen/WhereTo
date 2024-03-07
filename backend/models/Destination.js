@@ -6,7 +6,7 @@ const DestinationSchema = new mongoose.Schema({
   country: { type: String, required: true },
   labels: [String], //Bør kanskje endres på senere?
   continent: { type: String, required: true },
-  img: { type: String },
+  img: { type: String, required: true},
   isVerified: { type: Number, required: true },
   authoredBy: { type: String, required: true, }
 });

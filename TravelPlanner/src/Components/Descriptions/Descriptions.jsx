@@ -75,15 +75,17 @@ function Descriptions() {
     <>
       <Navbar />
       <div className="descriptionContent">
-        {destinations.img && (
+        
           <div className="imageContainer">
-            <img className="destImage" src={destinations.img} alt="" />
+            {isLoading || (!destinations.img) ? 
+            <Loading /> :
+            <img className="destImage" src={destinations.img} alt="Bilde av destinasjon" />}
           </div>
-        )}
+   
         <div className="interContainer">
           <div className="column-container">
             <div className="descriptionsContainer">
-              {isLoading && <Loading />}
+            
             </div>
             {permission == 1 && (
               <Link to={`/editdestination/${id}`} className="destAnchorPen">

@@ -105,7 +105,7 @@ function NewDestination() {
     e.preventDefault();
     setErrorMessage("");
 
-    if (!(place && country && continent && description)) {
+    if (!(place && country && continent && description && imageText)) {
       console.log(place + country + continent + description);
       setErrorMessage("Du må fylle ut alle feltene!");
       return;
