@@ -6,6 +6,7 @@ import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
 import NewDestination from "./Components/NewDestination/NewDestination";
 import MyPage from "./Components/Mypage/Mypage";
+import Advertisement from "./Components/Advertisement/Advertisement";
 import "./index.css";
 import "./Colors/lightmode.css";
 import "./Colors/darkmode.css";
@@ -54,6 +55,11 @@ const router = createBrowserRouter([
   {
     path: "/editdestination/:id",
     element: <UpdateDestination />,
+    loader: redirectNotLoggedIn
+  },
+  {
+    path: "/Advertisement",
+    element: <Advertisement />,
     loader: redirectNotLoggedIn
   }
 ]);

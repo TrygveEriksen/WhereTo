@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer";
 import Loading from "../Loading/Loading";
 import "./Home.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import Advertisement from "../Advertisement/Advertisement";
 
 function Home() {
   const [destinations, setDestinations] = useState([]);
@@ -146,6 +147,9 @@ function Home() {
               </li>
             )}
           </ul>
+        </div>
+        <div>
+          <Advertisement />
         </div>
       </div>
       <Footer />

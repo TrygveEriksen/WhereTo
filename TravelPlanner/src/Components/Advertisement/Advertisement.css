@@ -1,0 +1,8 @@
+#advertContainer {
+	background-color: hotpink;
+	height: 100vh;
+	top: 160px;
+	position: sticky;
+	display: block;
+
+}
