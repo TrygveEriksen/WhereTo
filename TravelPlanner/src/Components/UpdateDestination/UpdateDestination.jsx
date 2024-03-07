@@ -12,12 +12,13 @@ import { Link } from "react-router-dom";
 function UpdateDestination() {
   const [place, setPlace] = useState("");
   const [country, setCountry] = useState("");
+  const [labels, setLabels] = useState([]);
   const [continent, setContinent] = useState("");
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const { id } = useParams();
-  let labels = [];
+
   const allLabels = [
     "Strand",
     "Natur",
@@ -47,7 +48,7 @@ function UpdateDestination() {
     //Fra chat:
     const response = await API.get(`/destinations/${id}`); //må finne riktig destination
     const destinationData = response.data;
-
+    setLabels(destinationData.labels);
     setPlace(destinationData.place);
     setCountry(destinationData.country);
     setContinent(destinationData.continent);
@@ -84,9 +85,9 @@ function UpdateDestination() {
   const handleLabelChange = (e) => {
     setErrorMessage("");
     if (e.target.checked) {
-      labels.push(e.target.name);
+      setLabels([...labels, e.target.name]);
     } else {
-      labels = labels.filter((label) => label !== e.target.name);
+      setLabels(labels.filter((label) => label !== e.target.name));
     }
   };
 
@@ -209,6 +210,7 @@ function UpdateDestination() {
                       type="checkbox"
                       onChange={handleLabelChange}
                       name={label}
+                      checked={labels.includes(label) ? true : false}
                     />
                     {label}
                   </label>
