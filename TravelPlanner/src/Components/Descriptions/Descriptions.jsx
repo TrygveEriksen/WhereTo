@@ -95,13 +95,13 @@ function Descriptions() {
               : null}
           </div>
           <div className="column-container">
-            <div className="areaContainer"><h2>
+            <div className="areaContainer">
               <h1 className="descriptionsHeader">{destinations.place}</h1>
-              <span className="icon">
+              <h2><span className="icon">
                 <i className="fas fa-globe"></i>
               </span>
-              {destinations.country}, {destinations.continent}
-            </h2></div>
+              {destinations.country}, {destinations.continent}</h2>
+            </div>
             <div className="visitedButton" onClick={handleVisited}>
               <img src={currentImage} alt="Visited" />
               <p className="buttonText">{visit}</p>
