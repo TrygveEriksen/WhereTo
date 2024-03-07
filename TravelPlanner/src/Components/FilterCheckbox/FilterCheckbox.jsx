@@ -12,7 +12,7 @@ function FilterCheckbox({ handleFilter }) {
     "Eksotisk",
     "Historie",
     "Sol",
-    "Ute liv",
+    "Uteliv",
     "Snø",
     "Vin",
   ];

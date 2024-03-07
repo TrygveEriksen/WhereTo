@@ -28,7 +28,9 @@ function UpdateDestination() {
     "Eksotisk",
     "Historie",
     "Sol",
-    "Ute liv",
+    "Uteliv",
+    "Snø",
+    "Vin",
   ];
 
   useEffect(() => {

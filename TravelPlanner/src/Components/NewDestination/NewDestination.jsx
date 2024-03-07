@@ -27,7 +27,7 @@ function NewDestination() {
     "Eksotisk",
     "Historie",
     "Sol",
-    "Ute liv",
+    "Uteliv",
     "Snø",
     "Vin",
   ];
