@@ -16,11 +16,10 @@ function Descriptions() {
   const [reloadReviews, setReloadDescription] = useState(false);
   const { id } = useParams();
   //for å endre greier:
-  const [currentImage, setCurrentImage] = useState('unvisited.svg')
-  const [visit, setVisit] = useState("")
+  const [currentImage, setCurrentImage] = useState("unvisited.svg");
+  const [visit, setVisit] = useState("");
   //her legger vi til admin-tilganger
   const [permission, setPermission] = useState(0);
-
 
   //fetch data from the server when the page starts running and set it in the state destination
   useEffect(() => {
@@ -28,11 +27,11 @@ function Descriptions() {
   }, []);
 
   const load = async () => {
-    const isAdmin = await API.get('/admin');
-    setPermission(isAdmin.data.permission)
+    const isAdmin = await API.get("/admin");
+    setPermission(isAdmin.data.permission);
     try {
       const destRes = await API.get(`/destinations/${id}`);
-      const user = await API.get('/getUser');
+      const user = await API.get("/getUser");
       if (destRes) {
         window.scrollTo(0, 0);
         setDestinations(destRes.data);
@@ -41,71 +40,64 @@ function Descriptions() {
         }
         return setLoading(false);
       }
-    }
-    catch (error) {
-      window.location.href = "/"
+    } catch (error) {
+      window.location.href = "/";
     }
   };
   const handleVisited = async () => {
-    const user = await API.get('/getUser')
-    const res = await API.put('/user/toggleVisited', { id: id, userId: user.data._id })
+    const user = await API.get("/getUser");
+    const res = await API.put("/user/toggleVisited", {
+      id: id,
+      userId: user.data._id,
+    });
 
     if (res.data.message === "success") {
-      load()
+      load();
     }
   };
 
   const setVisitButton = (visited) => {
-    const button = document.getElementById('visitedButton');
+    const button = document.getElementById("visitedButton");
     if (visited) {
-      setCurrentImage('/images/SVG/visited.svg')
-      setVisit("Besøkt")
-
-
+      setCurrentImage("/images/SVG/visited.svg");
+      setVisit("Besøkt");
+    } else {
+      setCurrentImage("/images/SVG/unvisited.svg");
+      setVisit("Ikke besøkt");
     }
-
-
-    else {
-      setCurrentImage('/images/SVG/unvisited.svg')
-      setVisit("Ikke besøkt")
-    }
-  }
-
-
-
-
-  const handleReviewSubmit = () => {
-    setReloadDescription(prevState => !prevState);
   };
 
-
+  const handleReviewSubmit = () => {
+    setReloadDescription((prevState) => !prevState);
+  };
 
   return (
     <>
       <Navbar />
       <div className="descriptionContent">
-        {destinations.img &&
+        {destinations.img && (
           <div className="imageContainer">
             <img className="destImage" src={destinations.img} alt="" />
           </div>
-          }
+        )}
         <div className="interContainer">
-
-
           <div className="column-container">
-          <div className="descriptionsContainer">
-            {isLoading && <Loading />}
-          </div>
-            {permission == 1 &&
+            <div className="descriptionsContainer">
+              {isLoading && <Loading />}
+            </div>
+            {permission == 1 && (
               <Link to={`/editdestination/${id}`} className="destAnchorPen">
                 <i className="fa fa-pen editDest"></i>
-              </Link>}
+              </Link>
+            )}
             <div className="areaContainer">
               <h1 className="descriptionsHeader">{destinations.place}</h1>
-              <h2><span className="icon">
-                <i className="fas fa-globe"></i>
-              </span>
-              {destinations.country}, {destinations.continent}</h2>
+              <h2>
+                <span className="icon">
+                  <i className="fas fa-globe"></i>
+                </span>
+                {destinations.country}, {destinations.continent}
+              </h2>
             </div>
             <div className="visitedButton" onClick={handleVisited}>
               <img src={currentImage} alt="Visited" />
@@ -115,26 +107,32 @@ function Descriptions() {
               <h3 className="destinationHeader">Egenskaper:</h3>
               <ul className="destinationLabels">
                 {destinations?.labels?.map((destinationLabel) => (
-                  <li className="label" key={destinationLabel}>{destinationLabel}</li>
+                  <li className="label" key={destinationLabel}>
+                    {destinationLabel}
+                  </li>
                 ))}
               </ul>
             </div>
-
-
           </div>
-
-        
-
 
           <div className="descriptionContainer">
             <h3 className="descriptionHeader">Beskrivelse:</h3>
-            <p className="descriptionText">{destinations.description}</p>
+            {destinations?.description?.split("\n").map((line, index) => (
+              <p key={index} className="descriptionText">
+                {line}
+              </p>
+            ))}
           </div>
         </div>
 
-
-        <NewReview destinationId={destinations._id} onReviewSubmit={handleReviewSubmit} />
-        <DescriptionReview destinationId={destinations._id} key={reloadReviews} />
+        <NewReview
+          destinationId={destinations._id}
+          onReviewSubmit={handleReviewSubmit}
+        />
+        <DescriptionReview
+          destinationId={destinations._id}
+          key={reloadReviews}
+        />
 
         <p>Authored by: {destinations.authoredBy}</p>
       </div>
@@ -143,6 +141,5 @@ function Descriptions() {
     </>
   );
 }
-
 
 export default Descriptions;

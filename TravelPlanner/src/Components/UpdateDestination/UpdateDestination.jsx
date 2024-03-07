@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
-import { Link } from "react-router-dom";
 
 function UpdateDestination() {
   const [place, setPlace] = useState("");
@@ -80,9 +79,12 @@ function UpdateDestination() {
     });
     setContinent(capitalizedInput);
   };
+
+
   const handleDescriptionChange = (e) => {
     setErrorMessage("");
-    setDescription(e.target.value);
+    setDescription(e.target.value)
+
   };
 
   const handleLabelChange = (e) => {
