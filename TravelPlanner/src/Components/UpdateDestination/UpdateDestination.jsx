@@ -14,6 +14,7 @@ function UpdateDestination() {
   const [country, setCountry] = useState("");
   const [continent, setContinent] = useState("");
   const [description, setDescription] = useState("");
+  const [isVerified,setIsVerified] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const { id } = useParams();
@@ -50,6 +51,12 @@ function UpdateDestination() {
       setCountry(destinationData.country);
       setContinent(destinationData.continent);
       setDescription(destinationData.description);
+      if(destinationData.isVerified != 1) {
+        setIsVerified(0);
+      }
+      else {
+        setIsVerified(1);
+      }
   };
 
   const handlePlaceChange = (e) => {
@@ -78,6 +85,16 @@ function UpdateDestination() {
     setErrorMessage("");
     setDescription(e.target.value);
   };
+
+  const handleIsVerified = (e) => {
+    setErrorMessage("");
+    if(e.target.checked) {
+      setIsVerified(1);
+    }
+    else {
+      setIsVerified(0);
+    }
+  }
 
   const handleLabelChange = (e) => {
     setErrorMessage("");
