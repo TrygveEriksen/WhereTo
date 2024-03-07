@@ -84,17 +84,22 @@ function Descriptions() {
     <>
       <Navbar />
       <div className="descriptionContent">
+        {destinations.img &&
+          <div className="imageContainer">
+            <img className="destImage" src={destinations.img} alt="" />
+          </div>
+          }
         <div className="interContainer">
+
+
+          <div className="column-container">
           <div className="descriptionsContainer">
             {isLoading && <Loading />}
-            {permission == 1 ?
-              <Link to={`/editdestination/${id}`} className="destAnchor">
-                <button>Rediger
-                </button>
-              </Link>
-              : null}
           </div>
-          <div className="column-container">
+            {permission == 1 &&
+              <Link to={`/editdestination/${id}`} className="destAnchorPen">
+                <i className="fa fa-pen editDest"></i>
+              </Link>}
             <div className="areaContainer">
               <h1 className="descriptionsHeader">{destinations.place}</h1>
               <h2><span className="icon">
@@ -118,11 +123,7 @@ function Descriptions() {
 
           </div>
 
-          {destinations.img &&
-          <div className="imageContainer">
-            <img className="destImage" src={destinations.img} alt="" />
-          </div>
-          }
+        
 
 
           <div className="descriptionContainer">

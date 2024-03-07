@@ -17,6 +17,8 @@ function UpdateDestination() {
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [imageText, setImageText] = useState("");
+  const [fileKey, setFileKey] = useState(0);
   const { id } = useParams();
 
   const allLabels = [
@@ -53,6 +55,7 @@ function UpdateDestination() {
     setCountry(destinationData.country);
     setContinent(destinationData.continent);
     setDescription(destinationData.description);
+    setImageText(destinationData.img);
   };
 
   const handlePlaceChange = (e) => {
@@ -106,7 +109,8 @@ function UpdateDestination() {
         country,
         continent,
         labels,
-        isVerified: 0 //må legge til knapp for dette
+        isVerified: 0, //må legge til knapp for dette
+        img: imageText,
       });
 
       // Handle success response
@@ -137,6 +141,36 @@ function UpdateDestination() {
       }
     }
   }
+
+
+
+  const handleFile = (e) => {
+    const file = e.target.files[0];
+    setImageText("");
+    if (!file) {
+      return;
+    }
+    if (file.size > 1000000) {
+      setErrorMessage("Bildet er for stort, maks 1MB");
+      return;
+    }
+    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+      setErrorMessage("Bildet må være av type jpeg eller png");
+      return;
+      
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64 = reader.result;
+      setImageText(base64);
+    
+
+    };
+  };
+
+
+
 
   return (
     <>
@@ -217,6 +251,11 @@ function UpdateDestination() {
                 ))}
               </FormControl>
             </Box>
+
+            <div className="imgDiv">
+              <input id="inputImage" type="file" key={fileKey} onChange={handleFile}></input>
+              {imageText && (<img src={imageText} alt="destination" className="imgPreview" />)}
+            </div>
 
 
             <button className="submitBtn" type="submit">
