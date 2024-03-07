@@ -19,13 +19,13 @@
     border-radius: 10px;
     display: flex;
     justify-content: center;
+    height: 400px;
       
     
     .destImage{
       width: 100%;
       object-fit: cover;
       overflow: hidden;
-      height: 400px;
       border-radius: 10px;
       filter: invert(0);
     }

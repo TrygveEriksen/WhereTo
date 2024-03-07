@@ -3,7 +3,7 @@ const UserModel = require("../models/User");
 
 const findAllDestinations = async (req, res) => {
   try {
-    const destinations = await DestinationModel.find();
+    const destinations = await DestinationModel.find().select("place country");
     res.json(destinations);
   } catch (error) {
     res.status(500).json({ error: error.message });
