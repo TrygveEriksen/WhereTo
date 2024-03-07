@@ -152,18 +152,22 @@ function NewDestination() {
 
   const handleFile = (e) => {
     const file = e.target.files[0];
+    setErrorMessage("");
     setImageText("");
     if (!file) {
-      return;
-    }
-    if (file.size > 1000000) {
-      setErrorMessage("Bildet er for stort, maks 1MB");
+      setFileKey((prevKey) => prevKey + 1);
       return;
     }
     if (file.type !== "image/jpeg" && file.type !== "image/png") {
       setErrorMessage("Bildet må være av type jpeg eller png");
+      setFileKey((prevKey) => prevKey + 1);
       return;
       
+    }
+    if (file.size > 1000000) {
+      setErrorMessage("Bildet er for stort, maks 1MB");
+      setFileKey((prevKey) => prevKey + 1);
+      return;
     }
     const reader = new FileReader();
     reader.readAsDataURL(file);
