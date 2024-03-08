@@ -18,6 +18,7 @@ function UpdateDestination() {
   const [successMessage, setSuccessMessage] = useState("");
   const [imageText, setImageText] = useState("");
   const [fileKey, setFileKey] = useState(0);
+  const [isDragOverBody, setIsDragOverBody] = useState(false);
   const { id } = useParams();
 
   const allLabels = [
@@ -179,6 +180,7 @@ function UpdateDestination() {
     e.preventDefault();
     setImageText("");
     setErrorMessage("");
+    setIsDragOverBody(false);
     const file = e.dataTransfer.files[0];
     if (!file) {
       return;
@@ -206,12 +208,21 @@ function UpdateDestination() {
   };
 
 
+  const handleDragBody = (e) => {
+    e.preventDefault();
+    setIsDragOverBody(true);
+  };
+
+  const handleDropBody = (e) => {
+    e.preventDefault();
+    setIsDragOverBody(false);
+  };
 
 
   return (
     <>
       <Navbar />
-      <div className="newDestinationContainer">
+      <div className="newDestinationContainer" onDragOver={handleDragBody} onDragLeave={handleDropBody}>
         <div className="newDestinationDiv">
           <h1 className="newDestinationHeader">Oppdater destinasjon</h1>
 
@@ -288,8 +299,12 @@ function UpdateDestination() {
               </FormControl>
             </Box>
 
-            <div className="imgDiv" onDrop={handleDrop} onDragOver={handleDragOver}>
-              <input id="inputImage" type="file" key={fileKey} onChange={handleFile}></input>
+            <div className={`imgDiv ${isDragOverBody?"dropzone":""}`} onDrop={handleDrop} onDragOver={handleDragOver}>
+              <label htmlFor="inputImage">
+
+              <p className="button">Choose File</p >{!imageText && <p>No file chosen</p>}
+              <input id="inputImage" type="file" key={fileKey} onChange={handleFile} accept=".jpeg, .jpg, .png" ></input>
+              </label>
               {imageText && (<img src={imageText} alt="destination" className="imgPreview" />)}
             </div>
 

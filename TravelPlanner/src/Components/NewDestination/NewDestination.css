@@ -1,4 +1,9 @@
+
+
 .newDestinationContainer {
+
+
+
   background-color: var(--background);
   min-height: 100vh;
   width: 100%;
@@ -41,6 +46,11 @@
       background-color: var(--foreground);
     }
 
+    
+    
+    .dropzone{
+      background-color: var(--primary);
+    }
 
     .imgDiv{
       display: flex;
@@ -51,13 +61,26 @@
       width: 100%;
       border-radius: 5px;
       border: 1px solid var(--primary);
-      
+      margin-bottom: 10px;
 
-      #inputImage{
-        cursor: pointer;
-        border: none;
+      label{
         width: 100%;
+        cursor: pointer;
         padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        .button{
+          background-color: var(--secondary);
+          padding: 10px;
+          border-radius: 5px;
+        }
+        
+      }
+      #inputImage{
+        display: none;
       }
       .imgPreview{
         max-height: 300px;
