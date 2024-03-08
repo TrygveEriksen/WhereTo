@@ -14,7 +14,7 @@ function UpdateDestination() {
   const [country, setCountry] = useState("");
   const [continent, setContinent] = useState("");
   const [description, setDescription] = useState("");
-  const [isVerified,setIsVerified] = useState("");
+  const [isVerified,setIsVerified] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const { id } = useParams();
@@ -157,8 +157,19 @@ function UpdateDestination() {
       <div className="newDestinationContainer">
         <div className="newDestinationDiv">
           <h1 className="newDestinationHeader">Oppdater destinasjon</h1>
+         
 
           <form onSubmit={handleSubmit} className="newDestinationForm">
+            <div className="verifiedDiv">
+              <label className ="loginLabel" htmlFor="verified">Verified:</label>
+              <input 
+              type="checkbox"
+              id="verified"
+              checked={isVerified === 1}
+              onchange={handleIsVerified}
+              />
+            </div>
+           
             <label className="loginLabel" htmlFor="place">
               Sted:
             </label>
