@@ -120,7 +120,7 @@ function UpdateDestination() {
         country,
         continent,
         labels,
-        isVerified:0 //må legge til knapp for dette
+        isVerified //må legge til knapp for dette
       });
 
       // Handle success response

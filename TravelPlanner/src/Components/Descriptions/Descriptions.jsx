@@ -55,7 +55,10 @@ function Descriptions() {
       <div className="descriptionContent">
         <div className="descriptionsContainer">
           {isLoading && <Loading />}
-          <h1 className="descriptionsHeader">{destinations.place}</h1>
+          <h1 className="descriptionsHeader">
+            {destinations.isVerified ? <img src="/images/SVG/checkmark.svg" alt="verification" height="25px"/>:null}
+            {destinations.place} 
+          </h1>
 
           <h2>
             {" "}
