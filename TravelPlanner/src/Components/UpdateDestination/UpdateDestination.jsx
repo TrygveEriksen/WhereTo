@@ -166,7 +166,7 @@ function UpdateDestination() {
               type="checkbox"
               id="verified"
               checked={isVerified === 1}
-              onchange={handleIsVerified}
+              onChange={handleIsVerified}
               />
             </div>
            
