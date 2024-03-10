@@ -12,7 +12,7 @@ function FilterCheckbox({ handleFilter }) {
     "Eksotisk",
     "Historie",
     "Sol",
-    "Ute liv",
+    "Uteliv",
     "Snø",
     "Vin",
   ];
@@ -25,6 +25,7 @@ function FilterCheckbox({ handleFilter }) {
             <input
               className="checkbox"
               type="checkbox"
+              tabIndex={-1}
               onChange={() => handleFilter(label)}
               name={label}
             />

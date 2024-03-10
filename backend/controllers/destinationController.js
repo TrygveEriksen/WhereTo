@@ -1,8 +1,9 @@
 const DestinationModel = require("../models/Destination");
+const UserModel = require("../models/User");
 
 const findAllDestinations = async (req, res) => {
   try {
-    const destinations = await DestinationModel.find();
+    const destinations = await DestinationModel.find().select("place country continent labels");
     res.json(destinations);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -70,10 +71,23 @@ const updateDestination = async (req, res) => {
   }
 };
 
+
+const getVisitedPlaces = async (req, res) => {
+  try {
+    const visitedPlaces = await UserModel.findOne({
+      _id: req.user._id
+    }).populate('visited')
+    return res.json(visitedPlaces.visited)
+  }
+  catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   findAllDestinations,
   findOneDestination,
   postNewDestination,
   deleteDestination,
-  updateDestination,
+  updateDestination, getVisitedPlaces
 };

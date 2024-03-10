@@ -14,6 +14,7 @@ function UpdateDestination() {
   const [labels, setLabels] = useState([]);
   const [continent, setContinent] = useState("");
   const [description, setDescription] = useState("");
+  const [isVerified,setIsVerified] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [imageText, setImageText] = useState("");
@@ -56,6 +57,13 @@ function UpdateDestination() {
     setContinent(destinationData.continent);
     setDescription(destinationData.description);
     setImageText(destinationData.img);
+    if(destinationData.isVerified != 1) {
+      setIsVerified(0);
+    }
+    else {
+      setIsVerified(1);
+    }
+
   };
 
   const handlePlaceChange = (e) => {
@@ -96,6 +104,17 @@ function UpdateDestination() {
       setLabels(labels.filter((label) => label !== e.target.name));
     }
   };
+
+  const handleIsVerified = (e) => {
+    setErrorMessage("");
+    if(e.target.checked) {
+      setIsVerified(1);
+    }
+    else {
+      setIsVerified(0);
+    }
+  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -227,6 +246,16 @@ function UpdateDestination() {
           <h1 className="newDestinationHeader">Oppdater destinasjon</h1>
 
           <form onSubmit={handleSubmit} className="newDestinationForm">
+            <div className="verifiedDiv">
+              <label className ="loginLabel" htmlFor="verified">Verified:</label>
+              <input 
+              type="checkbox"
+              id="verified"
+              checked={isVerified === 1}
+              onChange={handleIsVerified}
+              />
+            </div>
+
             <label className="loginLabel" htmlFor="place">
               Sted:
             </label>

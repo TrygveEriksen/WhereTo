@@ -11,7 +11,7 @@ export const DarkModeToggle = () => {
           checked={isDark}
           onChange={({ target }) => setIsDark(target.checked)}
         />
-        <span class="slider"></span>
+        <span className="slider"></span>
     </label>
   );
 };
