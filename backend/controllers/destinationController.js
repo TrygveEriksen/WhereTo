@@ -3,7 +3,7 @@ const UserModel = require("../models/User");
 
 const findAllDestinations = async (req, res) => {
   try {
-    const destinations = await DestinationModel.find();
+    const destinations = await DestinationModel.find().select("place country continent labels");
     res.json(destinations);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -33,7 +33,6 @@ const postNewDestination = async (req, res) => {
     const savedDestination = await newDestination.save();
     res.status(201).json(savedDestination);
   } catch (error) {
-    res.status(400).json({ message: error.message });
     res.status(400).json({ message: error.message });
   }
 };
