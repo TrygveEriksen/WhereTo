@@ -95,7 +95,7 @@ function Descriptions() {
             <div className="areaContainer">
               <h1 className="descriptionsHeader">
                 {destinations.place}
-                {destinations.isVerified ? <img src="/images/SVG/checkmark.svg" alt="verification" height="25px"/>:null}
+                {destinations.isVerified ? <img className="checkmark" src="/images/SVG/checkmark.svg" alt="verification"/>:null}
               </h1>
               <h2>
                 <span className="icon">
