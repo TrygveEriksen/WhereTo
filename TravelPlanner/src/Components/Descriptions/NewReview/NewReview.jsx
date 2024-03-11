@@ -36,6 +36,7 @@ function NewReview(props) {
         setComment(review.data.comment);
         setStars(review.data.stars);
         setOldReviewId(review.data._id);
+        setErrorMessage("");
       } catch (error) {
       }
     }
