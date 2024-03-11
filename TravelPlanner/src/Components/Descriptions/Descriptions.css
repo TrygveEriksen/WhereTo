@@ -32,6 +32,11 @@
     }
   }
 
+  .checkmark {
+    height:25px;
+    margin-left: 10px;
+  }
+
 
   .interContainer {
     display: flex;

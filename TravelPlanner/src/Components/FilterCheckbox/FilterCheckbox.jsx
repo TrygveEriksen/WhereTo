@@ -1,7 +1,7 @@
 import FormControl from "@mui/material/FormControl";
 import "./FilterCheckbox.css";
 
-function FilterCheckbox({ handleFilter }) {
+function FilterCheckbox({ handleFilter, handleVerified}) {
   const allLabels = [
     "Strand",
     "Natur",
@@ -32,6 +32,16 @@ function FilterCheckbox({ handleFilter }) {
             {label}
           </label>
         ))}
+        <label className="label">
+          <input 
+          className="checkbox"
+          type="checkbox"
+          defaultChecked
+          onChange={() => handleVerified()}
+          name={"verified"}
+          />
+          Verifisert
+        </label>
       </FormControl>
     </div>
   );
