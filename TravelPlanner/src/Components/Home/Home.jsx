@@ -93,23 +93,23 @@ function Home() {
     }
   };
 
-  const handleVerified = () => {
+  const handleVerified = (e) => {
 
-    if(filterVerified) {
-      setFilterVerified(false)
+    if(e) {
+      setFilterVerified(true)
     }
     else {
-      setFilterVerified(true);
+      setFilterVerified(false);
     }
 
   }
-  const handleUnverified = () => {
+  const handleUnverified = (e) => {
 
-    if(filterUnverified) {
-      setFilterUnverified(false)
+    if(e) {
+      setFilterUnverified(true)
     }
     else {
-      setFilterUnverified(true);
+      setFilterUnverified(false);
     }
 
   }
@@ -145,16 +145,9 @@ function Home() {
             className="filterCheckbox"
             handleFilter={handleFilter}
             handleVerified={handleVerified}
+            handleUnverified = {handleUnverified}
+            permission = {permission}
           />
-          {permission ? <label className="label">
-          <input 
-          className="checkbox"
-          type="checkbox"
-          onChange={handleUnverified}
-          name={"unverified"}
-          />
-          Ikke Verifisert
-          </label>:null}
           <ul className="destinations">
             {visibleDestinations.map((destination) => (
               <li className="oneDestination" key={destination._id}>
