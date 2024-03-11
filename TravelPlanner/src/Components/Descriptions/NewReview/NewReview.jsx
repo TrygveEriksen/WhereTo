@@ -12,7 +12,7 @@ function NewReview(props) {
   const [comment, setComment] = useState("");
   const [stars, setStars] = useState(0);
   const [oldReviewId, setOldReviewId] = useState("");
-
+  const [submitButtonText, setSubmitButtonText] = useState("Legg til");
   useEffect(() => {
     load();
   }, []);
@@ -36,6 +36,7 @@ function NewReview(props) {
         setComment(review.data.comment);
         setStars(review.data.stars);
         setOldReviewId(review.data._id);
+        setSubmitButtonText("Oppdater");
         setErrorMessage("");
       } catch (error) {
       }
@@ -191,7 +192,7 @@ function NewReview(props) {
           rows={5}
         ></textarea>
 
-        <input type="submit" className="submitBtn" value="Legg til" />
+        <input type="submit" className="submitBtn" value={submitButtonText} />
       </form>
       {errorMessage && <div className="error">{errorMessage}</div>}
     </div>
