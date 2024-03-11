@@ -5,10 +5,12 @@
   --primary-dark: #50b874;
   --secondary: #a1d4ce;
   --accent: #7abbc2;
+  --primary-filter: invert(75%) sepia(12%) saturate(1579%) hue-rotate(88deg) brightness(91%) contrast(95%);
   
   --background: #f0f0f0;
   --foreground: #fbfbfb;
   --border: #dfdfdf;
+  --border-2: #212121;
   --footer: #6f7270;
   
   --copy-light: #666666;

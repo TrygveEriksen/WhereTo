@@ -1,0 +1,205 @@
+
+.addAdContainer {
+
+
+
+	background-color: var(--background);
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	scroll-behavior: smooth;
+	padding-top: 10vh;
+	gap: 10px;
+  
+	.addAdDiv, .allAdsDiv {
+	  background-color: var(--foreground);
+	  color: var(--text);
+	  display: flex;
+	  flex-direction: column;
+	  padding: 30px;
+	  gap: 30px;
+	  border-radius: 10px;
+	  border: 2px solid var(--border);
+	  box-shadow: 0px 0px 15px 0px var(--border);
+	}
+  
+	.addAdHeader {
+	  margin: 0;
+	}
+  
+ 
+	.addAdForm {
+	  flex-direction: column;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  width: 80vw;
+	  max-width: 600px;
+	  gap: 5px;
+    
+	  
+	  
+	  .dropzone{
+		background-color: var(--primary);
+	  }
+  
+	  .imgDiv{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		width: 100%;
+		border-radius: 5px;
+		border: 1px solid var(--primary);
+		margin-bottom: 10px;
+  
+		label{
+		  width: 100%;
+		  cursor: pointer;
+		  padding: 10px;
+		  display: flex;
+		  flex-direction: row;
+		  justify-content: center;
+		  align-items: center;
+		  gap: 10px;
+		  .button{
+			background-color: var(--secondary);
+			padding: 10px;
+			border-radius: 5px;
+		  }
+		  
+		}
+		#inputImage{
+		  display: none;
+		}
+		.imgPreview{
+		  max-height: 300px;
+		 
+		  border-radius: 5px;
+		}
+	  }
+  
+  
+  
+	}
+  
+	.loginLabel {
+	  text-align: left;
+	  width: 100%;
+	}
+  
+	.addAdInput {
+	  border: 1px solid var(--primary);
+	  height: 40px;
+	  width: 100%;
+	  border-radius: 5px;
+	  padding: 0px 5px;
+	  margin-bottom: 5px;
+  
+	  color: var(--text);
+	  background-color: var(--text-box);
+  
+	}
+  
+	.submitBtn {
+	  cursor: pointer;
+	  border: none;
+	  height: 30px;
+	  width: 100%;
+	  border-radius: 5px;
+	  background-color: var(--primary);
+	  color: white;
+	}
+  
+	.submitBtn:hover {
+	  cursor: pointer;
+	  border: none;
+	  background-color: var(--primary-dark);
+	}
+  
+	.error {
+	  background-color: var(--error);
+	  color: var(--error-content);
+	  padding: 5px;
+	  border-radius: 5px;
+	  text-align: center;
+	}
+  
+	.success {
+	  background-color: var(--success);
+	  color: var(--success-content);
+	  padding: 5px;
+	  border-radius: 5px;
+	  text-align: center;
+	}
+  
+	.adAddInput {
+	  resize: none;
+	  text-wrap: wrap;
+	  border: 1px solid var(--primary);
+	  height: 30vh;
+	  min-height: 20vh;
+	  width: 100%;
+	  border-radius: 5px;
+	  padding: 5px 5px;
+	  margin-bottom: 5px;
+	  color: var(--text);
+	  background-color: var(--text-box);
+	  
+	}
+  
+	.descriptionInput::placeholder, .addAdInput::placeholder {
+	  color: var(--text-2);
+	}
+  
+	.label {
+	  padding: 10px;
+	}
+  
+  
+	.MuiFormControl-root{
+	  display: flex;
+	  flex-wrap: wrap;
+	  flex-direction: row;
+	}
+
+	.allAdsDiv{
+		.allAdsUl{
+			flex-direction: column;
+			display: flex;
+			justify-content: center;
+			width: 80vw;
+			padding-left: 0;
+			max-width: 600px;
+			gap: 5px;
+
+			.adLi{
+				list-style-type: none;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				padding-right:4px ;
+				align-items: center;
+				gap: 10px;
+				border-bottom: 2px solid var(--border-2);
+
+				.deleteLi{
+					filter: var(--image-filter);
+				}
+
+				.deleteLi:hover {
+					
+					filter: invert(75%) sepia(12%) saturate(1579%) hue-rotate(88deg) brightness(91%) contrast(95%);
+					cursor: pointer;
+				}
+			}
+
+			.adHeader{
+				margin: 0;
+			}
+		}
+	}
+  }

@@ -49,6 +49,18 @@ function Navbar() {
             </Link>
           </div>
           <div className="navbar-item">
+            {permission == 1?
+            <Link to="/AddAd" className="nav-link">
+            <img
+                src="/images/SVG/admin2.svg"
+                alt="my_page"
+                className="nav-logo"
+                height="60px"
+              />
+              <br />
+              <span className="nav-text">Reklame</span> 
+            </Link>
+            :null}
             <Link to="/myPage" className="nav-link">
               <img
                 src="/images/SVG/mypage.svg"
