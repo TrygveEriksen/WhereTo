@@ -1,15 +1,19 @@
 const {
 	findOneRandomAdvertisement,
     findOneAdvertisement,
-    postNewAdvertisement
+    postNewAdvertisement,
+    findAllAdvertisements,
+    deleteAdvertisement
 } = require("../controllers/advertisementController");
   
 const { Router } = require("express");
 const advertisementRouter = Router();
 
 advertisementRouter.get("/", findOneRandomAdvertisement);
-advertisementRouter.get("/:id", findOneAdvertisement);
 advertisementRouter.post("/new", postNewAdvertisement);
+advertisementRouter.get("/all", findAllAdvertisements);
+advertisementRouter.get("/:id", findOneAdvertisement);
+advertisementRouter.delete("/:id", deleteAdvertisement);
 
 
 

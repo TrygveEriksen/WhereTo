@@ -42,5 +42,37 @@ const postNewAdvertisement = async (req, res) => {
     }
 };
 
+const findAllAdvertisements = async (req, res) => {
+  try {
+    const advertisements = await AdvertisementModel.find().select("title");
 
-module.exports = { findOneRandomAdvertisement, findOneAdvertisement, postNewAdvertisement };
+    
+    res.json(advertisements);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const deleteAdvertisement = async (req, res) => {
+  try {
+    if(req.user.permission!=1){
+      return res.json({error: "Not admin"});
+    }
+    console.log(req.params.id);
+    const adId = req.params.id;
+    const deletedAd = await AdvertisementModel.findByIdAndDelete(
+      adId
+      
+    );
+    console.log("Det slettes");
+    if (deletedAd) {
+      res.status(200).json(deletedAd);
+    } else { 
+      res.status(404).json({ message: "Ad Not Found" });
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = { findOneRandomAdvertisement, findOneAdvertisement, postNewAdvertisement, findAllAdvertisements, deleteAdvertisement };
