@@ -1,13 +1,13 @@
 .toggleSlider {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
 
-  
 
-  .input {
+
+
+  input {
     display: none;
   }
 
@@ -25,8 +25,12 @@
   }
 
 
+
   .slider:before {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     content: "🌞";
     height: 24px;
     width: 24px;
@@ -37,12 +41,12 @@
   }
 
 
-  input:checked + .slider {
+  input:checked+.slider {
     background-color: var(--primary-dark);
   }
 
 
-  input:checked + .slider:before {
+  input:checked+.slider:before {
     transform: translateX(26px);
     content: "🌜";
   }
