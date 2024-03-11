@@ -13,58 +13,44 @@ function Home() {
   const [isLoading, setLoading] = useState(true);
   const [searchWord, setSearchWord] = useState("");
   const [toggledFilters, setToggledFilters] = useState([]);
+  const [filterVerified, setFilterVerified] = useState(true);
 
   /**
    * Updates data based on filters and search word
    */
   useEffect(() => {
-    if (searchWord === "" && toggledFilters.length === 0) {
-      setVisibleDestinations(destinations);
-    } else if (toggledFilters.length === 0) {
-      setVisibleDestinations(
-        destinations.filter((destination) => {
-          return (
-            destination.place
-              .toLowerCase()
-              .includes(searchWord.toLowerCase()) ||
-            destination.country
-              .toLowerCase()
-              .includes(searchWord.toLowerCase()) ||
-            destination.continent
-              .toLowerCase()
-              .includes(searchWord.toLowerCase())
-          );
-        })
-      );
-    } else if (searchWord === "") {
-      setVisibleDestinations(
-        destinations.filter((destination) => {
-          return toggledFilters.every((filter) =>
-            destination.labels.includes(filter)
-          );
-        })
-      );
-    } else {
-      setVisibleDestinations(
-        destinations.filter((destination) => {
-          return (
-            (destination.place
-              .toLowerCase()
-              .includes(searchWord.toLowerCase()) ||
-              destination.country
-                .toLowerCase()
-                .includes(searchWord.toLowerCase()) ||
-              destination.continent
-                .toLowerCase()
-                .includes(searchWord.toLowerCase())) &&
-            toggledFilters.every((filter) =>
-              destination.labels.includes(filter)
-            )
-          );
-        })
-      );
+    let filteredDest = destinations;
+    if(filterVerified) {
+      filteredDest = filteredDest.filter((destination) => {
+        return (destination.isVerified === 1)
+      })
     }
-  }, [toggledFilters, searchWord]);
+    if(toggledFilters.length != 0) {
+      filteredDest = filteredDest.filter((destination) => {
+         return toggledFilters.every((filter) =>
+            destination.labels.includes(filter)
+        );
+      })
+    }
+
+    if(searchWord != "") {
+      filteredDest = filteredDest.filter((destination) => {
+        return (destination.place
+        .toLowerCase()
+        .includes(searchWord.toLowerCase()) ||
+        destination.country
+          .toLowerCase()
+          .includes(searchWord.toLowerCase()) ||
+        destination.continent
+          .toLowerCase()
+          .includes(searchWord.toLowerCase()))
+
+      })
+    }
+
+    setVisibleDestinations(filteredDest);
+
+  },[toggledFilters, searchWord, filterVerified])
 
   //fetch data from the server when the page starts running and set it in the state destination
   useEffect(() => {
@@ -75,7 +61,9 @@ function Home() {
     const destRes = await API.get("/destinations");
     if (destRes) {
       setDestinations(destRes.data);
-      setVisibleDestinations(destRes.data);
+      setVisibleDestinations(destRes.data.filter((destination) => {
+        return (destination.isVerified === 1);
+      }));
       return setLoading(false);
     }
   };
@@ -93,6 +81,19 @@ function Home() {
       console.log(toggledFilters);
     }
   };
+
+  const handleVerified = () => {
+
+    console.log(filterVerified)
+    
+    if(filterVerified) {
+      setFilterVerified(false)
+    }
+    else {
+      setFilterVerified(true);
+    }
+
+  }
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -124,6 +125,7 @@ function Home() {
           <FilterCheckbox
             className="filterCheckbox"
             handleFilter={handleFilter}
+            handleVerified={handleVerified}
           />
           <ul className="destinations">
             {visibleDestinations.map((destination) => (
