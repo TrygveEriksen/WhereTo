@@ -30,6 +30,9 @@ function MyReviews(props) {
       setTitle(review.title);
     } else if (review.comment) {
       setComment(review.comment);
+    } else {
+      setComment(null);
+      setTitle(null);
     }
   };
 
@@ -112,7 +115,10 @@ function MyReviews(props) {
               <p className="date">
                 {new Date(review.timestamp).toLocaleString("en-GB")}
               </p>
-              <EditIcon onClick={() => handleEditing(review)} />
+              <EditIcon
+                className="editIcon"
+                onClick={() => handleEditing(review)}
+              />
             </div>
             <div className="reviewContent">
               {review.title && <h3>{review.title}</h3>}

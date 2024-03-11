@@ -20,7 +20,7 @@ function EditReview({
   return (
     <div>
       <Dialog open={open} onClose={handleClose}>
-        <ClearIcon onClick={handleClose} />
+        <ClearIcon className="editIcon" onClick={handleClose} />
         <DialogTitle>Rediger din vurdering</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -119,7 +119,7 @@ function EditReview({
               <input type="submit" className="submitBtn" value="Oppdater" />
               <input
                 type="submit"
-                className="submitBtn"
+                className="submitBtnDelete"
                 value="Slett"
                 onClick={() => handleDelete(reviewToEdit._id)}
               />

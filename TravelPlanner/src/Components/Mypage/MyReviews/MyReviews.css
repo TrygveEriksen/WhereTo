@@ -44,6 +44,10 @@
       .reviewContent {
         padding: 0 5px;
       }
+
+      .editIcon {
+        cursor: pointer;
+      }
     }
   }
 }
@@ -123,6 +127,16 @@
     color: white;
   }
 
+  .submitBtnDelete {
+    cursor: pointer;
+    border: none;
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--error);
+    color: white;
+  }
+
   .submitBtn:hover {
     cursor: pointer;
     border: none;
@@ -136,4 +150,8 @@
   padding: 5px;
   border-radius: 5px;
   text-align: center;
+}
+
+.editIcon {
+  cursor: pointer;
 }
