@@ -60,7 +60,7 @@ function UpdateDestination() {
 
   const handlePlaceChange = (e) => {
     setErrorMessage("");
-    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
+    const capitalizedInput = e.target.value.replace(/([a-zA-ZæøåÆØÅ]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setPlace(capitalizedInput);
@@ -68,14 +68,14 @@ function UpdateDestination() {
 
   const handleCountryChange = (e) => {
     setErrorMessage("");
-    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
+    const capitalizedInput = e.target.value.replace(/([a-zA-ZæøåÆØÅ]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setCountry(capitalizedInput);
   };
   const handleContinentChange = (e) => {
     setErrorMessage("");
-    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
+    const capitalizedInput = e.target.value.replace(/([a-zA-ZæøåÆØÅ]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setContinent(capitalizedInput);
