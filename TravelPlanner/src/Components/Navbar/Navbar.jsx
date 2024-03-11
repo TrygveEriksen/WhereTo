@@ -35,6 +35,7 @@ function Navbar() {
           </Link>
         </div>
         <div className="navbar-item" id="navbar-right">
+          <DarkModeToggle />
           <div className="navbar-item">
             <Link to="/newdestination" className="nav-link">
               <img
@@ -46,8 +47,6 @@ function Navbar() {
               <br />
               <span className="nav-text">Ny destinasjon</span>
             </Link>
-            <DarkModeToggle />
-          
           </div>
           <div className="navbar-item">
             <Link to="/myPage" className="nav-link">
@@ -99,6 +98,9 @@ function Navbar() {
               <Link to="/myPage" className="nav-link">
                 <span className="menu-link-text">Min side</span>
               </Link>
+            </li>
+            <li>
+              <DarkModeToggle />
             </li>
             <li>
               <Link
