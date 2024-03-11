@@ -7,17 +7,20 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
-import {Link} from "react-router-dom";
 
 function UpdateDestination() {
   const [place, setPlace] = useState("");
   const [country, setCountry] = useState("");
+  const [labels, setLabels] = useState([]);
   const [continent, setContinent] = useState("");
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [imageText, setImageText] = useState("");
+  const [fileKey, setFileKey] = useState(0);
+  const [isDragOverBody, setIsDragOverBody] = useState(false);
   const { id } = useParams();
-  let labels = [];
+
   const allLabels = [
     "Strand",
     "Natur",
@@ -46,12 +49,13 @@ function UpdateDestination() {
     }
     //Fra chat:
     const response = await API.get(`/destinations/${id}`); //må finne riktig destination
-      const destinationData = response.data;
-
-      setPlace(destinationData.place);
-      setCountry(destinationData.country);
-      setContinent(destinationData.continent);
-      setDescription(destinationData.description);
+    const destinationData = response.data;
+    setLabels(destinationData.labels);
+    setPlace(destinationData.place);
+    setCountry(destinationData.country);
+    setContinent(destinationData.continent);
+    setDescription(destinationData.description);
+    setImageText(destinationData.img);
   };
 
   const handlePlaceChange = (e) => {
@@ -76,23 +80,26 @@ function UpdateDestination() {
     });
     setContinent(capitalizedInput);
   };
+
+
   const handleDescriptionChange = (e) => {
     setErrorMessage("");
-    setDescription(e.target.value);
+    setDescription(e.target.value)
+
   };
 
   const handleLabelChange = (e) => {
     setErrorMessage("");
     if (e.target.checked) {
-      labels.push(e.target.name);
+      setLabels([...labels, e.target.name]);
     } else {
-      labels = labels.filter((label) => label !== e.target.name);
+      setLabels(labels.filter((label) => label !== e.target.name));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!(place && country && continent && description)) {
+    if (!(place && country && continent && description && imageText)) {
       console.log(place + country + continent + description);
       setErrorMessage("Du må fylle ut alle feltene!");
       return;
@@ -105,12 +112,13 @@ function UpdateDestination() {
         country,
         continent,
         labels,
-        isVerified:0 //må legge til knapp for dette
+        isVerified: 0, //må legge til knapp for dette
+        img: imageText,
       });
 
       // Handle success response
       console.log("Destination updated successfully:");
-      
+
       setSuccessMessage("Destinasjon ble oppdatert!");
       window.history.back()
     } catch (error) {
@@ -124,22 +132,97 @@ function UpdateDestination() {
     e.preventDefault();
     const confirmed = window.confirm("Er du sikker på at du vil slette denne destinasjonen?");
     if (confirmed) {
-    try {
-    
+      try {
+
         const res = await API.delete(`/review/bydestination/${id}`)
         const response = await API.delete(`/destinations/delete/${id}`)
-        window.location.href="/"
+        window.location.href = "/"
+      }
+      catch (error) {
+        setErrorMessage("Noe gikk galt");
+        console.error("Error deleting destination:", error);
+      }
     }
-    catch (error) {
-    setErrorMessage("Noe gikk galt");
-      console.error("Error deleting destination:", error);
+  }
+
+
+
+  const handleFile = (e) => {
+    const file = e.target.files[0];
+    setErrorMessage("");
+    setImageText("");
+    if (!file) {
+      setFileKey((prevKey) => prevKey + 1);
+      return;
     }
-  }}
+    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+      setErrorMessage("Bildet må være av type jpeg eller png");
+      setFileKey((prevKey) => prevKey + 1);
+      return;
+      
+    }
+    if (file.size > 1000000) {
+      setErrorMessage("Bildet er for stort, maks 1MB");
+      setFileKey((prevKey) => prevKey + 1);
+      return;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64 = reader.result;
+      setImageText(base64);
+    
+
+    };
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setImageText("");
+    setErrorMessage("");
+    setIsDragOverBody(false);
+    const file = e.dataTransfer.files[0];
+    if (!file) {
+      return;
+    }    if (file.type !== "image/jpeg" && file.type !== "image/png") {
+      setErrorMessage("Bildet må være av type jpeg eller png");
+      setFileKey((prevKey) => prevKey + 1);
+      return;
+      
+    }
+    if (file.size > 1000000) {
+      setErrorMessage("Bildet er for stort, maks 1MB");
+      setFileKey((prevKey) => prevKey + 1);
+      return;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64 = reader.result;
+      setImageText(base64);
+    };
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+
+  const handleDragBody = (e) => {
+    e.preventDefault();
+    setIsDragOverBody(true);
+  };
+
+  const handleDropBody = (e) => {
+    e.preventDefault();
+    setIsDragOverBody(false);
+  };
+
 
   return (
     <>
       <Navbar />
-      <div className="newDestinationContainer">
+      <div className="newDestinationContainer" onDragOver={handleDragBody} onDragLeave={handleDropBody}>
         <div className="newDestinationDiv">
           <h1 className="newDestinationHeader">Oppdater destinasjon</h1>
 
@@ -208,12 +291,22 @@ function UpdateDestination() {
                       type="checkbox"
                       onChange={handleLabelChange}
                       name={label}
+                      checked={labels.includes(label)}
                     />
                     {label}
                   </label>
                 ))}
               </FormControl>
             </Box>
+
+            <div className={`imgDiv ${isDragOverBody?"dropzone":""}`} onDrop={handleDrop} onDragOver={handleDragOver}>
+              <label htmlFor="inputImage">
+
+              <p className="button">Choose File</p >{!imageText && <p>No file chosen</p>}
+              <input id="inputImage" type="file" key={fileKey} onChange={handleFile} accept=".jpeg, .jpg, .png" ></input>
+              </label>
+              {imageText && (<img src={imageText} alt="destination" className="imgPreview" />)}
+            </div>
 
 
             <button className="submitBtn" type="submit">
@@ -222,9 +315,9 @@ function UpdateDestination() {
 
 
           </form>
-            <button className="submitBtn" id="deleteBtn" onClick = {handleDelete}>
-              Slett destinasjon
-            </button>
+          <button className="submitBtn" id="deleteBtn" onClick={handleDelete}>
+            Slett destinasjon
+          </button>
           {errorMessage && <div className="error">{errorMessage}</div>}
           {successMessage && <p className="success"> {successMessage} </p>}
         </div>
