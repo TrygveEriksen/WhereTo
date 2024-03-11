@@ -54,7 +54,7 @@ function Descriptions() {
     });
 
     if (res.data.message === "success") {
-      setVisitButton(user.data.visited.includes(id))
+      setVisitButton(!user.data.visited.includes(id))
     }
   };
 
