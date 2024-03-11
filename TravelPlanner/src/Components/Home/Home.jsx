@@ -14,17 +14,26 @@ function Home() {
   const [searchWord, setSearchWord] = useState("");
   const [toggledFilters, setToggledFilters] = useState([]);
   const [filterVerified, setFilterVerified] = useState(true);
+  const [filterUnverified, setFilterUnverified] = useState(false);
+  const [permission, setPermission] = useState(0);
 
   /**
    * Updates data based on filters and search word
    */
   useEffect(() => {
     let filteredDest = destinations;
-    if(filterVerified) {
+    if(permission == 1 && filterUnverified) {
+      console.log("test")
+      filteredDest = filteredDest.filter((destination) => {
+        return (destination.isVerified != 1);
+      })
+    }
+    else if(filterVerified) {
       filteredDest = filteredDest.filter((destination) => {
         return (destination.isVerified === 1)
       })
     }
+    
     if(toggledFilters.length != 0) {
       filteredDest = filteredDest.filter((destination) => {
          return toggledFilters.every((filter) =>
@@ -50,7 +59,7 @@ function Home() {
 
     setVisibleDestinations(filteredDest);
 
-  },[toggledFilters, searchWord, filterVerified])
+  },[toggledFilters, searchWord, filterVerified, filterUnverified])
 
   //fetch data from the server when the page starts running and set it in the state destination
   useEffect(() => {
@@ -58,6 +67,9 @@ function Home() {
   }, []);
 
   const load = async () => {
+    const isAdmin = await API.get("/admin");
+    setPermission(isAdmin.data.permission);
+
     const destRes = await API.get("/destinations");
     if (destRes) {
       setDestinations(destRes.data);
@@ -74,7 +86,6 @@ function Home() {
       setToggledFilters((prevFilters) =>
         prevFilters.filter((filter) => filter !== wordToFilterOn)
       );
-      console.log(toggledFilters);
     } else {
       // Add to the list if not present
       setToggledFilters((prevFilters) => [...prevFilters, wordToFilterOn]);
@@ -84,13 +95,21 @@ function Home() {
 
   const handleVerified = () => {
 
-    console.log(filterVerified)
-    
     if(filterVerified) {
       setFilterVerified(false)
     }
     else {
       setFilterVerified(true);
+    }
+
+  }
+  const handleUnverified = () => {
+
+    if(filterUnverified) {
+      setFilterUnverified(false)
+    }
+    else {
+      setFilterUnverified(true);
     }
 
   }
@@ -127,6 +146,15 @@ function Home() {
             handleFilter={handleFilter}
             handleVerified={handleVerified}
           />
+          {permission ? <label className="label">
+          <input 
+          className="checkbox"
+          type="checkbox"
+          onChange={handleUnverified}
+          name={"unverified"}
+          />
+          Ikke Verifisert
+          </label>:null}
           <ul className="destinations">
             {visibleDestinations.map((destination) => (
               <li className="oneDestination" key={destination._id}>
