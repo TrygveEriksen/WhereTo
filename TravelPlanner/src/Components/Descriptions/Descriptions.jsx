@@ -33,6 +33,7 @@ function Descriptions() {
       const destRes = await API.get(`/destinations/${id}`);
       const user = await API.get("/getUser");
       if (destRes) {
+
         window.scrollTo(0, 0);
         setDestinations(destRes.data);
         if (user) {
@@ -44,6 +45,7 @@ function Descriptions() {
       window.location.href = "/";
     }
   };
+
   const handleVisited = async () => {
     const user = await API.get("/getUser");
     const res = await API.put("/user/toggleVisited", {
@@ -52,7 +54,7 @@ function Descriptions() {
     });
 
     if (res.data.message === "success") {
-      load();
+      setVisitButton(!user.data.visited.includes(id))
     }
   };
 
@@ -75,17 +77,17 @@ function Descriptions() {
     <>
       <Navbar />
       <div className="descriptionContent">
-        
-          <div className="imageContainer">
-            {isLoading || (!destinations.img) ? 
+
+        <div className="imageContainer">
+          {isLoading || (!destinations.img) ?
             <Loading /> :
             <img className="destImage" src={destinations.img} alt="Bilde av destinasjon" />}
-          </div>
-   
+        </div>
+
         <div className="interContainer">
           <div className="column-container">
             <div className="descriptionsContainer">
-            
+
             </div>
             {permission == 1 && (
               <Link to={`/editdestination/${id}`} className="destAnchorPen">
@@ -93,7 +95,10 @@ function Descriptions() {
               </Link>
             )}
             <div className="areaContainer">
-              <h1 className="descriptionsHeader">{destinations.place}</h1>
+              <h1 className="descriptionsHeader">
+                {destinations.place}
+                {destinations.isVerified ? <img className="checkmark" src="/images/SVG/checkmark.svg" alt="verification"/>:null}
+              </h1>
               <h2>
                 <span className="icon">
                   <i className="fas fa-globe"></i>
@@ -102,7 +107,7 @@ function Descriptions() {
               </h2>
             </div>
             <div className="visitedButton" onClick={handleVisited}>
-              <img src={currentImage} alt="Visited" />
+              <img src={currentImage} alt="Visited" className="visited" />
               <p className="buttonText">{visit}</p>
             </div>
             <div className="labels">

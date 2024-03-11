@@ -3,7 +3,15 @@
 }
 
 
+  
+  #deleteBtn:hover {
+    background-color: rgb(212, 53, 0);
+  }
 
-#deleteBtn:hover {
-  background-color: rgb(212, 53, 0);
+.verifiedDiv {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
 }

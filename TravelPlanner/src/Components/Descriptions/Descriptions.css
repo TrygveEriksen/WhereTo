@@ -6,11 +6,12 @@
   align-items: center;
   margin-top: 40px;
   gap: 20px;
+
   img {
     filter: var(--image-filter);
   }
 
-  .imageContainer{
+  .imageContainer {
     top: 150px;
     z-index: 0;
     max-width: 800px;
@@ -20,15 +21,20 @@
     display: flex;
     justify-content: center;
     height: 400px;
-      
-    
-    .destImage{
+
+
+    .destImage {
       width: 100%;
       object-fit: cover;
       overflow: hidden;
       border-radius: 10px;
       filter: invert(0);
     }
+  }
+
+  .checkmark {
+    height:25px;
+    margin-left: 10px;
   }
 
 
@@ -55,10 +61,11 @@
       border-radius: 10px;
 
       .destAnchorPen {
-        position: relative; /* Set position relative to allow absolute positioning */
+        position: relative;
+        /* Set position relative to allow absolute positioning */
 
       }
-      
+
       .editDest {
         position: absolute;
         font-size: x-large;
@@ -74,15 +81,20 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 120px;
-
+        width: 100px;
+        height: 160px;
         margin: 16px;
         background-color: var(--primary);
         color: var(--text);
         border-radius: 10px;
-        padding: 10px;
+        padding-top: 30px;
+        padding-bottom: 10px;
         cursor: pointer;
+        gap: 1px;
 
+        .visited {
+          height: 100px;
+        }
       }
 
       .areaContainer {
@@ -90,11 +102,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        
+
 
         flex: 1;
 
-    
+
 
         .icon {
           margin-right: 10px;

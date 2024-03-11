@@ -14,6 +14,7 @@ function UpdateDestination() {
   const [labels, setLabels] = useState([]);
   const [continent, setContinent] = useState("");
   const [description, setDescription] = useState("");
+  const [isVerified,setIsVerified] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [imageText, setImageText] = useState("");
@@ -56,11 +57,18 @@ function UpdateDestination() {
     setContinent(destinationData.continent);
     setDescription(destinationData.description);
     setImageText(destinationData.img);
+    if(destinationData.isVerified != 1) {
+      setIsVerified(0);
+    }
+    else {
+      setIsVerified(1);
+    }
+
   };
 
   const handlePlaceChange = (e) => {
     setErrorMessage("");
-    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
+    const capitalizedInput = e.target.value.replace(/([a-zA-ZæøåÆØÅ]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setPlace(capitalizedInput);
@@ -68,14 +76,14 @@ function UpdateDestination() {
 
   const handleCountryChange = (e) => {
     setErrorMessage("");
-    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
+    const capitalizedInput = e.target.value.replace(/([a-zA-ZæøåÆØÅ]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setCountry(capitalizedInput);
   };
   const handleContinentChange = (e) => {
     setErrorMessage("");
-    const capitalizedInput = e.target.value.replace(/([a-zA-Z]+)|([\s-]+)/g, (match, word) => {
+    const capitalizedInput = e.target.value.replace(/([a-zA-ZæøåÆØÅ]+)|([\s-]+)/g, (match, word) => {
       return word ? word.charAt(0).toUpperCase() + word.slice(1) : match;
     });
     setContinent(capitalizedInput);
@@ -97,6 +105,17 @@ function UpdateDestination() {
     }
   };
 
+  const handleIsVerified = (e) => {
+    setErrorMessage("");
+    if(e.target.checked) {
+      setIsVerified(1);
+    }
+    else {
+      setIsVerified(0);
+    }
+  }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!(place && country && continent && description && imageText)) {
@@ -112,7 +131,7 @@ function UpdateDestination() {
         country,
         continent,
         labels,
-        isVerified: 0, //må legge til knapp for dette
+        isVerified,
         img: imageText,
       });
 
@@ -227,6 +246,16 @@ function UpdateDestination() {
           <h1 className="newDestinationHeader">Oppdater destinasjon</h1>
 
           <form onSubmit={handleSubmit} className="newDestinationForm">
+            <div className="verifiedDiv">
+              <label className ="loginLabel" htmlFor="verified">Verified:</label>
+              <input 
+              type="checkbox"
+              id="verified"
+              checked={isVerified === 1}
+              onChange={handleIsVerified}
+              />
+            </div>
+
             <label className="loginLabel" htmlFor="place">
               Sted:
             </label>

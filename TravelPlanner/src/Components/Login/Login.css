@@ -22,9 +22,7 @@
     margin: 0;
   }
 
-  .loginLink{
-    color: var(--primary);
-  }
+
 
   .loginForm {
     flex-direction: column;
@@ -33,87 +31,94 @@
     justify-content: center;
     width: 300px;
     gap: 5px;
+
+
+    .submitBtn {
+    
+      cursor: pointer;
+      border: none;
+      height: 30px;
+      width: 100%;
+      border-radius: 5px;
+      background-color: var(--primary);
+  
+      color: white;
+    }
+  
+    .submitBtn:hover {
+      cursor: pointer;
+      border: none;
+      background-color: var(--primary-dark);
+    }
+    
+    .loginLabel {
+      text-align: left;
+      width: 100%;
+    }
+    
+    .loginInput {
+      border: none;
+      border: 1px solid var(--primary);
+      height: 30px;
+      width: 100%;
+      border-radius: 5px;
+      padding: 0px 5px;
+      margin-bottom: 5px;
+      background-color: var(--text-box);
+      
+      color: var(--text);
+    }
+    
+    
+    input[type="password"]::-webkit-contacts-auto-fill-button,
+    input[type="password"]::-ms-reveal {
+      -webkit-text-fill-color: white;
+      color: white;
+      filter: var(--image-filter);
+    }
+    
+    
+    
   }
-
-  .loginLabel {
-    text-align: left;
-    width: 100%;
+    .error {
+      background-color: var(--error);
+      color: var(--error-content);
+      padding: 5px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .linkDiv {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      font-size: small;
+      .loginText {
+        margin: 0 5px 0 0;
+      }
+    .loginLink {
+      color: var(--primary);
+    }
   }
+    
 
-  .loginInput {
-    border: none;
-    border: 1px solid var(--primary);
-    height: 30px;
-    width: 100%;
-    border-radius: 5px;
-    padding: 0px 5px;
-    margin-bottom: 5px;
-    background-color: var(--text-box);
-
-    color: var(--text);
-  }
-
-
-  input[type="password"]::-webkit-contacts-auto-fill-button, 
-  input[type="password"]::-ms-reveal {
-    -webkit-text-fill-color: white;
-    color: white;
-    filter: var(--image-filter);
-}
-
-  .submitBtn {
-    cursor: pointer;
-    border: none;
-    height: 30px;
-    width: 100%;
-    border-radius: 5px;
-    background-color: var(--primary);
-    color: white;
-  }
-
-  .submitBtn:hover {
-    cursor: pointer;
-    border: none;
-    background-color: var(--primary-dark);
-  }
-
-  .error {
-    background-color: var(--error);
-    color: var(--error-content);
-    padding: 5px;
-    border-radius: 5px;
-    text-align: center;
-  }
-
-  .linkDiv {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    font-size: small;
-  }
-
-  .loginText {
-    margin: 0 5px 0 0;
-  }
 }
 
 .login-navbar {
-	background-color: var(--primary);
-	height: 20vh;
-	display: flex;
+  background-color: var(--primary);
+  height: 20vh;
+  display: flex;
 
-	position: sticky;
-	top: 0;
-	overflow: hidden;
-	width: 100%;
-	align-items: center;
-	padding-left: 30px;
-	padding-right: 30px;
-	justify-content: space-between;
-	
-  }
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  justify-content: space-between;
 
-  .login-nav-link {
-    color: black;
-    text-decoration: none;
-    }
+}
+.login-nav-link {
+  color: black;
+  text-decoration: none;
+}
