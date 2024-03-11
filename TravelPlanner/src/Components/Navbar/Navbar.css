@@ -78,7 +78,7 @@
   .mobileMenuList {
     display: block;
     position: sticky;
-    z-index: 5000;
+    z-index: 1000;
     right: 0;
   }
 
