@@ -27,11 +27,12 @@ function FilterCheckbox({ handleFilter, handleVerified,handleUnverified,permissi
       setUnverifiedCheck(false);
     }
     setVerifiedCheck(true);
+    changeVerified(true,false)
    }
    else {
     setVerifiedCheck(false);
+    changeVerified(false,false)
    }
-   changeVerified()
   
   }
 
@@ -41,17 +42,18 @@ function FilterCheckbox({ handleFilter, handleVerified,handleUnverified,permissi
         setVerifiedCheck(false);
       }
       setUnverifiedCheck(true);
+      changeVerified(false,true);
     }
     else {
       setUnverifiedCheck(false);
+      changeVerified(false,false)
     }
 
-    changeVerified()
     
   }
-  const changeVerified = () => {
-   handleVerified(verifiedCheck)
-   handleUnverified(unverifiedCheck)
+  const changeVerified = (verified,unverified) => {
+   handleVerified(verified)
+   handleUnverified(unverified)
   }
 
 

@@ -21,9 +21,31 @@ function Home() {
    * Updates data based on filters and search word
    */
   useEffect(() => {
-    let filteredDest = destinations;
+    filter(destinations)
+    
+  },[toggledFilters, searchWord, filterVerified, filterUnverified])
+
+  
+
+  //fetch data from the server when the page starts running and set it in the state destination
+  useEffect(() => {
+    load();
+  }, []);
+
+  const load = async () => {
+    const isAdmin = await API.get("/admin");
+    setPermission(isAdmin.data.permission);
+
+    const destRes = await API.get("/destinations");
+    if (destRes) {
+      setDestinations(destRes.data);
+      filter(destRes.data); 
+      return setLoading(false);
+    }
+  };
+  const filter = (dest) => {
+    let filteredDest = dest;
     if(permission == 1 && filterUnverified) {
-      console.log("test")
       filteredDest = filteredDest.filter((destination) => {
         return (destination.isVerified != 1);
       })
@@ -36,7 +58,7 @@ function Home() {
     
     if(toggledFilters.length != 0) {
       filteredDest = filteredDest.filter((destination) => {
-         return toggledFilters.every((filter) =>
+        return toggledFilters.every((filter) =>
             destination.labels.includes(filter)
         );
       })
@@ -59,27 +81,8 @@ function Home() {
 
     setVisibleDestinations(filteredDest);
 
-  },[toggledFilters, searchWord, filterVerified, filterUnverified])
 
-  //fetch data from the server when the page starts running and set it in the state destination
-  useEffect(() => {
-    load();
-  }, []);
-
-  const load = async () => {
-    const isAdmin = await API.get("/admin");
-    setPermission(isAdmin.data.permission);
-
-    const destRes = await API.get("/destinations");
-    if (destRes) {
-      setDestinations(destRes.data);
-      setVisibleDestinations(destRes.data.filter((destination) => {
-        return (destination.isVerified === 1);
-      }));
-      return setLoading(false);
-    }
-  };
-
+  }
   const handleFilter = (wordToFilterOn) => {
     if (toggledFilters.includes(wordToFilterOn)) {
       // Remove from the list if already present
