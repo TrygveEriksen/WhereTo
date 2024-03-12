@@ -135,8 +135,8 @@ function MyReviews(props) {
           handleSubmit={handleSubmit}
           handleDelete={handleDelete}
           stars={stars}
-          title={title}
-          comment={comment}
+          title={title? title : ""}
+          comment={comment? comment : ""}
           reviewToEdit={reviewToEdit}
         />
       </ul>
