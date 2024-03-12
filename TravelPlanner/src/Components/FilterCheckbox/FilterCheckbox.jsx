@@ -1,7 +1,11 @@
 import FormControl from "@mui/material/FormControl";
 import "./FilterCheckbox.css";
+import React, {useState} from "react";
 
 function FilterCheckbox({ handleFilter, handleVerified,handleUnverified,permission}) {
+  const [verifiedCheck,setVerifiedCheck] = useState(true);
+  const [unverifiedCheck,setUnverifiedCheck] = useState(false);
+
   const allLabels = [
     "Strand",
     "Natur",
@@ -16,6 +20,40 @@ function FilterCheckbox({ handleFilter, handleVerified,handleUnverified,permissi
     "Snø",
     "Vin",
   ];
+
+  const handleVerifiedCheck = (e) => {
+   if(e) {
+    if(permission && unverifiedCheck) {
+      setUnverifiedCheck(false);
+    }
+    setVerifiedCheck(true);
+   }
+   else {
+    setVerifiedCheck(false);
+   }
+   changeVerified()
+  
+  }
+
+  const handleUnverifiedCheck = (e) => {
+    if(e) {
+      if(verifiedCheck) {
+        setVerifiedCheck(false);
+      }
+      setUnverifiedCheck(true);
+    }
+    else {
+      setUnverifiedCheck(false);
+    }
+
+    changeVerified()
+    
+  }
+  const changeVerified = () => {
+   handleVerified(verifiedCheck)
+   handleUnverified(unverifiedCheck)
+  }
+
 
   return (
     <div className="filterCheckbox">
@@ -37,8 +75,8 @@ function FilterCheckbox({ handleFilter, handleVerified,handleUnverified,permissi
           className="checkbox"
           type="checkbox"
           tabIndex={-1}
-          defaultChecked
-          onChange={(e) => handleVerified(e.target.checked)}
+          checked = {verifiedCheck}
+          onChange={(e) => handleVerifiedCheck(e.target.checked)}
           name={"verified"}
           />
           Verifisert
@@ -48,7 +86,8 @@ function FilterCheckbox({ handleFilter, handleVerified,handleUnverified,permissi
           className="checkbox"
           type="checkbox"
           tabIndex={-1}
-          onChange={(e)=> handleUnverified(e.target.checked)}
+          checked={unverifiedCheck}
+          onChange={(e)=> handleUnverifiedCheck(e.target.checked)}
           name={"unverified"}
           />
           Ikke Verifisert
