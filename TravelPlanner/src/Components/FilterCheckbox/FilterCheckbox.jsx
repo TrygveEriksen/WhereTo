@@ -1,7 +1,7 @@
 import FormControl from "@mui/material/FormControl";
 import "./FilterCheckbox.css";
 
-function FilterCheckbox({ handleFilter, handleVerified}) {
+function FilterCheckbox({ handleFilter, handleVerified }) {
   const allLabels = [
     "Strand",
     "Natur",
@@ -21,27 +21,33 @@ function FilterCheckbox({ handleFilter, handleVerified}) {
     <div className="filterCheckbox">
       <FormControl component="fieldset" variant="standard">
         {allLabels.map((label, index) => (
-          <label key={index} className="label">
+          <div className="labelBox" key={index}>
             <input
               className="checkbox"
               type="checkbox"
               tabIndex={-1}
+              id={"label" + index}
               onChange={() => handleFilter(label)}
               name={label}
             />
-            {label}
-          </label>
+            <label className="label" htmlFor={"label" + index}>
+              {label}
+            </label>
+          </div>
         ))}
-        <label className="label">
-          <input 
-          className="checkbox"
-          type="checkbox"
-          defaultChecked
-          onChange={() => handleVerified()}
-          name={"verified"}
+        <div className="labelBox" key={"verified"}>
+          <input
+            className="checkbox"
+            type="checkbox"
+            id={"verified"}
+            defaultChecked
+            onChange={() => handleVerified()}
+            name={"verified"}
           />
-          Verifisert
-        </label>
+          <label htmlFor={"verified"} className="label">
+            Verifisert
+          </label>
+        </div>
       </FormControl>
     </div>
   );

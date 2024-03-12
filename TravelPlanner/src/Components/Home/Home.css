@@ -89,10 +89,48 @@
 
   .filterCheckbox {
     color: var(--text);
+ 
     padding: 20px;
     z-index: 1;
+
+    .MuiFormControl-root{
+      display: flex;
+      gap: 5px;
+      
+    }
+
+
+    .checkbox:checked + .label{
+      background-color: var(--primary)
+    }
+
+    
+  }
+  .checkbox{
+    display: none;
+  }
+
+  .filterCheckbox label {
+    background-color: var(--foreground);
+    border-radius: 20px;
+       border: 2px solid var(--border);
+
+  }
+  
+  .labelBox{
+    height: 45px;
+    width: fit-content;
+  }
+
+  .filterCheckbox label:hover {
+    background-color: var(--primary-dark);
+    color: var(--text-3);
+    cursor: pointer;
   }
 }
+
+
+
 @media only screen and (max-width: 767px) {
   .homeContainer {
     .searchBox {
