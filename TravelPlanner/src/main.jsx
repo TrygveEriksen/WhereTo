@@ -13,6 +13,7 @@ import "./Colors/lightmode.css";
 import "./Colors/darkmode.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import UpdateDestination from "./Components/UpdateDestination/UpdateDestination";
+import { API } from "./API/API";
 
 
 // redirects if users not logged in (if localstorage empty)
@@ -23,6 +24,15 @@ const redirectNotLoggedIn = async () =>{
   }
   return{}
 }
+
+const redirectNotAdmin = async () =>{
+  const adminData = await API.get("/admin");
+  if (adminData.data?.permission != 1) {
+    await new Promise(() => {window.location.href = "/"})
+  }
+  return{}
+}
+
 
 const router = createBrowserRouter([
   {
@@ -66,7 +76,7 @@ const router = createBrowserRouter([
   {
     path: "/AddAd",
     element: <AddAd />,
-    loader: redirectNotLoggedIn
+    loader: redirectNotAdmin
   }
 ]);
 

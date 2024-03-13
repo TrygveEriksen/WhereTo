@@ -34,6 +34,9 @@ const findOneAdvertisement = async (req, res) => {
 
 const postNewAdvertisement = async (req, res) => {
     try {
+      if(req.user.permission!=1){
+        return res.json({error: "Not admin"});
+      }
         const newAdvertisement = new AdvertisementModel(req.body);
         const savedAdvertisement = await newAdvertisement.save();
         res.status(201).json(savedAdvertisement);
