@@ -154,4 +154,16 @@
 
 .editIcon {
   cursor: pointer;
+  margin: 5px;
+}
+
+.MuiDialog-container .css-1t1j96h-MuiPaper-root-MuiDialog-paper  {
+  background-color: var(--foreground); 
+   color: var(--text);
+
+   input[type="text"], textarea {
+    background-color: var(--foreground);
+    color: var(--text);
+   }
+
 }

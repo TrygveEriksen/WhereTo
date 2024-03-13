@@ -1,6 +1,5 @@
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -19,11 +18,10 @@ function EditReview({
 }) {
   return (
     <div>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose} >
         <ClearIcon className="editIcon" onClick={handleClose} />
-        <DialogTitle>Rediger din vurdering</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
+        <DialogTitle >Rediger din vurdering</DialogTitle>
+        <DialogContent >
             <form onSubmit={handleSubmit} className="newReviewForm">
               <div className="starRating">
                 <input
@@ -124,7 +122,6 @@ function EditReview({
                 onClick={() => handleDelete(reviewToEdit._id)}
               />
             </form>
-          </DialogContentText>
         </DialogContent>
       </Dialog>
     </div>
