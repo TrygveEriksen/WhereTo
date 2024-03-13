@@ -76,6 +76,7 @@
       }
       .imgPreview {
         max-height: 300px;
+        margin-bottom: 30px;
         border-radius: 5px;
       }
     }
