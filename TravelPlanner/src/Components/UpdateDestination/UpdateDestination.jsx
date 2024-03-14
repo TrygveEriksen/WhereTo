@@ -247,7 +247,7 @@ function UpdateDestination() {
 
           <form onSubmit={handleSubmit} className="newDestinationForm">
             <div className="verifiedDiv">
-              <label className ="loginLabel" htmlFor="verified">Verified:</label>
+              <label className ="loginLabel" htmlFor="verified">Verifisert:</label>
               <input 
               type="checkbox"
               id="verified"

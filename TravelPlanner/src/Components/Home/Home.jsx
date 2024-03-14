@@ -15,20 +15,51 @@ function Home() {
   const [searchWord, setSearchWord] = useState("");
   const [toggledFilters, setToggledFilters] = useState([]);
   const [filterVerified, setFilterVerified] = useState(true);
+  const [filterUnverified, setFilterUnverified] = useState(false);
+  const [permission, setPermission] = useState(0);
 
   /**
    * Updates data based on filters and search word
    */
   useEffect(() => {
-    let filteredDest = destinations;
-    if(filterVerified) {
+    filter(destinations)
+    
+  },[toggledFilters, searchWord, filterVerified, filterUnverified])
+
+  
+
+  //fetch data from the server when the page starts running and set it in the state destination
+  useEffect(() => {
+    load();
+  }, []);
+
+  const load = async () => {
+    const isAdmin = await API.get("/admin");
+    setPermission(isAdmin.data.permission);
+
+    const destRes = await API.get("/destinations");
+    if (destRes) {
+      setDestinations(destRes.data);
+      filter(destRes.data); 
+      return setLoading(false);
+    }
+  };
+  const filter = (dest) => {
+    let filteredDest = dest;
+    if(permission == 1 && filterUnverified) {
+      filteredDest = filteredDest.filter((destination) => {
+        return (destination.isVerified != 1);
+      })
+    }
+    else if(filterVerified) {
       filteredDest = filteredDest.filter((destination) => {
         return (destination.isVerified === 1)
       })
     }
+    
     if(toggledFilters.length != 0) {
       filteredDest = filteredDest.filter((destination) => {
-         return toggledFilters.every((filter) =>
+        return toggledFilters.every((filter) =>
             destination.labels.includes(filter)
         );
       })
@@ -51,31 +82,14 @@ function Home() {
 
     setVisibleDestinations(filteredDest);
 
-  },[toggledFilters, searchWord, filterVerified])
 
-  //fetch data from the server when the page starts running and set it in the state destination
-  useEffect(() => {
-    load();
-  }, []);
-
-  const load = async () => {
-    const destRes = await API.get("/destinations");
-    if (destRes) {
-      setDestinations(destRes.data);
-      setVisibleDestinations(destRes.data.filter((destination) => {
-        return (destination.isVerified === 1);
-      }));
-      return setLoading(false);
-    }
-  };
-
+  }
   const handleFilter = (wordToFilterOn) => {
     if (toggledFilters.includes(wordToFilterOn)) {
       // Remove from the list if already present
       setToggledFilters((prevFilters) =>
         prevFilters.filter((filter) => filter !== wordToFilterOn)
       );
-      console.log(toggledFilters);
     } else {
       // Add to the list if not present
       setToggledFilters((prevFilters) => [...prevFilters, wordToFilterOn]);
@@ -83,15 +97,23 @@ function Home() {
     }
   };
 
-  const handleVerified = () => {
+  const handleVerified = (e) => {
 
-    console.log(filterVerified)
-    
-    if(filterVerified) {
-      setFilterVerified(false)
+    if(e) {
+      setFilterVerified(true)
     }
     else {
-      setFilterVerified(true);
+      setFilterVerified(false);
+    }
+
+  }
+  const handleUnverified = (e) => {
+
+    if(e) {
+      setFilterUnverified(true)
+    }
+    else {
+      setFilterUnverified(false);
     }
 
   }
@@ -127,6 +149,8 @@ function Home() {
             className="filterCheckbox"
             handleFilter={handleFilter}
             handleVerified={handleVerified}
+            handleUnverified = {handleUnverified}
+            permission = {permission}
           />
           <ul className="destinations">
             {visibleDestinations.map((destination) => (
