@@ -29,6 +29,7 @@ function Descriptions() {
   }, []);
 
   const load = async () => {
+    window.scrollTo(0, 0);
     const isAdmin = await API.get("/admin");
     setPermission(isAdmin.data.permission);
     try {
