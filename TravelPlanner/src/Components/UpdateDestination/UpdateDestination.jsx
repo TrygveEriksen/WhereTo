@@ -313,17 +313,25 @@ function UpdateDestination() {
                 display: "flex",
               }}
             >
-              <FormControl component="fieldset" variant="standard">
+              <FormControl
+                component="fieldset"
+                variant="standard"
+                className="filterCheckbox"
+              >
                 {allLabels.map((label, index) => (
-                  <label key={index} className="label">
+                  <div className="labelBox" key={index}>
                     <input
+                      className="checkbox"
                       type="checkbox"
+                      id={"label" + index}
                       onChange={handleLabelChange}
                       name={label}
                       checked={labels.includes(label)}
                     />
-                    {label}
-                  </label>
+                    <label className="label" htmlFor={"label" + index}>
+                      {label}
+                    </label>
+                  </div>
                 ))}
               </FormControl>
             </Box>
