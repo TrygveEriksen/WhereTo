@@ -76,7 +76,10 @@ const getVisitedPlaces = async (req, res) => {
   try {
     const visitedPlaces = await UserModel.findOne({
       _id: req.user._id
-    }).populate('visited')
+    }).populate({
+      path: 'visited',
+      select: 'place country'
+  });
     return res.json(visitedPlaces.visited)
   }
   catch (error) {

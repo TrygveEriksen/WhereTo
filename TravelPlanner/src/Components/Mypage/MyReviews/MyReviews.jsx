@@ -57,7 +57,6 @@ function MyReviews(props) {
         destination,
         stars,
       });
-      console.log("Review has been updated", reviewToEdit._id);
       handleClose();
       load();
     } catch (error) {
@@ -76,7 +75,6 @@ function MyReviews(props) {
     }
     try {
       API.delete(`/review/delete/${reviewID}`);
-      console.log("Review has been deleted", reviewID);
 
       setReviews((prevReviews) =>
         prevReviews.filter((review) => review._id !== reviewID)

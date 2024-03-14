@@ -106,7 +106,6 @@ function NewDestination() {
     setErrorMessage("");
 
     if (!(place && country && continent && description && imageText)) {
-      console.log(place + country + continent + description);
       setErrorMessage("Du må fylle ut alle feltene!");
       return;
     }
@@ -123,8 +122,7 @@ function NewDestination() {
         img: imageText,
       });
 
-      // Handle success response
-      console.log("Destination added successfully:");
+
 
       // Reset form fields after submission
       setPlace("");

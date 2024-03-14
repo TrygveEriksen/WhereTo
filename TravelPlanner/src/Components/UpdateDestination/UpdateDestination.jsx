@@ -119,7 +119,6 @@ function UpdateDestination() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!(place && country && continent && description && imageText)) {
-      console.log(place + country + continent + description);
       setErrorMessage("Du må fylle ut alle feltene!");
       return;
     }
@@ -136,7 +135,7 @@ function UpdateDestination() {
       });
 
       // Handle success response
-      console.log("Destination updated successfully:");
+
 
       setSuccessMessage("Destinasjon ble oppdatert!");
       window.history.back()

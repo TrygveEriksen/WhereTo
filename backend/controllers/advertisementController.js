@@ -58,13 +58,11 @@ const deleteAdvertisement = async (req, res) => {
     if(req.user.permission!=1){
       return res.json({error: "Not admin"});
     }
-    console.log(req.params.id);
     const adId = req.params.id;
     const deletedAd = await AdvertisementModel.findByIdAndDelete(
       adId
       
     );
-    console.log("Det slettes");
     if (deletedAd) {
       res.status(200).json(deletedAd);
     } else { 

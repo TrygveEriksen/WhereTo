@@ -13,8 +13,6 @@ function Advertisement() {
 	const load = async () => {
 		const result = await API.get("/advertisements");
 		setAdvertisement(result.data);
-		console.log(result);
-		console.log(result.data.img)
 	}
 	return(
 		<div>

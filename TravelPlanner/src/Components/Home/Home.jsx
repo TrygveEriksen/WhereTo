@@ -93,7 +93,6 @@ function Home() {
     } else {
       // Add to the list if not present
       setToggledFilters((prevFilters) => [...prevFilters, wordToFilterOn]);
-      console.log(toggledFilters);
     }
   };
 
