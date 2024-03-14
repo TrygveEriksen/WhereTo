@@ -133,7 +133,7 @@ function Home() {
     <>
       <Navbar className="navbar" />
       <div className="homeContainer">
-      <div className="advertContainer"><div className="img"></div></div>
+      <div className="advertContainer"><div className="img hiddenAdd"></div></div>
         <div className="homeContent">
           
           <div className="searchBox">

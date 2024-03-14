@@ -152,5 +152,9 @@
     .searchBox {
       top: 16vh;
     }
+
+  }
+  .hiddenAdd{
+    display: none;
   }
 }

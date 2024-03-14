@@ -1,111 +1,139 @@
 /**Plass på siden til reklame i neste sprint */
 
-.myPageContainer {
-  max-width: 1000px;
+.myPageContainerBox {
+
+  min-height: 80vh;
   display: flex;
-  background-color: var(--background);
-  color: var(--text);
-
-  .divBox {
-    flex: 1;
-    padding: 20px;
-    border-radius: 10px;
-  }
-
-  .myPageContent {
+  justify-content: center;
+  
+  
+  .myPageContainer {
+    
+    max-width: 1200px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    background-color: var(--background);
+    color: var(--text);
 
-  .divMypage {
-    text-align: center;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    box-shadow: 0px 0px 15px 0px var(--border);
-  }
+    .divBox {
+      flex: 1;
+      padding: 20px;
+      border-radius: 10px;
+    }
 
-  .profile-image {
-    width: 80%;
-    max-width: 200px;
-    border: 2px solid var(--copy-light);
-    border-radius: 50%;
-    margin: 20px auto;
-    aspect-ratio: 1/1;
-    object-fit: contain;
-    filter: var(--image-filter);
-  }
+    .myPageContent {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
-  .viewBox {
-    flex: 2;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    .divMypage {
+      text-align: center;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      height: 73vh;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 0px 0px 15px 0px var(--border);
+    }
 
-  .staredPlaces,
-  .myReviews {
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px 0px var(--border);
-  }
+    .profile-image {
+      width: 80%;
+      max-width: 200px;
+      border: 2px solid var(--copy-light);
+      border-radius: 50%;
+      margin: 20px auto;
+      aspect-ratio: 1/1;
+      object-fit: contain;
+      filter: var(--image-filter);
+    }
 
-  .staredPlaces h1,
-  .myReviews h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+    
+    .staredPlaces,
+    .myReviews {
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px 0px var(--border);
+    }
+    .viewBox {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-direction: row;
+      gap: 20px;
+      flex-wrap: wrap;
+      .myReviews{
+        min-width: 300px;
+        flex: 1;
+        height: 73vh;
+      }
+    }
 
-  hr {
-    margin-bottom: 40px;
-    border-color: var(--primary);
+    .staredPlaces h1,
+    .myReviews h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    hr {
+      margin-bottom: 40px;
+      border-color: var(--primary);
+    }
   }
 }
 
 /** Media query for small screens */
 @media only screen and (max-width: 767px) {
-  .myPageContainer {
-    flex-direction: column;
-    
-    .divBox{
-      width: 100%;
-      display: flex;
+  .myPageContainerBox {
+    .myPageContainer {
       flex-direction: column;
-      align-items: center;
-      
 
-      .myPageContent{
-        max-width: 500px;
+      .divBox {
         width: 100%;
-        .divMypage {
-          .profile-image{
-            width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .myPageContent {
+          max-width: 500px;
+          width: 100%;
+          .divMypage {
+            .profile-image {
+              width: 50%;
+            }
+            height: auto;
+            width: 100%;
           }
-          height: auto;
+        }
+      }
+
+      .viewBox {
+        flex-direction: column;
+        gap: 20px;
+   
+        .myReviews{
+          max-height: 100vh;
+          min-width: 300px;
           width: 100%;
         }
-
       }
-      
-    }
 
-    .staredPlaces,
-    .myReviews {
-      padding: 20px;
-    }
+      .staredPlaces,
+      .myReviews {
+        padding: 20px;
+      }
 
-    .profile-image {
-      width: 100%;
-      max-width: 70%;
+      .profile-image {
+        width: 100%;
+        max-width: 70%;
+      }
     }
   }
+
+
+  
 }

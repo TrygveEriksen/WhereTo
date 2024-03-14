@@ -24,24 +24,26 @@ function Mypage() {
   return (
     <>
       <Navbar />
-      <div className="myPageContainer">
-        <div className="divBox">
-          <div className="myPageContent">
-            <div className="divMypage">
-              <h1 className="myPage">Min side</h1>
-              <img
-                src="/images/SVG/mypage.svg"
-                alt="My profile picture"
-                className="profile-image"
-              ></img>
-              <h3>Brukernavn: {username}</h3>
+      <div className="myPageContainerBox">
+        <div className="myPageContainer">
+          <div className="divBox">
+            <div className="myPageContent">
+              <div className="divMypage">
+                <h1 className="myPage">Min side</h1>
+                <img
+                  src="/images/SVG/mypage.svg"
+                  alt="My profile picture"
+                  className="profile-image"
+                ></img>
+                <h3>Brukernavn: {username}</h3>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="viewBox">
-          <MyReviews userId={userId} />
-          <br />
-          <VisitedPlaces />
+          <div className="viewBox">
+            <MyReviews userId={userId} />
+
+            <VisitedPlaces />
+          </div>
         </div>
       </div>
       <Footer />

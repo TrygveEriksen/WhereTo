@@ -79,7 +79,7 @@ function Descriptions() {
 
       <div className="destinationContainer">
         <div className="advertContainer">
-          <div className="img"></div>
+          <div className="img hiddenAdd"></div>
         </div>
         <div className="descriptionContent">
           <div className="imageContainer">
