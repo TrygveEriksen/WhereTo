@@ -15,6 +15,7 @@ function Descriptions() {
   const [destinations, setDestinations] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [reloadReviews, setReloadDescription] = useState(false);
+  const [transition, setTransition] = useState(false);
   const { id } = useParams();
   //for å endre greier:
   const [currentImage, setCurrentImage] = useState("unvisited.svg");
@@ -73,6 +74,12 @@ function Descriptions() {
     setReloadDescription((prevState) => !prevState);
   };
 
+  const handleImageLoad = () => {
+    setTimeout(() => {
+      setTransition(true);
+    }, 1);
+  };
+
   return (
     <>
       <Navbar />
@@ -87,9 +94,10 @@ function Descriptions() {
               <Loading />
             ) : (
               <img
-                className="destImage"
+                className={`destImage ${transition ? "loaded":""}`}
                 src={destinations.img}
                 alt="Bilde av destinasjon"
+                onLoad={handleImageLoad}
               />
             )}
           </div>

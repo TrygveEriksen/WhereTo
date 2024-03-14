@@ -40,7 +40,14 @@
       overflow: hidden;
       border-radius: 10px;
       filter: invert(0);
+      opacity: 0;
+
     }
+    .destImage.loaded {
+      
+      opacity: 1; 
+      transition: opacity 0.3s ease-in; 
+  }
   }
   
   .checkmark {
@@ -97,7 +104,7 @@
         min-width: 100px;
         height: 160px;
         margin: 16px;
-        flex:1;
+        flex:0;
 
         .visitedButton{
           display: flex;
@@ -144,6 +151,7 @@
       }
       
       .labels {
+        
         margin-left: auto;
         width: 33%;
         background-color: var(--secondary);
