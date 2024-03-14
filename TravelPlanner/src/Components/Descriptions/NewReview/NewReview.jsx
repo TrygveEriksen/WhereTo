@@ -31,11 +31,11 @@ function NewReview(props) {
         if (!review) {
           return;
         }
-
-        setTitle(review.data.title);
-        setComment(review.data.comment);
-        setStars(review.data.stars);
-        setOldReviewId(review.data._id);
+        
+        if (review.data.title) setTitle(review.data.title);
+        if (review.data.comment) setComment(review.data.comment);
+        if (review.data.stars) setStars(review.data.stars);
+        if (review.data._id) setOldReviewId(review.data._id);
         setSubmitButtonText("Oppdater");
         setErrorMessage("");
       } catch (error) {
@@ -108,7 +108,6 @@ function NewReview(props) {
             className="starCheckbox"
             value="1"
             onChange={handleStars}
-            checked={false}
           />
           <label
             htmlFor="star1"
@@ -121,7 +120,6 @@ function NewReview(props) {
             className="starCheckbox"
             value="2"
             onChange={handleStars}
-            checked={false}
           />
           <label
             htmlFor="star2"
@@ -134,7 +132,6 @@ function NewReview(props) {
             className="starCheckbox"
             value="3"
             onChange={handleStars}
-            checked={false}
           />
           <label
             htmlFor="star3"
@@ -147,7 +144,6 @@ function NewReview(props) {
             className="starCheckbox"
             value="4"
             onChange={handleStars}
-            checked={false}
           />
           <label
             htmlFor="star4"
@@ -160,7 +156,6 @@ function NewReview(props) {
             className="starCheckbox"
             value="5"
             onChange={handleStars}
-            checked={false}
           />
           <label
             htmlFor="star5"
