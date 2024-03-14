@@ -17,6 +17,8 @@
   align-items: center;
   margin-top: 20px;
   gap: 20px;
+  max-width: 800px;
+  width: 100%;
   
   img {
     filter: var(--image-filter);
@@ -25,7 +27,7 @@
   .imageContainer {
     top: 150px;
     z-index: 0;
-    max-width: 800px;
+    
     width: 100%;
     background-color: var(--foreground);
     border-radius: 10px;
