@@ -61,39 +61,52 @@ function FilterCheckbox({ handleFilter, handleVerified,handleUnverified,permissi
     <div className="filterCheckbox">
       <FormControl component="fieldset" variant="standard">
         {allLabels.map((label, index) => (
-          <label key={index} className="label">
+          <div className="labelBox" key={index}>
             <input
               className="checkbox"
               type="checkbox"
               tabIndex={-1}
+              id={"label" + index}
               onChange={() => handleFilter(label)}
               name={label}
             />
-            {label}
-          </label>
+            <label className="label" htmlFor={"label" + index}>
+              {label}
+            </label>
+          </div>
         ))}
-        <label className="label">
-          <input 
-          className="checkbox"
-          type="checkbox"
-          tabIndex={-1}
-          checked = {verifiedCheck}
-          onChange={(e) => handleVerifiedCheck(e.target.checked)}
-          name={"verified"}
+        <div className="labelBox" key={"verified"}>
+          <input
+            className="checkbox"
+            type="checkbox"
+            tabIndex={-1}
+            id={"verified"}
+            checked = {verifiedCheck}
+            onChange={(e) => handleVerified(e.target.checked)}
+            name={"verified"}
           />
-          Verifisert
-        </label>
-        {permission ? <label className="label">
+          <label htmlFor={"verified"} className="label">
+            Verifisert
+          </label>
+        </div>
+
+
+        {permission==1 &&
+        <div className="labelBox" key={"not-verified"}>
+
           <input 
           className="checkbox"
           type="checkbox"
           tabIndex={-1}
+          id={"not-verified"}
           checked={unverifiedCheck}
           onChange={(e)=> handleUnverifiedCheck(e.target.checked)}
-          name={"unverified"}
+          name={"not-verified"}
           />
+         <label className="label" htmlFor={"not-verified"}>
           Ikke Verifisert
-          </label>:null}
+          </label>
+          </div>}
       </FormControl>
     </div>
   );

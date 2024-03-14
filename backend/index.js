@@ -8,6 +8,7 @@ const { AuthMiddleware } = require("./routers/middelware");
 const { destinationRouter } = require("./routers/destinationRouter");
 const { secrets } = require("./secrets");
 const { adminRouter } = require("./routers/adminRouter");
+const { advertisementRouter } = require("./routers/advertisementRouter");
 const { userRouter } = require("./routers/userRouter");
 
 const app = express();
@@ -29,6 +30,8 @@ app.use("/destinations", destinationRouter);
 app.use("/review", reviewRouter);
 app.use("/admin", adminRouter);
 app.get("/getUser", (req, res) => res.json(req.user));
+app.use("/advertisements", advertisementRouter);
+
 
 app.listen(3001, () => {
   console.log("server is running");

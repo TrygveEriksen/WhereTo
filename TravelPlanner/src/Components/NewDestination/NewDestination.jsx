@@ -93,7 +93,6 @@ function NewDestination() {
   };
 
   const handleLabelChange = (e) => {
-    
     setErrorMessage("");
     if (e.target.checked) {
       setLabels([...labels, e.target.name]);
@@ -137,7 +136,6 @@ function NewDestination() {
       setImageText("");
       setFileKey((prevKey) => prevKey + 1);
 
-
       // Uncheck all checkboxes
       document
         .querySelectorAll('input[type="checkbox"]')
@@ -163,7 +161,6 @@ function NewDestination() {
       setErrorMessage("Bildet må være av type jpeg eller png");
       setFileKey((prevKey) => prevKey + 1);
       return;
-      
     }
     if (file.size > 1000000) {
       setErrorMessage("Bildet er for stort, maks 1MB");
@@ -175,8 +172,6 @@ function NewDestination() {
     reader.onload = () => {
       const base64 = reader.result;
       setImageText(base64);
-    
-
     };
   };
 
@@ -193,7 +188,6 @@ function NewDestination() {
       setErrorMessage("Bildet må være av type jpeg eller png");
       setFileKey((prevKey) => prevKey + 1);
       return;
-      
     }
     if (file.size > 1000000) {
       setErrorMessage("Bildet er for stort, maks 1MB");
@@ -222,13 +216,14 @@ function NewDestination() {
     setIsDragOverBody(false);
   };
 
-
- 
-
   return (
     <>
       <Navbar />
-      <div className="newDestinationContainer" onDragOver={handleDragBody} onDragLeave={handleDropBody}>
+      <div
+        className="newDestinationContainer"
+        onDragOver={handleDragBody}
+        onDragLeave={handleDropBody}
+      >
         <div className="newDestinationDiv">
           <h1 className="newDestinationHeader">Legg til destinasjon</h1>
 
@@ -291,30 +286,49 @@ function NewDestination() {
                 display: "flex",
               }}
             >
-              <FormControl component="fieldset" variant="standard">
+              <FormControl
+                component="fieldset"
+                variant="standard"
+                className="filterCheckbox"
+              >
                 {allLabels.map((label, index) => (
-                  <label key={index} className="label">
+                  <div className="labelBox" key={index}>
                     <input
+                      className="checkbox"
                       type="checkbox"
+                      id={"label" + index}
                       onChange={handleLabelChange}
                       name={label}
                       checked={labels.includes(label)}
                     />
-                    {label}
-                  </label>
+                    <label className="label" htmlFor={"label" + index}>
+                      {label}
+                    </label>
+                  </div>
                 ))}
               </FormControl>
             </Box>
 
-            <div className={`imgDiv ${isDragOverBody?"dropzone":""}`} onDrop={handleDrop} onDragOver={handleDragOver}>
+            <div
+              className={`imgDiv ${isDragOverBody ? "dropzone" : ""}`}
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+            >
               <label htmlFor="inputImage">
-
-              <p className="button">Choose File</p >{!imageText && <p>No file chosen</p>}
-              <input id="inputImage" type="file" key={fileKey} onChange={handleFile} accept=".jpeg, .jpg, .png"></input>
+                <p className="button">Choose File</p>
+                {!imageText && <p>No file chosen</p>}
+                <input
+                  id="inputImage"
+                  type="file"
+                  key={fileKey}
+                  onChange={handleFile}
+                  accept=".jpeg, .jpg, .png"
+                ></input>
               </label>
-              {imageText && (<img src={imageText} alt="destination" className="imgPreview" />)}
+              {imageText && (
+                <img src={imageText} alt="destination" className="imgPreview" />
+              )}
             </div>
-
 
             <button className="submitBtn" type="submit">
               Legg til

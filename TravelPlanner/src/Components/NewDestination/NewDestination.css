@@ -1,9 +1,4 @@
-
-
 .newDestinationContainer {
-
-
-
   background-color: var(--background);
   min-height: 100vh;
   width: 100%;
@@ -42,17 +37,15 @@
     max-width: 600px;
     gap: 5px;
 
-    select{
+    select {
       background-color: var(--foreground);
     }
 
-    
-    
-    .dropzone{
+    .dropzone {
       background-color: var(--primary);
     }
 
-    .imgDiv{
+    .imgDiv {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -63,7 +56,7 @@
       border: 1px solid var(--primary);
       margin-bottom: 10px;
 
-      label{
+      label {
         width: 100%;
         cursor: pointer;
         padding: 10px;
@@ -72,25 +65,53 @@
         justify-content: center;
         align-items: center;
         gap: 10px;
-        .button{
+        .button {
           background-color: var(--secondary);
           padding: 10px;
           border-radius: 5px;
         }
-        
       }
-      #inputImage{
+      #inputImage {
         display: none;
       }
-      .imgPreview{
+      .imgPreview {
         max-height: 300px;
-       
+        margin-bottom: 30px;
         border-radius: 5px;
       }
     }
 
+    .filterCheckbox {
+      color: var(--text);
+      padding: 20px;
+      z-index: 1;
+      display: flex;
+      gap: 5px;
 
+      .checkbox:checked + .label {
+        background-color: var(--primary);
+      }
+    }
+    .checkbox {
+      display: none;
+    }
 
+    .filterCheckbox label {
+      background-color: var(--foreground);
+      border-radius: 20px;
+      border: 2px solid var(--border);
+    }
+
+    .labelBox {
+      height: 45px;
+      width: fit-content;
+    }
+
+    .filterCheckbox label:hover {
+      background-color: var(--primary-dark);
+      color: var(--text-3);
+      cursor: pointer;
+    }
   }
 
   .loginLabel {
@@ -108,7 +129,6 @@
 
     color: var(--text);
     background-color: var(--text-box);
-
   }
 
   .submitBtn {
@@ -155,10 +175,10 @@
     margin-bottom: 5px;
     color: var(--text);
     background-color: var(--text-box);
-    
   }
 
-  .descriptionInput::placeholder, .newDestinationInput::placeholder {
+  .descriptionInput::placeholder,
+  .newDestinationInput::placeholder {
     color: var(--text-2);
   }
 
@@ -166,8 +186,7 @@
     padding: 10px;
   }
 
-
-  .MuiFormControl-root{
+  .MuiFormControl-root {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;

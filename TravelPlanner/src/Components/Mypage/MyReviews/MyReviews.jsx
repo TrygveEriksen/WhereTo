@@ -70,6 +70,10 @@ function MyReviews(props) {
   };
 
   const handleDelete = (reviewID) => {
+    const confimdDelete = window.confirm("Er du sikker på at du vil slette?");
+    if (!confimdDelete) {
+      return;
+    }
     try {
       API.delete(`/review/delete/${reviewID}`);
       console.log("Review has been deleted", reviewID);
@@ -135,8 +139,8 @@ function MyReviews(props) {
           handleSubmit={handleSubmit}
           handleDelete={handleDelete}
           stars={stars}
-          title={title}
-          comment={comment}
+          title={title? title : ""}
+          comment={comment? comment : ""}
           reviewToEdit={reviewToEdit}
         />
       </ul>
