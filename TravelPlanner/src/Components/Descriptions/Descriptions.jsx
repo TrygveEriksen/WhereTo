@@ -96,7 +96,7 @@ function Descriptions() {
 
           <div className="interContainer">
             <div className="column-container">
-              <div className="descriptionsContainer"></div>
+              
               {permission == 1 && (
                 <Link to={`/editdestination/${id}`} className="destAnchorPen">
                   <i className="fa fa-pen editDest"></i>
@@ -120,9 +120,13 @@ function Descriptions() {
                   {destinations.country}, {destinations.continent}
                 </h2>
               </div>
+
+              <div className="visitedButtonContainer">
+
               <div className="visitedButton" onClick={handleVisited}>
                 <img src={currentImage} alt="Visited" className="visited" />
                 <p className="buttonText">{visit}</p>
+              </div>
               </div>
               <div className="labels">
                 <h3 className="destinationHeader">Egenskaper:</h3>
