@@ -17,13 +17,13 @@ function Advertisement() {
 		console.log(result.data.img)
 	}
 	return(
-		<>
-		<div id="advertContainer">
+		<div>
+		<div className="advertContainer">
 			<a href={advertisement.imgLink} target="_blank" rel="noreferrer noopener">
-			<img src={advertisement.img} alt={advertisement.title} />
+			<img className="img" src={advertisement.img} alt={advertisement.title} />
 			</a>
 		</div>
-		</>
+		</div>
 	);
 }	
 export default Advertisement;

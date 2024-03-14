@@ -133,8 +133,9 @@ function Home() {
     <>
       <Navbar className="navbar" />
       <div className="homeContainer">
+      <div className="advertContainer"><div className="img"></div></div>
         <div className="homeContent">
-          {isLoading && <Loading />}
+          
           <div className="searchBox">
             <input
               className="searchField"
@@ -153,7 +154,8 @@ function Home() {
             permission = {permission}
           />
           <ul className="destinations">
-            {visibleDestinations.map((destination) => (
+          {isLoading && <Loading />}
+            {!isLoading && visibleDestinations.map((destination) => (
               <li className="oneDestination" key={destination._id}>
                 <Link
                   className="destAnchor"
@@ -164,7 +166,7 @@ function Home() {
                 </Link>
               </li>
             ))}
-            {visibleDestinations.length === 0 && (
+            {!isLoading && visibleDestinations.length === 0 && (
               <li className="oneDestination">
                 <a className="destAnchor">
                   <p className="destLink dest1">Ingen resultater matcher</p>
@@ -174,9 +176,8 @@ function Home() {
             )}
           </ul>
         </div>
-        <div>
-          <Advertisement />
-        </div>
+
+          <Advertisement/>
       </div>
       <Footer />
     </>

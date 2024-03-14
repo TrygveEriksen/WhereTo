@@ -1,16 +1,27 @@
-.descriptionContent {
+.destinationContainer {
+
+  background-color: var(--background);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  min-height: 100vh;
+
+  
+  .descriptionContent {
   min-height: 100vh;
   color: var(--text);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 20px;
   gap: 20px;
-
+  
   img {
     filter: var(--image-filter);
   }
-
+  
   .imageContainer {
     top: 150px;
     z-index: 0;
@@ -21,8 +32,8 @@
     display: flex;
     justify-content: center;
     height: 400px;
-
-
+    
+    
     .destImage {
       width: 100%;
       object-fit: cover;
@@ -31,13 +42,13 @@
       filter: invert(0);
     }
   }
-
+  
   .checkmark {
     height:25px;
     margin-left: 10px;
   }
-
-
+  
+  
   .interContainer {
     display: flex;
     flex-direction: column;
@@ -49,8 +60,8 @@
     max-width: 800px;
     width: 100%;
     margin-top: 0px;
-
-
+    
+    
     .column-container {
       max-width: 800px;
       display: flex;
@@ -59,13 +70,15 @@
       background-color: var(--foreground);
       border: 2px, solid, var(--border);
       border-radius: 10px;
-
+      
       .destAnchorPen {
         position: relative;
         /* Set position relative to allow absolute positioning */
-
+        
       }
 
+    
+      
       .editDest {
         position: absolute;
         font-size: x-large;
@@ -75,7 +88,7 @@
         text-decoration: none;
         cursor: pointer;
       }
-
+      
       .visitedButton {
         display: flex;
         flex-direction: column;
@@ -91,39 +104,45 @@
         padding-bottom: 10px;
         cursor: pointer;
         gap: 1px;
-
+        
         .visited {
           height: 100px;
         }
       }
-
+      
       .areaContainer {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-
+        
+        
         flex: 1;
-
-
-
+        .descriptionsHeader{
+          margin: 15px;
+        }
+        h2{
+          margin: 15px;
+        }
+        
+        
+        
         .icon {
           margin-right: 10px;
         }
       }
-
+      
       .labels {
         margin-left: auto;
         width: 33%;
         background-color: var(--secondary);
         border-radius: 10px;
-
+        
         .destinationHeader {
           color: var(--text);
           margin: 16px;
         }
-
+        
         .destinationLabels {
           margin: 16px;
           padding: 0;
@@ -132,7 +151,7 @@
           flex-wrap: wrap;
           list-style-type: none;
           gap: 5px;
-
+          
           .label {
             background-color: var(--label);
             color: var(--text);
@@ -145,10 +164,11 @@
         }
       }
 
-
+      
     }
-
-
+    
+    
+  
 
   }
 
@@ -175,4 +195,5 @@
   }
 
 
+}
 }
