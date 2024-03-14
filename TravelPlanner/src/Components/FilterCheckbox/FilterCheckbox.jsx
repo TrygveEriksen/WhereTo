@@ -82,7 +82,7 @@ function FilterCheckbox({ handleFilter, handleVerified,handleUnverified,permissi
             tabIndex={-1}
             id={"verified"}
             checked = {verifiedCheck}
-            onChange={(e) => handleVerified(e.target.checked)}
+            onChange={(e) => handleVerifiedCheck(e.target.checked)}
             name={"verified"}
           />
           <label htmlFor={"verified"} className="label">
