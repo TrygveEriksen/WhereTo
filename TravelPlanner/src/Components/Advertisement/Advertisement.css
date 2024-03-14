@@ -1,16 +1,27 @@
-#advertContainer {
-	min-height: 100vh;
-	top: 160px;
-	position: sticky;
+.advertContainer {
 	display: flex;
-	width: 160px;
-	margin-right: 20px;
 	justify-content: center; /* Center the image horizontally */
 	overflow: hidden;
+	margin: 20px;
+	position: sticky;
+	top: 170px;
+	flex-shrink: 0;
 	
   }
   
-  #advertContainer img {
-	height: 600px;
+  .advertContainer .img {
+	height: 70vh;
+	aspect-ratio: 4/15;
 	object-fit: cover;
   }
+
+
+
+  
+@media only screen and (max-width: 767px) {
+	.advertContainer {
+	
+		top: 16vh;
+	}
+  }
+  

@@ -1,43 +1,63 @@
-.descriptionContent {
+.destinationContainer {
+
+  background-color: var(--background);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  min-height: 100vh;
+
+  
+  .descriptionContent {
   min-height: 100vh;
   color: var(--text);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 20px;
   gap: 20px;
-
+  max-width: 800px;
+  width: 100%;
+  
   img {
     filter: var(--image-filter);
   }
-
+  
   .imageContainer {
     top: 150px;
     z-index: 0;
-    max-width: 800px;
+    
     width: 100%;
     background-color: var(--foreground);
     border-radius: 10px;
     display: flex;
     justify-content: center;
     height: 400px;
-
-
+    
+    
     .destImage {
       width: 100%;
       object-fit: cover;
       overflow: hidden;
       border-radius: 10px;
       filter: invert(0);
-    }
-  }
+      opacity: 0;
 
+    }
+    .destImage.loaded {
+      
+      opacity: 1; 
+      transition: opacity 0.3s ease-in; 
+  }
+  }
+  
   .checkmark {
     height:25px;
     margin-left: 10px;
   }
-
-
+  
+  
   .interContainer {
     display: flex;
     flex-direction: column;
@@ -49,23 +69,25 @@
     max-width: 800px;
     width: 100%;
     margin-top: 0px;
-
-
+    
+    
     .column-container {
       max-width: 800px;
       display: flex;
-      align-items: stretch;
       box-shadow: 0px 0px 15px 0px var(--border);
       background-color: var(--foreground);
       border: 2px, solid, var(--border);
       border-radius: 10px;
+      flex-wrap: wrap;
+      flex-direction: row;
 
       .destAnchorPen {
         position: relative;
-        /* Set position relative to allow absolute positioning */
-
+        
       }
 
+    
+      
       .editDest {
         position: absolute;
         font-size: x-large;
@@ -75,55 +97,73 @@
         text-decoration: none;
         cursor: pointer;
       }
-
-      .visitedButton {
+      
+      .visitedButtonContainer {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        width: 100px;
+        align-items:center;
+        min-width: 100px;
         height: 160px;
         margin: 16px;
-        background-color: var(--primary);
-        color: var(--text);
-        border-radius: 10px;
-        padding-top: 30px;
-        padding-bottom: 10px;
-        cursor: pointer;
-        gap: 1px;
+        flex:0;
 
+        .visitedButton{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width:  100px;
+          height: 160px;
+          background-color: var(--primary);
+          color: var(--text);
+          border-radius: 10px;
+          padding-top: 30px;
+          padding-bottom: 10px;
+          cursor: pointer;
+          gap: 1px;
+        }
+        
         .visited {
           height: 100px;
         }
       }
-
+      
       .areaContainer {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-
+        min-width: 400px;
+        height: 200px;
+        
         flex: 1;
-
-
-
+        .descriptionsHeader{
+          margin: 15px;
+        }
+        h2{
+          margin: 15px;
+        }
+        
+        
+        
         .icon {
           margin-right: 10px;
         }
       }
-
+      
       .labels {
+        
         margin-left: auto;
         width: 33%;
         background-color: var(--secondary);
         border-radius: 10px;
-
+        flex: 1;
         .destinationHeader {
           color: var(--text);
           margin: 16px;
         }
-
+        
         .destinationLabels {
           margin: 16px;
           padding: 0;
@@ -132,7 +172,7 @@
           flex-wrap: wrap;
           list-style-type: none;
           gap: 5px;
-
+          
           .label {
             background-color: var(--label);
             color: var(--text);
@@ -145,10 +185,11 @@
         }
       }
 
-
+      
     }
-
-
+    
+    
+  
 
   }
 
@@ -175,4 +216,5 @@
   }
 
 
+}
 }

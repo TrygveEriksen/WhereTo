@@ -43,9 +43,6 @@ function AddAd() {
 				imgLink,
 			});
 
-			// Handle success response
-			console.log("Destination added successfully:");
-
 			// Reset form fields after submission
 
 			setAdName("");

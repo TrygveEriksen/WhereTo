@@ -19,7 +19,6 @@ import { API } from "./API/API";
 // redirects if users not logged in (if localstorage empty)
 const redirectNotLoggedIn = async () =>{
   if (!localStorage.getItem('user')){
-    console.log("redirect from loader");
      await new Promise(() => {window.location.href = "/login"})
   }
   return{}

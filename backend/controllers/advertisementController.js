@@ -1,19 +1,16 @@
 const AdvertisementModel = require("../models/Advertisement");
 
-const findOneRandomAdvertisement = async (req, res) => {
+  const findOneRandomAdvertisement = async (req, res) => {
     try {
-      const advertisements = await AdvertisementModel.find();
-
-      // Finner en tilfeldig annonse
-      const length = advertisements.length;
-      const selected = Math.floor(Math.random() * length);
-      const advertisement = advertisements[selected];
-
-      res.json(advertisement);
+      const advertisement = await AdvertisementModel.aggregate([
+        { $sample: { size: 1 } }
+    ]);
+      res.json(advertisement[0]);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
   };
+
 
 const findOneAdvertisement = async (req, res) => {
     try {
@@ -61,13 +58,11 @@ const deleteAdvertisement = async (req, res) => {
     if(req.user.permission!=1){
       return res.json({error: "Not admin"});
     }
-    console.log(req.params.id);
     const adId = req.params.id;
     const deletedAd = await AdvertisementModel.findByIdAndDelete(
       adId
       
     );
-    console.log("Det slettes");
     if (deletedAd) {
       res.status(200).json(deletedAd);
     } else { 
